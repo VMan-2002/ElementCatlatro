@@ -356,12 +356,12 @@ SMODS.Atlas({
 	py = 95
 })
 
-SMODS.Atlas({ --https://github.com/InertSteak/Pokermon/wiki/Creating-Pokermon-Content#create-shiny-sprites-for-your-cards
+--[[SMODS.Atlas({ --https://github.com/InertSteak/Pokermon/wiki/Creating-Pokermon-Content#create-shiny-sprites-for-your-cards
 	key = "elementsShiny",
 	path = "elementsShiny.png",
 	px = 71,
 	py = 95
-})
+})]]
 
 local inpool = function(self)
 	local count = 0
