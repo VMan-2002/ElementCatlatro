@@ -32,7 +32,7 @@ create_UIBox_your_collection_ecattos_compounds = function()
 	for k,v in pairs(elementcattos.compounds) do
 		registryMenuAddEntry(collect, {
 			key = k,
-			no_collection = v[2].no_collection,
+			no_collection = v[2].no_collection or v.no_collection,
 			mod = v[2].mod,
 			result_center = type(v[2]) == "table" and v[2].collection_center or v[2] or nil,
 			collection_atlas = v[2].collection_atlas,
