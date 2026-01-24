@@ -183,6 +183,11 @@ elementcattos = {
 		return inputs
 	end
 }
+SMODS.current_mod.custom_collection_tabs = function()
+	return { UIBox_button {
+		button = 'your_collection_ecattos_compounds', label = {localize("ecattos_compounds_recipes")}, minw = 5, id = 'your_collection_ecattos_compounds'
+	}}
+end
 --todo: element decaying and isotopes are gonna be a thing to figure out
 elementcattos.radioactive = {
 	ecatto_element82_214 = { --lead 214
@@ -234,6 +239,7 @@ local rq = {
 	"consumables",
 	"compounds",
 	"compounds_extra_recipes",
+	"compounds_collection",
 	"decks",
 	"boosters",
 	"sleeves",

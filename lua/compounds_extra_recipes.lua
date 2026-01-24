@@ -1,7 +1,7 @@
 elementcattos.compounds._stonecards = {
 	{"Ca", {"H", 2}, "C", {"O", 3}},
 	{
-		name = localize("ecattos_recipe_name_stone_cards"),
+		name = "ecattos_recipe_name_stone_cards",
 		func = function(edition, inputs)
 			--1 card is guaranteed to be no edition.
 			--2 other card is 66% chance to be foil or holo.
@@ -20,10 +20,12 @@ elementcattos.compounds._stonecards = {
 					area = G.deck
 				})
 			end
-		end
+		end,
+		collection_center = "m_stone",
+		collection_atlas = "centers"
 	}
 }
 elementcattos.compounds.j_splash = {
-	{{"H", 2}, "O"},
+	{{"water"}, "JOKER"},
 	"j_splash"
 }

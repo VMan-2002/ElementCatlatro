@@ -41,8 +41,7 @@ local UIBox_ecatto_compound_creator = function(_card)
 	names, ids, selectedItem = {}, {}, 1
 	for k,v in pairs(elementcattos.compounds) do
 		if elementcattos.hasFormula(v[1]) then
-			--todo: centers without loc_txt need to display their actual name
-			local name = tostring(type(v[2]) == "table" and v[2].name or topuplib.nameFromKey(v[2]))
+			local name = tostring(type(v[2]) == "table" and localize(v[2].name) or topuplib.nameFromKey(v[2]))
 			names[#names+1] = name .. ": " .. elementcattos.formatFormula(v[1], true)
 			ids[#names] = k
 		end

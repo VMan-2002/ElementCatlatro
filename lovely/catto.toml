@@ -18,3 +18,18 @@ pattern = '''end\n+AAAAAAAAAAAAAAAAAAAAAAA'''
 position = "at"
 payload = ''
 match_indent = false
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''local cfg = (card and card.ability) or _c['config']'''
+position = "before"
+payload = '''if _c.set == "ECattos_Compound" then
+	local compound = elementcattos.compounds[_c.key]
+	localize{type = 'descriptions', key = "recipe", set = "ECattos_Compound", nodes = desc_nodes, vars = {
+		type(compound[2]) == "table" and localize(elementcattos.compounds[_c.key][2].name) or topuplib.nameFromKey(compound[2]),
+		elementcattos.formatFormula(elementcattos.compounds[_c.key][1], true)
+	}}
+	badges.card_type = nil
+end'''
+match_indent = true

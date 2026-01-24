@@ -151,6 +151,21 @@ SMODS.Joker {
 	end,
 }
 
+local jokes = SMODS.Joker {
+	key = "joker",
+	config = {extra = {mult = 4}},
+	pronouns = "he_him",
+	atlas = "special",
+	rarity = 2,
+	pos = {x = 0, y = 0},
+	element_symbol = "JOKER",
+	loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.mult}}
+	end,
+	atomic_number = 139
+}
+elementcattos.atomicnumber[139] = jokes.key
+
 -- if a state change or deletion should happen, but eternal prevents it from fully completing,
 -- you should get garbage instead
 elementcattos.garbage = SMODS.Joker {

@@ -32,6 +32,8 @@ return {
 			ecattos_ds_screen_explode = "!?!?!",
 			ecattos_ds_screen_bye = "BYE :3",
 			
+			ecattos_compounds_recipes = "Compound Creator Recipes",
+			
 			ecattos_planet_star_of = "Star of #1#",
 			ecattos_planet_moon_of = "Moon of #1#",
 			ecattos_planet_planet_of = "Planet of #1#",
@@ -765,6 +767,32 @@ return {
                     "{C:attention}2{} extra options to choose from",
 				}
             },
-        }
+        },
+		TopUpLib_Music = {
+			ecattos_music_ecattos = {
+				name = "Feline Chemistry",
+				text = {
+					"Using the {C:tarot}Compound Creator",
+					"By VMan_2002"
+				},
+				center = "c_ecattos_compoundcreator"
+			}
+		},
+		ECattos_Compound = {
+			recipe = {
+				text = {
+					"Result: #1#",
+					"Formula: #2#"
+				}
+			},
+			recipe_notdiscovered = {
+				text = {
+					"Not Discovered",
+					"Form this compound to",
+					"discover the result",
+					"Formula: #2#"
+				}
+			}
+		}
     }
 }
