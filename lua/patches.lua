@@ -21,6 +21,6 @@ topuplib.localizeHook = function(args, loc_target, misc_cat, ...)
 		G_tba_loc_target = loc_target
 		return {name = ex.name(args.vars.atomic_number or 999)}
 	end
-	print("Dont replace, not TBA catto")
+	--print("Dont replace, not TBA catto")
 	return localize_ref(args, loc_target, misc_cat, ...)
 end
