@@ -152,7 +152,7 @@ return {
 			j_ecattos_element4 = elementcattos.loc_txt {
 				name = "Beryllium",
 				text = {
-					"{_A:mult:+1.5} per scored",
+					"{_A:mult:+#1#} per scored",
 					"card with an {C:dark_edition}edition{}"
 				},
 				anum = 4,
@@ -181,7 +181,9 @@ return {
 				name = "Nitrogen",
 				text = {
 					"{_A:chips:+15} per unique",
-					"suit in scoring hand"
+					"suit in scoring hand",
+					"{C:attention}Wild Cards{} always count",
+					"as an unique suit"
 				},
 				anum = 7,
 				sym = "N"
@@ -261,6 +263,35 @@ return {
 				},]]
 				anum = 33,
 				sym = "As"
+			},
+			j_ecattos_element34 = elementcattos.loc_txt {
+				name = "Selenium",
+				text = {
+					"{C:tarot}The Moon{} additionally enhances",
+					"selected cards to {C:attention}Mult Cards",
+				},
+				anum = 34,
+				sym = "Se"
+			},
+			j_ecattos_element34_alt = elementcattos.loc_txt {
+				name = "Neil",
+				text = {
+					"{C:tarot}The Moon{} additionally enhances",
+					"selected cards to {C:attention}Mult Cards",
+				},
+				anum = 34,
+				sym = "Neil"
+			},
+			j_ecattos_element56 = elementcattos.loc_txt {
+				name = "Barium",
+				--idk -Jacob
+				--[[text = {
+					"{_A:basexmult:#1#}",
+					"After playing a hand,",
+					"discard {C:attention}#1#{} cards from your deck.",
+				},]]
+				anum = 56,
+				sym = "Ba"
 			},
 			j_ecattos_element60 = elementcattos.loc_txt {
 				name = "Neodymium",
@@ -386,6 +417,33 @@ return {
 				text = {
 					"{C:inactive}Oops...{}"
 				}
+			},
+			j_ecattos_yomium = elementcattos.loc_txt {
+				name = "Yomium",
+				text = {
+					"Copies ability of first",
+					"{C:attention}Element Catto{} to the right",
+				},
+				--anum = "{5}",
+				sym = "Ym"
+			},
+			j_ecattos_joker = elementcattos.loc_txt {
+				name = "Jimbonium",
+				text = {
+					"+4 {C:mult}Mult{}",
+				},
+				anum = "139", --https://commons.wikimedia.org/wiki/File:Wales_Chem.png lol
+				sym = "JOKER"
+			},
+			j_ecattos_element118fake = elementcattos.loc_txt {
+				name = "Ninovium",
+				text = {
+					"x2 {C:mult}Mult{}",
+					"x0.5 {C:chips}Chips{}",
+					"{C:inactive}Explodes when balancing Chips and Mult{}"
+				},
+				anum = "118",
+				sym = "Nv"
 			},
 			--Subatomic particles
 			j_ecattos_neutron = elementcattos.loc_txt {
@@ -688,6 +746,25 @@ return {
 					"and {C:attention}Overstock Plus{}"
 				}
 			}
-		}
-	}
+		},
+        Sleeve = {
+            sleeve_ecattos_elements = {
+                name = "Element Cattos Sleeve",
+				text = topuplib.asub {
+					"Only Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+24{} Joker slots",
+					"Start with additional {_A:money:8}",
+					"and {C:attention}Overstock Plus{}"
+				}
+            },
+            sleeve_ecattos_elements_alt = {
+                name = "Element Cattos Sleeve",
+				text = topuplib.asub {
+					"{C:tarot}Tool{} and {C:attention}Element{} Packs both have",
+                    "{C:attention}2{} extra options to choose from",
+				}
+            },
+        }
+    }
 }

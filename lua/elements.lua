@@ -28,13 +28,49 @@ local elements = {
 	
 	{3, "Li", "Lithium", "he_him", 7, rarity = 2, config = { extra = {chips = 0} }, loc_vars = {"chips"}},
 	
-	{4, "Be", "Beryllium", "she_her", 9},
+	{4, "Be", "Beryllium", "she_her", 9, function(self, card, context)
+		if context.individual and context.cardarea == G.play and context.other_card.edition then
+            return {
+                mult = card.ability.extra.mult, --attempt to index field 'extra' (a nil value)
+                colour = G.C.MULT,
+                card = card,
+            }
+        end
+    end, config = { extra = {mult = 1.5} }, loc_vars = {"mult"}},
 	
 	{5, "B", "Boron", "he_him", 11, rarity = 3},
 	
-	{6, "C", "Carbon", "he_him", 12, rarity = 1, config = { extra = {xchips = 1.15} }, loc_vars = {"xchips"}},
+	{6, "C", "Carbon", "he_him", 12, function(self, card, context)
+        if context.individual and context.cardarea == G.play and
+            (context.other_card:is_suit(card.ability.extra.suits[1]) or context.other_card:is_suit(card.ability.extra.suits[2])) then
+            return {
+                x_chips = card.ability.extra.s_xchips
+            }
+        end
+    end, rarity = 1, config = { extra = {s_xchips = 1.15, suits = {'Spades', 'Clubs'}} }, loc_vars = {"s_xchips"}},
 	
-	{7, "N", "Nitrogen", "she_her", 14, rarity = 1},
+	{7, "N", "Nitrogen", "she_her", 14, function(self, card, context)
+        if context.before then
+            local suits = {}
+            local wilds = 0
+            for _, playing_card in ipairs(context.scoring_hand) do
+				if playing_card == G.P_CENTERS.m_wild then
+                    wilds = wilds + 1
+                elseif playing_card.base.suit then 
+					suits[playing_card.base.suit] = true 
+				end
+			end
+			card.ability.extra.suit_count = wilds
+			for _,_ in pairs(suits) do
+				card.ability.extra.suit_count = card.ability.extra.suit_count + 1
+			end
+        end
+        if context.joker_main then
+			return {
+				chips = card.ability.extra.s_chips * card.ability.extra.suit_count
+            }
+        end
+    end, config = { extra = {s_chips = 15, suit_count = 0} }, loc_vars = {"s_chips", "suit_count"}, rarity = 1},
 	
 	{8, "O", "Oxygen", "she_her", 16, rarity = 1, config = { extra = {chips = 10, mult = 0.5} }, loc_vars = {"chips", "mult"}},
 	
@@ -97,7 +133,27 @@ local elements = {
 	
 	{33, "As", "Arsenic", "he_him", 75, rarity = 3},
 	
-	{34, "Se", "Selenium", "he_him", 80, rarity = 3},
+	{34, "Se", "Selenium", "he_him", 80, function(self, card, context)
+        if context.using_consumeable then
+			if context.consumeable.ability.name == 'The Moon' and G.hand.highlighted then
+				for i = 1, #G.hand.highlighted do
+					if not SMODS.has_enhancement(G.hand.highlighted[i], card.ability.extra.mod_conv) then
+						G.hand.highlighted[i]:set_ability(card.ability.extra.mod_conv)
+					end
+				end
+			end
+		end
+	end,
+		loc_vars = function(self, card)
+			local key, vars
+			if SMODS.pseudorandom_probability(card, 'ecattos_element34', 1, 50) then 
+				keys = self.key .. "_alt"
+			else 
+				keys = self.key
+			end
+			return { key = keys }
+		end, config = { extra = { mod_conv = "m_mult" } }, rarity = 3
+	},
 	
 	{35, "Br", "Bromine", "he_she", 79},
 	
@@ -149,7 +205,16 @@ local elements = {
 	
 	{59, "Pr", "Praseodymium", "she_her", 141},
 	
-	{60, "Nd", "Neodymium", "they_them", 142, rarity = 3},
+	{60, "Nd", "Neodymium", "they_them", 142, function(self, card, context)
+        if (context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1)) then
+            if (SMODS.has_enhancement(context.other_card, 'm_steel') and SMODS.pseudorandom_probability(card, 'ecattos_element60', 1, card.ability.extra.odds)) then
+				return {
+					repetitions = card.ability.extra.repetitions
+				}
+			end
+        end
+    end, config = { extra = { repetitions = 1, odds = 2 } }, rarity = 3
+	},
 	
 	{61, "Pm", "Promethium", "she_her", 147},
 	
@@ -187,7 +252,14 @@ local elements = {
 	
 	{78, "Pt", "Platinum", "she_her", 195, rarity = 3},
 	
-	{79, "Au", "Gold", "she_her", 197},
+	{79, "Au", "Gold", "she_her", 197, function(self, card, context) end,
+	add_to_deck = function(self, card, from_debuff)
+		G.GAME.interest_cap = G.GAME.interest_cap + card.ability.extra.interest
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.GAME.interest_cap = G.GAME.interest_cap - card.ability.extra.interest
+	end, config = { extra = { interest = 10 } }
+	},
 	
 	{80, "Hg", "Mercury", "she_he", 202},
 	
@@ -265,7 +337,12 @@ local elements = {
 	
 	{117, "Ts", "Tennessine", "she_her", 294},
 	
-	{118, "Og", "Oganesson", "he_him", 294},
+	{118, "Og", "Oganesson", "he_him", 294, 
+	function(self, card, context)
+		if (context.joker_main and not context.debuffed_hand) or context.forcetrigger then
+			return { balance = true }
+		end
+	end}, 
 	
 	{119, "Uue", "Ununennium", "unknown", 297, rarity = 4}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
 	
@@ -275,6 +352,13 @@ local elements = {
 SMODS.Atlas({
 	key = "elements",
 	path = "elements.png",
+	px = 71,
+	py = 95
+})
+
+SMODS.Atlas({ --https://github.com/InertSteak/Pokermon/wiki/Creating-Pokermon-Content#create-shiny-sprites-for-your-cards
+	key = "elementsShiny",
+	path = "elementsShiny.png",
 	px = 71,
 	py = 95
 })
@@ -333,9 +417,9 @@ for k,v in pairs(elements) do
 			y = math.floor(n / 8)
 		},
 		pronouns = v[4] or "she_her",
-		cost = 1,
-		atomic_number = v[1],
-		element_symbol = v[2],
+		cost = v.cost or 1,
+		atomic_number = v[1] or v.atomic_number,
+		element_symbol = v[2] or v.element_symbol,
 		in_pool = inpool,
 		pools = {
 			ElementCattosCommon = true,
@@ -346,7 +430,7 @@ for k,v in pairs(elements) do
 		config = v.config,
 		loc_vars = v.loc_vars,
 		calculate = v[6] or elementcattos.defaultJokerCalculate,
-		element_base_mass = v[5]
+		element_base_mass = v[5] or v.element_base_mass
 	})
 	
 	--[[if v[6] then
