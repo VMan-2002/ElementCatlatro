@@ -41,18 +41,32 @@ SMODS.Atlas({
 	px = 71,
 	py = 95
 })
-elementcattos.Planet = function(d)
+elementcattos.Bs_Planet = function(d)
 	d.rarity = d.rarity or "bld_curio"
 	d.cost = d.cost or 15
 	d.atlas = d.atlas or "planets"
 	d.not_in_booster = true
+	d.loc_txt = d.loc_txt or {
+		name = string.upper(string.sub(d.key, 1, 1)) .. string.sub(d.key, 2)
+	}
+	d.key = (d.keyprefix or "planet_") .. d.key
+	d.keyprefix = nil
 	local ret = SMODS.Joker(d)
 	table.insert(SMODS.ObjectTypes.bld_obj_blindside.cards, ret.key)
 	return ret
 end
+elementcattos.Bs_Moon = function(d)
+	d.cost = d.cost or 6
+	d.atlas = d.atlas or "planets"
+	d.not_in_booster = true
+	d.keyprefix = "moon_"
+	return elementcattos.Bs_Planet(d)
+end
 
 local rq = {
-	"bs_planets"
+	"bs_planets_inner_solar_system",
+	"bs_planets_outer_solar_system",
+	"bs_planets_hoax_objects"
 }
 
 for i, v in ipairs(rq) do
