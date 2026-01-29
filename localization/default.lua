@@ -568,6 +568,13 @@ return {
 					"{_A:bs_channel} {_A:bs_mineral} {_A:bs_rune} {_A:bs_ritual}"
 				}
 			},
+			j_ecattos_moon_luna = elementcattos.loc_txt_planet {
+				name = "Luna",
+				text = {
+					"Retriggers call",
+					"scored {_A:bs_faded} Blinds"
+				}
+			},
 			j_ecattos_planet_jupiter = elementcattos.loc_txt_planet {
 				name = "Jupiter",
 				text = {
@@ -723,19 +730,30 @@ return {
 					"{C:red}Explodes{} upon decay"
 				}
 			},
-            ecattos_stabilized={
-                name="Stabilized",
-                text={
-                    "Radioactive decay is",
-                    "paused for {C:attention}#1#{} rounds",
-                },
-            },
-            ecattos_photon_light_fuse={
-                name="Interaction with Photon",
-                text={
-                    "Lights fuse"
-                },
-            }
+			ecattos_stabilized={
+				name="Stabilized",
+				text={
+					"Radioactive decay is",
+					"paused for {C:attention}#1#{} rounds",
+				},
+			},
+			ecattos_photon_light_fuse={
+				name="Interaction with Photon",
+				text={
+					"Lights fuse"
+				},
+			},
+			ecattos_planet_moon_slots={
+				name="Has Moons",
+				text={
+					"Up to {C:attention}3{} owned {C:attention}Moons{}",
+					"of this {C:attention}Planet{} give",
+					"{C:attention}+1{} Trinket slot each",
+					"{C:inactive}(Selling this Planet",
+					"{C:inactive}will sell it's moons",
+					"{C:inactive}if there's no space)"
+				}
+			}
 		},
 		Back = {
 			b_ecattos_elements = {

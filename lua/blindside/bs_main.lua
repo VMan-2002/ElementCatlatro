@@ -35,14 +35,22 @@ elementcattos.loc_txt_planet = function(d)
 	}
 end
 
+if not SMODS.Rarities.bld_trinket then error("UPDATE BLINDSIDE!!!!!!!!!") end
+
 SMODS.Atlas({
 	key = "planets",
 	path = "blindside/planets.png",
 	px = 71,
 	py = 95
 })
+elementcattos.moon_in_pool = function(self, args)
+	if SMODS.find_joker(self.ecattos_conf.owner_key, true) then
+		return true
+	end
+	return math.random() > 0.85
+end
 elementcattos.Bs_Planet = function(d)
-	d.rarity = d.rarity or "bld_curio"
+	d.rarity = d.rarity or "bld_trinket"
 	d.cost = d.cost or 15
 	d.atlas = d.atlas or "planets"
 	d.not_in_booster = true
@@ -56,10 +64,13 @@ elementcattos.Bs_Planet = function(d)
 	return ret
 end
 elementcattos.Bs_Moon = function(d)
+	d.rarity = d.rarity or "bld_keepsake"
 	d.cost = d.cost or 6
 	d.atlas = d.atlas or "planets"
 	d.not_in_booster = true
 	d.keyprefix = "moon_"
+	d.ecattos_conf.owner_key = "j_ecattos_planet_"..d.ecattos_conf.moon_of
+	d.in_pool = d.in_pool or elementcattos.moon_in_pool
 	return elementcattos.Bs_Planet(d)
 end
 
