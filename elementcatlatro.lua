@@ -115,6 +115,10 @@ elementcattos = {
 		end
 		return result
 	end,
+	blocks = {
+		"S", "F", "D", "P",
+		S = 1, F = 2, D = 3, P = 4,
+	},
 	--Compounds
 	compounds = {},
 	formatFormula = function(formula, method)
@@ -244,7 +248,9 @@ local rq = {
 	"boosters",
 	"sleeves",
 	"special",
-	"sticker_stabilized",
+	"suits",
+	"modifiers/sticker_stabilized",
+	"modifiers/edition_pcb",
 	"patches",
 	BLINDSIDE and "blindside/bs_main" or nil
 }

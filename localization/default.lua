@@ -24,8 +24,6 @@ return {
 				"Compound Creator"
 			},
 			
-			ecattos_neil = "Neil",
-			
 			ecattos_ds_screen_train = "ZÜGE",
 			ecattos_ds_screen_hi = "HI #1#",
 			ecattos_ds_screen_dragged = "HAI :3",
@@ -42,7 +40,9 @@ return {
 			
 			ecattos_planet_category_inner_solar = "Inner Solar System",
 			ecattos_planet_category_hoax = "Hoax Object",
-			ecattos_planet_category_outer_solar = "Outer Solar System"
+			ecattos_planet_category_outer_solar = "Outer Solar System",
+			
+			k_ecattos_strange = "Strange"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well
@@ -111,6 +111,14 @@ return {
 				"equipped Stabilizer",
 				"and become Eternal"
 			}
+		},
+		labels = {
+			k_ecattos_strange = "Strange",
+			ecattos_pcb = "PCB",
+			ecattos_connected = "Connected",
+			ecattos_furnace = "Furnace",
+			ecattos_bejeweled = "Bejeweled",
+			ecattos_geiger = "Geiger"
 		}
 	},
 	descriptions = {
@@ -199,6 +207,16 @@ return {
 				anum = 8,
 				sym = "O"
 			},
+			j_ecattos_element9 = elementcattos.loc_txt {
+				name = "Flourine",
+				text = {
+					"Removes {C:attention}enhancement{} from the",
+					"{C:attention}leftmost{} applicable played card",
+					"If successful, {C:attention}level up{} played poker hand"
+				},
+				anum = 9,
+				sym = "F"
+			},
 			j_ecattos_element10 = elementcattos.loc_txt {
 				name = "Neon",
 				text = {
@@ -206,6 +224,16 @@ return {
 				},
 				anum = 10,
 				sym = "Ne"
+			},
+			j_ecattos_element11 = elementcattos.loc_txt {
+				name = "Sodium",
+				text = {
+					"If scored hand contains",
+					"cards not part of played",
+					"poker hand, explodes"
+				},
+				anum = 11,
+				sym = "Na"
 			},
 			j_ecattos_element14 = elementcattos.loc_txt {
 				name = "Silicon",
@@ -374,7 +402,7 @@ return {
 				text = {
 					"Unfinished.",
 					"This description should be",
-					"replaced via code.",
+					"dynamically replaced via code.",
 					"Intended for atomic numbers",
 					"exceeding 120."
 				}
@@ -446,6 +474,24 @@ return {
 				},
 				anum = "118",
 				sym = "Nv"
+			},
+			j_ecattos_strange = elementcattos.loc_txt {
+				name = "{C:green}Strange{} Matter",
+				text = {
+					"Has {C:green}strange{} properties...?",
+					"Has a chance to retrigger",
+					"each of {C:green}something"
+				}
+			},
+			j_ecattos_strange_described = elementcattos.loc_txt {
+				name = "{C:green}Strange{} Matter",
+				text = {
+					"Adjacent Jokers become {C:green}Strange{} Matter",
+					"at end of round",
+					"{C:green}#1# in #2#{} chance to retrigger",
+					"each card of {C:green}Strange{} suit, or",
+					"convert cards of other suits to {C:green}Strange"
+				}
 			},
 			--Subatomic particles
 			j_ecattos_neutron = elementcattos.loc_txt {
@@ -809,6 +855,16 @@ return {
 					"Form this compound to",
 					"discover the result",
 					"Formula: #2#"
+				}
+			}
+		},
+		Edition = {
+			e_ecattos_pcb = {
+				name = "PCB",
+				text = topuplib.asub {
+					"{_A:chips:+15} per",
+					"Element Catto",
+					"of S-block"
 				}
 			}
 		}

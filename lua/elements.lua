@@ -18,6 +18,8 @@
 	idk what do for further rarity stuff aaaaa
 ]]
 
+local block = elementcattos.blocks
+
 local elements = {
 	--Atomic number, Symbol, Name, Pronouns, Base Mass, Calculate
 	{0, "Mu", "Muonium", "hse_ehr", 0, rarity = 3},
