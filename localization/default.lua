@@ -1,6 +1,32 @@
 return {
 	misc = {
 		dictionary = {
+			k_ecatto_handmade = "Handmade",
+			k_ecatto_handmade_tip = {
+				"Cannot appear in the Shop",
+				"Can only be obtained",
+				"by using certain {C:tarot}Tarot Cards{}"
+			},
+            --k_common = "Common",
+            --k_uncommon = "Uncommon",
+            k_ecatto_safari = "Safari",
+			k_ecatto_safari_tip = {
+				"Cannot appear in the Shop",
+				"Can only be obtained",
+				"by using certain {C:tarot}Tarot Cards{}",
+				"or the decay of an {C:attention}Element Catto"
+			},
+			--k_rare = "Rare",
+			--k_cry_epic = "Epic",
+            --k_legendary = "Legendary",
+            --k_cry_exotic = "Exotic",
+            k_ecatto_masterwork = "Masterwork",
+			k_ecatto_masterwork_tip = {
+				"Cannot appear in the Shop",
+				"Can only be obtained",
+				"by completing {E:1}{C:tarot}#1# blueprint{}",
+			},
+			
 			ecattos_compoundcreator_tocreate = "Compound to create",
 			ecattos_compoundcreator_confirm = "Confirm",
 			
@@ -193,9 +219,14 @@ return {
 			j_ecattos_element8 = elementcattos.loc_txt {
 				name = "Oxygen",
 				text = {
+					"Played cards have a",
+					"{C:green}1 in 2{} chanceto give {_A:chips:+#1#}",
+					"and to not give {_A:mult:+#2#}",
+				},
+				--[[text = {
 					"{_A:chips:+#1#} or {_A:mult:+#2#}",
 					"per scored card"
-				},
+				},]]
 				anum = 8,
 				sym = "O"
 			},
