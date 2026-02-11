@@ -18,7 +18,9 @@
 	idk what do for further rarity stuff aaaaa
 ]]
 
-SMODS.Rarity{ -- for cattos that don't do anything by themselfs (ie garbige)
+-- for cattos that don't do anything by themselfs (ie garbige)
+-- also 
+SMODS.Rarity{ 
     key = "ecatto_handmade",
     prefix_config = { key = false },
     default_weight = 0, 
@@ -28,9 +30,9 @@ SMODS.Rarity{ -- for cattos that don't do anything by themselfs (ie garbige)
         return weight
     end
 }
-
+--for cattos that don't appear in shops, with power below epic/masterwork 
 if not next(SMODS.find_mod("Pokermon")) then 
-	SMODS.Rarity{ -- for cattos that only appear through the use of this mod's Tarots/
+	SMODS.Rarity{ 
 		key = "ecatto_safari",
 		prefix_config = { key = false },
 		default_weight = 0, 
@@ -41,11 +43,11 @@ if not next(SMODS.find_mod("Pokermon")) then
 		end
 	}
 end
-
-SMODS.Rarity { --for non-Legendary cattos above Rare
+--for non-Legendary cattos that don't appear in shops, with power above Rare.
+SMODS.Rarity { 
 	key = "ecatto_masterwork",
 	prefix_config = { key = false },
-	default_weight = 0, 
+	default_weight = 0,
 	badge_colour = HEX("774FCC"),
 	pools = {["Joker"] = true},
 	get_weight = function(self, weight, object_type)
@@ -81,6 +83,8 @@ function exotic_rarity()
     return "ecatto_masterwork"
 end
 
+local block = elementcattos.blocks
+
 local elements = {
 	--Atomic number, Symbol, Name, Pronouns, Base Mass, Calculate
 	{0, "Mu", "Muonium", "hse_ehr", 0, rarity = 3, nonfunctional = true},
@@ -89,7 +93,7 @@ local elements = {
 	
 	{2, "He", "Helium", "he_him", 4, rarity = 1, config = { extra = {mult = 2.5} }, loc_vars = {"mult"}},
 	
-	{3, "Li", "Lithium", "he_him", 7, rarity = 2, config = { extra = {chips = 0} }, loc_vars = {"chips"}, inpool = false},
+	{3, "Li", "Lithium", "he_him", 7, rarity = 2, config = { extra = {chips = 0} }, loc_vars = {"chips"}, nonfunctional = true},
 	
 	{4, "Be", "Beryllium", "she_her", 9, function(self, card, context)
 		if context.individual and context.cardarea == G.play and context.other_card.edition then
@@ -101,7 +105,7 @@ local elements = {
         end
     end, config = { extra = {mult = 1.5} }, loc_vars = {"mult"}},
 	
-	{5, "B", "Boron", "he_him", 11, rarity = 3, inpool = false},
+	{5, "B", "Boron", "he_him", 11, rarity = 3, nonfunctional = true},
 	
 	{6, "C", "Carbon", "he_him", 12, function(self, card, context)
         if context.individual and context.cardarea == G.play and
@@ -159,7 +163,17 @@ local elements = {
 	
 	{13, "Al", "Aluminium", "he_him", 27, rarity = 1, nonfunctional = true},
 	
-	{14, "Si", "Silicon", "he_him", 28, rarity = 1, config = { extra = {more = 1} }, loc_vars = {"more"}, nonfunctional = true},
+	{14, "Si", "Silicon", "he_him", 28, rarity = 1, config = { extra = {more = 1} }, loc_vars = {"more"},
+	add_to_deck = function(self, card, from_debuff)
+		if not G.GAME.extra_pocket_picks then
+			G.GAME.extra_pocket_picks = 1
+		else
+			G.GAME.extra_pocket_picks = G.GAME.extra_pocket_picks + 1
+		end
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.GAME.interest_cap = G.GAME.interest_cap - card.ability.extra.more
+	end, config = { extra = { more = 1 } }},
 	
 	{15, "P", "Phosphorus", "he_him", 31, rarity = 1, nonfunctional = true},
 	

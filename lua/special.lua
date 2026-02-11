@@ -195,3 +195,17 @@ elementcattos.garbage = SMODS.Joker {
 elementcattos.becomeGarbage = function(card)
 	card:set_ability(elementcattos.garbage)
 end
+
+SMODS.Rarity {
+	key = "strange",
+	badge_color = HEX("ACF4B9")
+}
+
+SMODS.Joker {
+	key = "strange",
+	atlas = "special",
+	rarity = "ecattos_strange",
+	pos = {x = 6, y = 0},
+	in_pool = topuplib.returnFalse,
+	not_in_booster = true
+}
