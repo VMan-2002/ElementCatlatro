@@ -882,7 +882,7 @@ return {
 			e_ecattos_crescent = {
 				name = "Crescent",
 				text = topuplib.asub {
-					"{C:attention}Retriggers{} all moons of",
+					"{C:attention}Retriggers{} all Moons of",
 					"{C:attention}leftmost{} Planet Catto"
 				}
 			}

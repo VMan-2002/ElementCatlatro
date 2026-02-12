@@ -4,7 +4,7 @@ local shd = SMODS.Shader {
 	send_vars = function(spr, card)
 		return {
 			tilt = card.tilt_var and {
-				(card.tilt_var.mx - 960) * 0.006, (card.tilt_var.my - 440) * 0.006
+				(card.tilt_var.mx - 960) * 0.006, ((card.tilt_var.my - 440) * 0.006) - ((card.VT.y - 3.8) * 0.3)
 			},
 			phase_time = love.timer.getTime() % 17.5
 		}
@@ -27,16 +27,7 @@ local crescent = SMODS.Edition {
     atlas = 'bld_blindrank',
     pos = {x = 3, y = 0},
     in_shop = false,
-	loc_vars = function(self, info_queue, card)
-		return {vars = {card.ability.ecattos_stabilized}}
-	end,
 	calculate = function(self, card, context)
-		if context.end_of_round then
-			card.ability.ecattos_stabilized = card.ability.ecattos_stabilized - 1
-			if card.ability.ecattos_stabilized <= 0 then
-				card.ability.ecattos_stabilized = false
-			end
-		end
 	end,
 	prefix_config = {
 		atlas = false

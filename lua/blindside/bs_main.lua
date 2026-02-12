@@ -44,7 +44,7 @@ SMODS.Atlas({
 	py = 95
 })
 elementcattos.moon_in_pool = function(self, args)
-	if SMODS.find_joker(self.ecattos_conf.owner_key, true) then
+	if next(SMODS.find_card(self.ecattos_conf.owner_key, true)) then
 		return true
 	end
 	return math.random() > 0.85

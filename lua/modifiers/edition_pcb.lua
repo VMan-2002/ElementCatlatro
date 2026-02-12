@@ -22,14 +22,7 @@ SMODS.Edition {
 	key = "pcb",
 	shader = "pcb",
 	loc_vars = function(self, info_queue, card)
-		return {vars = {card.ability.ecattos_stabilized}}
 	end,
 	calculate = function(self, card, context)
-		if context.end_of_round then
-			card.ability.ecattos_stabilized = card.ability.ecattos_stabilized - 1
-			if card.ability.ecattos_stabilized <= 0 then
-				card.ability.ecattos_stabilized = false
-			end
-		end
 	end
 }
