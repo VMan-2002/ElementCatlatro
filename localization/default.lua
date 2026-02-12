@@ -118,7 +118,8 @@ return {
 			ecattos_connected = "Connected",
 			ecattos_furnace = "Furnace",
 			ecattos_bejeweled = "Bejeweled",
-			ecattos_geiger = "Geiger"
+			ecattos_geiger = "Geiger",
+			ecattos_crescent = "Crescent",
 		}
 	},
 	descriptions = {
@@ -248,9 +249,9 @@ return {
 				name = "Phosphorus",
 				text = {
 					"When sold, all cards held",
-					"in hand permenantly gain {_A:mult:+0.2}",
+					"in hand permenantly gain {_A:mult:+#1#}",
 					"for each round played this run",
-					"{_A:currentmult:+0}"
+					"{_A:currentmult:+#2#}"
 				},
 				anum = 15,
 				sym = "P"
@@ -258,9 +259,9 @@ return {
 			j_ecattos_element16 = elementcattos.loc_txt {
 				name = "Sulfur",
 				text = {
-					"{_A:mult:+24} after an explosion",
-					"{C:inactive}(Inactive)",
-					"Resets when Boss Blind is defeated"
+					"{_A:mult:+#1#} after an explosion",
+					"{C:inactive}(#2#)",
+					"Resets when {C:attention}Boss Blind{} is defeated"
 				},
 				anum = 16,
 				sym = "S"
@@ -342,6 +343,17 @@ return {
 				},
 				anum = 63,
 				sym = "Eu"
+			},
+			j_ecattos_element75 = elementcattos.loc_txt {
+				name = "Rhenium",
+				text = {
+					"{C:attention}Suppresses{} all effects of {C:attention}explosions",
+					"caused by {C:attention}Joker{} to the right",
+					"If another {C:attention}Rhenium{} is to the left,",
+					"only {C:attention}detrimental{} effects are suppressed"
+				},
+				anum = 75,
+				sym = "Re"
 			},
 			j_ecattos_element79 = elementcattos.loc_txt {
 				name = "Gold",
@@ -865,6 +877,13 @@ return {
 					"{_A:chips:+15} per",
 					"Element Catto",
 					"of S-block"
+				}
+			},
+			e_ecattos_crescent = {
+				name = "Crescent",
+				text = topuplib.asub {
+					"{C:attention}Retriggers{} all moons of",
+					"{C:attention}leftmost{} Planet Catto"
 				}
 			}
 		}

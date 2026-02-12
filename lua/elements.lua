@@ -88,9 +88,37 @@ local elements = {
 	
 	{14, "Si", "Silicon", "he_him", 28, rarity = 1, config = { extra = {more = 1} }, loc_vars = {"more"}},
 	
-	{15, "P", "Phosphorus", "he_him", 31, rarity = 1},
+	{15, "P", "Phosphorus", "he_him", 31, function(self, card, context)
+		if context.selling_self then
+			for k,v in pairs(G.hand.cards) do
+				v.ability.perma_mult = v.ability.perma_mult + (card.ability.extra.mult * G.GAME.round)
+			end
+			return {
+				message = localize("k_upgrade_ex")
+			}
+		end
+	end, loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.mult, card.ability.extra.mult * G.GAME.round}}
+	end, config = {extra = {mult = 0.2}}, rarity = 1},
 	
-	{16, "S", "Sulfur", "she_her", 32, rarity = 1},
+	{16, "S", "Sulfur", "she_her", 32, function(self, card, context) 
+		if not card.ability.extra.active then
+			if context.ecattos_explosion then
+				card.ability.extra.active = true
+				return {message = localize("k_active_ex")}
+			end
+			return
+		end
+		if context.joker_main then
+			return {mult = card.ability.extra.mult}
+		end
+		if context.end_of_round and G.GAME.blind.boss then
+			card.ability.extra.active = false
+			return {message = localize("k_reset")}
+		end
+	end, config = {extra = {mult = 24, active = false}}, loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.mult, topuplib.localize()[card.ability.extra.active and "active" or "inactive"]}}
+	end, rarity = 1},
 	
 	{17, "Cl", "Chlorine", "she_her", 35, rarity = 1},
 	
@@ -146,14 +174,10 @@ local elements = {
 			end
 		end
 	end,
-		loc_vars = function(self, card)
-			local key, vars
-			if SMODS.pseudorandom_probability(card, 'ecattos_element34', 1, 50) then 
-				keys = self.key .. "_alt"
-			else 
-				keys = self.key
-			end
-			return { key = keys }
+		loc_vars = function(self, info_queue, card)
+			return {
+				key = SMODS.pseudorandom_probability(card, 'ecattos_element34', 1, 50) and self.key .. "_alt"
+			}
 		end, config = { extra = { mod_conv = "m_mult" } }, rarity = 3
 	},
 	
@@ -246,7 +270,15 @@ local elements = {
 	
 	{74, "W", "Tungsten", "he_him", 184},
 	
-	{75, "Re", "Rhenium", "he_him", 187},
+	{75, "Re", "Rhenium", "he_him", 187, function(self, card, context)
+		if context.ecattos_explosion_valid then
+			local i = topuplib.getValueIndex(card.area.cards, card)
+			if card.area.cards[i + 1] == context.src then
+				return {[(card.area.cards[i - 1].config.center_key == self.key) and "suppress_detrimental_explode" or "suppress_explode"] = true, iAmRhenium = true}
+			end
+			return {iAmRhenium = true}
+		end
+	end},
 	
 	{76, "Os", "Osmium", "he_him", 192},
 	

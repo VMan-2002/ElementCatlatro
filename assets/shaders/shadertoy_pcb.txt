@@ -1,0 +1,32 @@
+//iChannel0: card
+//iChannel1: pcb overlay
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = fragCoord/iResolution.xy;
+    uv.x *= 2.37;
+
+    // Time varying pixel color
+    //vec4 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+    
+    vec4 col = texture(iChannel0, uv);
+    
+    //col.g += pow((1.0 + sin(iTime * 0.65)) * 0.5, -(col.r + col.g + col.b));
+    col.g += min(pow((3.0 - (col.r + col.g + col.b)) * 0.7, 69.0), 0.2) * (1.0 + sin(iTime * 1.65));
+    
+    vec4 pcb = texture(iChannel1, uv);
+    
+    vec2 mouse = iMouse.xy / iResolution.xy;
+    
+    pcb.r *= sin((mouse.x + (mouse.y * 0.4)) * 1.5);
+    pcb.g *= cos((mouse.y - (mouse.x * 0.4)) * 1.5);
+    pcb.b *= 1.0 + (sin(pow(mouse.x * 2.0, mouse.y * 2.5)) * 0.5);
+
+    // Output to screen
+    fragColor = mix(
+        col,
+        mix(vec4(0.2, 1.0, 0.2, 1) * vec4(vec3(0.2 + (pcb.a * 0.9)), 1), vec4(pcb.rgb, 1.0), 0.25),
+        pcb.r + pcb.g + pcb.b
+    );
+}

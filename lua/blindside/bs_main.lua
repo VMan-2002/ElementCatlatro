@@ -77,7 +77,8 @@ end
 local rq = {
 	"bs_planets_inner_solar_system",
 	"bs_planets_outer_solar_system",
-	"bs_planets_hoax_objects"
+	"bs_planets_hoax_objects",
+	"modifiers/bs_edition_crescent"
 }
 
 for i, v in ipairs(rq) do
