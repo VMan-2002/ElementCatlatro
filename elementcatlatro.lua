@@ -40,25 +40,27 @@ elementcattos = {
 	loc_txt_planet = function(d)
 		return {name = d.name}
 	end,
+	doExplosion = function(src, joker_fract, joker_add, deck_fract, deck_add)
+		local debuff_jokers = G.jokers and ((G.jokers.config.card_limit * (joker_fract or 0.3)) + (joker_add or 2))
+		local debuff_cards = G.playing_cards and ((#G.playing_cards * (deck_fract or 0.05)) + (deck_add or 2))
+		local area = src and src.area
+		local validate_tb = {}
+		SMODS.calculate_context({ecattos_explosion_validate = true, src = src, cardarea = area}, validate_tb)
+		print("Validate table")
+		--todo: why is this empty
+		print(validate_tb)
+		SMODS.calculate_context({ecattos_explosion = true, src = src, cardarea = area})
+		--todo: debuffings
+	end,
 	--Radioactive
 	isRadioactive = function(card)
 		return elementcattos.radioactive(card.config.center.key) ~= nil
 	end,
-	fromyears = function(n)
-		return n * 315570000
-	end,
-	fromminutes = function(n)
-		return n * 60
-	end,
-	fromhours = function(n)
-		return n * 3600
-	end,
-	fromdays = function(n)
-		return n * 86400
-	end,
-	halflife = function(n)
-		return math.floor((math.log(n) * 0.999) + (n * 0.001))
-	end,
+	fromyears = function(n) return n * 315570000 end,
+	fromminutes = function(n) return n * 60 end,
+	fromhours = function(n) return n * 3600 end,
+	fromdays = function(n) return n * 86400 end,
+	halflife = function(n) return math.floor((math.log(n) * 0.999) + (n * 0.001)) end,
 	--Cards
 	defaultJokerCalculate = function(self, card, context)
 		if context.joker_main and card.ability.extra then
@@ -116,9 +118,9 @@ elementcattos = {
 		end
 		return result
 	end,
-	blocks = {
+	enums = {
 		"S", "F", "D", "P",
-		S = 1, F = 2, D = 3, P = 4,
+		S = 1, F = 2, D = 3, P = 4
 	},
 	--Compounds
 	compounds = {},
@@ -351,6 +353,14 @@ if CardPronouns then
 	}
 	
 	elementcattos.usa_flag = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/usa.png"))
+end
+
+if Yahimod then
+	local explode_hook = explodeCard
+	function explodeCard(card, ...)
+		elementcattos.doExplosion(src, 0, 0, 0, 0)
+		return explode_hook(card, ...)
+	end
 end
 
 topuplib.addFontOption("Century Schoolbook", "lua/fonts/centuryschoolbook")

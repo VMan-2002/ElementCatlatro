@@ -132,13 +132,9 @@ SMODS.Joker {
 	end,
     calculate = function(self, card, context)
         local other_joker = nil
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i] == card then 
-				for j = i + 1, #G.jokers.cards do
-					if G.jokers.cards[j] and G.jokers.cards[j] ~= card and G.jokers.cards[j].config.center.blueprint_compat and elementcattos.validTransformElement(G.jokers.cards[j], true) then other_joker = G.jokers.cards[j] break end
-				end
-			end
-        end
+		for j = topuplib.getValueIndex(G.jokers.cards, card, 0) + 1, #G.jokers.cards do
+			if G.jokers.cards[j] and G.jokers.cards[j] ~= card and G.jokers.cards[j].config.center.blueprint_compat and elementcattos.validTransformElement(G.jokers.cards[j], true) then other_joker = G.jokers.cards[j] break end
+		end
         local ret = SMODS.blueprint_effect(card, other_joker, context)
         if ret then
             ret.colour = G.C.BLUE

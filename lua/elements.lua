@@ -18,8 +18,8 @@
 	idk what do for further rarity stuff aaaaa
 ]]
 
--- for cattos that don't do anything by themselfs (ie garbige)
--- also 
+-- for cattos that don't do anything by themselfs (ie garb)
+-- also used for nonfunctional cattos with `disable_nonfunctional_cattos` enabled
 SMODS.Rarity{ 
     key = "ecatto_handmade",
     prefix_config = { key = false },
@@ -30,7 +30,8 @@ SMODS.Rarity{
         return weight
     end
 }
---for cattos that don't appear in shops, with power below epic/masterwork 
+--for cattos that don't appear in shops, with power below epic/masterwork
+--used for trans-Unbinilium cattos and Jimbonium
 if not next(SMODS.find_mod("Pokermon")) then 
 	SMODS.Rarity{ 
 		key = "ecatto_safari",
@@ -44,6 +45,7 @@ if not next(SMODS.find_mod("Pokermon")) then
 	}
 end
 --for non-Legendary cattos that don't appear in shops, with power above Rare.
+--used for Titin (without Cryptid)
 SMODS.Rarity { 
 	key = "ecatto_masterwork",
 	prefix_config = { key = false },
@@ -183,9 +185,37 @@ local elements = {
 		G.GAME.interest_cap = G.GAME.interest_cap - card.ability.extra.more
 	end, config = { extra = { more = 1 } }},
 	
-	{15, "P", "Phosphorus", "he_him", 31, rarity = 1, nonfunctional = true, blackjack_na = true},
+	{15, "P", "Phosphorus", "he_him", 31, function(self, card, context)
+		if context.selling_self then
+			for k,v in pairs(G.hand.cards) do
+				v.ability.perma_mult = v.ability.perma_mult + (card.ability.extra.mult * G.GAME.round)
+			end
+			return {
+				message = localize("k_upgrade_ex")
+			}
+		end
+	end, loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.mult, card.ability.extra.mult * G.GAME.round}}
+	end, config = {extra = {mult = 0.2}}, rarity = 1, blackjack_na = true},
 	
-	{16, "S", "Sulfur", "she_her", 32, rarity = 1, nonfunctional = true},
+	{16, "S", "Sulfur", "she_her", 32, function(self, card, context) 
+		if not card.ability.extra.active then
+			if context.ecattos_explosion then
+				card.ability.extra.active = true
+				return {message = localize("k_active_ex")}
+			end
+			return
+		end
+		if context.joker_main then
+			return {mult = card.ability.extra.mult}
+		end
+		if context.end_of_round and G.GAME.blind.boss then
+			card.ability.extra.active = false
+			return {message = localize("k_reset")}
+		end
+	end, config = {extra = {mult = 24, active = false}}, loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.mult, topuplib.localize()[card.ability.extra.active and "active" or "inactive"]}}
+	end, rarity = 1},
 	
 	{17, "Cl", "Chlorine", "she_her", 35, rarity = 1, nonfunctional = true},
 	
@@ -241,14 +271,10 @@ local elements = {
 			end
 		end
 	end,
-		loc_vars = function(self, card)
-			local key, vars
-			if SMODS.pseudorandom_probability(card, 'ecattos_element34', 1, 50) then 
-				keys = self.key .. "_alt"
-			else 
-				keys = self.key
-			end
-			return { key = keys }
+		loc_vars = function(self, info_queue, card)
+			return {
+				key = SMODS.pseudorandom_probability(card, 'ecattos_element34', 1, 50) and self.key .. "_alt"
+			}
 		end, config = { extra = { mod_conv = "m_mult" } }, rarity = 3
 	},
 	
@@ -341,7 +367,15 @@ local elements = {
 	
 	{74, "W", "Tungsten", "he_him", 184, nonfunctional = true},
 	
-	{75, "Re", "Rhenium", "he_him", 187, nonfunctional = true},
+	{75, "Re", "Rhenium", "he_him", 187, function(self, card, context)
+		if context.ecattos_explosion_valid then
+			local i = topuplib.getValueIndex(card.area.cards, card)
+			if card.area.cards[i + 1] == context.src then
+				return {[(card.area.cards[i - 1].config.center_key == self.key) and "suppress_detrimental_explode" or "suppress_explode"] = true, iAmRhenium = true}
+			end
+			return {iAmRhenium = true}
+		end
+	end},
 	
 	{76, "Os", "Osmium", "he_him", 192, nonfunctional = true},
 	
@@ -447,10 +481,32 @@ local elements = {
 	
 	{118, "Og", "Oganesson", "he_him", 294, 
 	function(self, card, context)
+		--vv
+		if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+            if SMODS.pseudorandom_probability(card, 'ecattos_element118', 1, card.ability.extra.odds) then
+                SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    message = localize('k_extinct_ex')
+                }
+            else
+                return {
+                    message = localize('k_safe_ex')
+                }
+            end
+        end
+		--^^
 		if (context.joker_main and not context.debuffed_hand) or context.forcetrigger then
 			return { balance = true }
 		end
-	end}, 
+	end,
+	--vv
+	loc_vars = function(self, info_queue, card)
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'ecattos_element118')
+        return { vars = { numerator, denominator } }
+    end,
+    config = { extra = { odds = 6 } },
+	--^^
+	}, 
 	
 	{119, "Uue", "Ununennium", "unknown", 297, rarity = 4, nonfunctional = true}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
 	

@@ -1,11 +1,10 @@
-local a = 0
 local shd = SMODS.Shader {
 	key = "pcb",
 	path = "pcb.fs",
 	send_vars = function(spr, card)
 		return card.tilt_var and {
 			tilt = {
-				card.tilt_var.mx * 0.01, card.tilt_var.my * 0.01
+				card.tilt_var.mx * 0.02, card.tilt_var.my * 0.02
 			}
 		}
 	end
@@ -23,14 +22,7 @@ SMODS.Edition {
 	key = "pcb",
 	shader = "pcb",
 	loc_vars = function(self, info_queue, card)
-		return {vars = {card.ability.ecattos_stabilized}}
 	end,
 	calculate = function(self, card, context)
-		if context.end_of_round then
-			card.ability.ecattos_stabilized = card.ability.ecattos_stabilized - 1
-			if card.ability.ecattos_stabilized <= 0 then
-				card.ability.ecattos_stabilized = false
-			end
-		end
 	end
 }

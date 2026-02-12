@@ -44,7 +44,7 @@ SMODS.Atlas({
 	py = 95
 })
 elementcattos.moon_in_pool = function(self, args)
-	if next(find_joker("j_ecattos_planet_" .. self.ecattos_conf.moon_of)) then
+	if next(SMODS.find_card(self.ecattos_conf.owner_key, true)) then
 		return true
 	end
 	return SMODS.pseudorandom_probability(card, 'ecattos_moon_in_pool', 17, 20)
@@ -78,7 +78,8 @@ end
 local rq = {
 	"bs_planets_inner_solar_system",
 	"bs_planets_outer_solar_system",
-	"bs_planets_hoax_objects"
+	"bs_planets_hoax_objects",
+	"modifiers/bs_edition_crescent"
 }
 
 for i, v in ipairs(rq) do

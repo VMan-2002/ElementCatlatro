@@ -1,0 +1,29 @@
+//iChannel0: card
+//iChannel1: moon normal
+//iChannel2: moon environment
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = fragCoord/iResolution.xy;
+    uv.x *= 2.37;
+    
+    vec4 samp = texture(iChannel0, uv);
+    samp.rgb *= 0.6;
+    samp.rgb += 1.6 * (samp.r + samp.g + samp.b);
+    
+    vec2 offset = ((vec2(-0.5) + (iMouse.xy / iResolution.xy)) * 1.0);
+    
+    vec3 normal = texture(iChannel1, uv).xyz;
+    
+    float light = texture(iChannel2, clamp(normal.xy + offset, 0.02, 0.98)).x;
+    float dark = max(texture(iChannel2, clamp(normal.xy - offset, 0.02, 0.98)).x, 0.7) * 2.5;
+    float t = -iTime + 13.0;
+    float phase = min(max(max(
+        (((normal.z * 8.0) - 4.0) - t),
+    0.05), -(((normal.z * 8.0) - 4.0) - t + 8.0)), 1.0);
+
+    // Output to screen
+    fragColor = (samp + ((light - dark) * (0.7 + (0.6 * phase))));
+    //fragColor = vec4(normal.x, normal.y, 1.0, 1.0);
+}

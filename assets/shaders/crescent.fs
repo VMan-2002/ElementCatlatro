@@ -12,7 +12,7 @@
 // 
 
 // Look ionized.fs for explanation
-extern PRECISION vec2 pcb;
+extern PRECISION vec2 crescent;
 
 extern PRECISION number dissolve;
 extern PRECISION number time;
@@ -24,7 +24,9 @@ extern bool shadow;
 extern PRECISION vec4 burn_colour_1;
 extern PRECISION vec4 burn_colour_2;
 
-extern PRECISION Image pcb_overlay;
+extern PRECISION Image moon_normal;
+extern PRECISION Image moon_environment;
+extern PRECISION number phase_time;
 extern PRECISION vec2 tilt;
 
 // [Required] 
@@ -33,25 +35,23 @@ vec4 dissolve_mask(vec4 tex, vec2 texture_coords, vec2 uv);
 
 // [Shader Code]
 void mainImage( out vec4 fragColor, in vec2 uv, in vec2 duv, in Image texture, in float sprite_width, in float sprite_height ) {
-
-    vec4 col = Texel(texture, duv);
+	vec4 samp = Texel(texture, duv);
+    samp.rgb *= 0.4;
+    samp.rgb += 2.5 * (samp.r + samp.g + samp.b);
     
-    //col.g += pow((1.0 + sin(iTime * 0.65)) * 0.5, -(col.r + col.g + col.b));
-    col.g += min(pow((3.0 - (col.r + col.g + col.b)) * 0.7, 69.0), 0.2) * (1.0 + sin(time * 1.65));
+    vec3 normal = Texel(moon_normal, uv).xyz;
     
-    vec4 pcbcol = Texel(pcb_overlay, uv);
-    
-    pcbcol.r *= abs(1 + (sin((tilt.x * 1.5) + pcb.g) * 0.5));
-    pcbcol.g *= abs(1 + (cos((tilt.y * 1.8) - (pcb.g * 1.5)) * 0.5));
-    pcbcol.b *= abs(1 + (sin((((tilt.x * 2.0) + (tilt.y * 2.5)) * 0.5) - pcb.g) * 0.5));
+    float light = Texel(moon_environment, clamp(normal.xy + tilt, 0.02, 0.98)).x;
+    float dark = max(Texel(moon_environment, clamp(normal.xy - tilt, 0.02, 0.98)).x, 0.7) * 2.5;
+    float t = -phase_time + 13.0;
+    float phase = min(max(max(
+        (((normal.z * 8.0) - 4.0) - t),
+    0.05), -(((normal.z * 8.0) - 4.0) - t + 8.0)), 1.0);
 
     // Output to screen
-    fragColor = mix(
-        col,
-        mix(vec4(0.2, 1.0, 0.2, 1) * vec4(vec3(0.2 + (pcbcol.a * 0.9)), 1), vec4(pcbcol.rgb, 1.0), 0.25),
-        (pcbcol.r + pcbcol.g + pcbcol.b) * col.a
-    );
-    //fragColor = vec4(vec3((pcbcol.r + pcbcol.g + pcbcol.b) * 0.33333), 1.0);
+    fragColor = vec4((samp + ((light - dark) * (0.7 + (0.6 * phase)))).rgb, samp.a);
+    //fragColor = vec4(normal.x, normal.y, 1.0, 1.0);
+	//fragColor = Texel(texture, duv) + (fragColor * 0.001);
 }
 
 // This is what actually changes the look of card
@@ -72,9 +72,9 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     // Take pixel color (rgba) from `texture` at `texture_coords`, equivalent of texture2D in GLSL
     vec4 tex = Texel(texture, vec2(newX, newY));
 	
-	//pee see bee
+	//what's a moonwarmer
     if (uv.x > 2. * uv.x) {
-        uv = pcb;
+        uv = crescent;
     }
     //vec2 uvq = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 	vec2 uvq = texture_coords.xy;
