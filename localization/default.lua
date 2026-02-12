@@ -493,7 +493,7 @@ return {
 				text = {
 					"+4 {C:mult}Mult{}",
 				},
-				anum = "139", --https://commons.wikimedia.org/wiki/File:Wales_Chem.png lol
+				anum = "139", --jacob: https://commons.wikimedia.org/wiki/File:Wales_Chem.png lol
 				sym = "JOKER"
 			},
 			j_ecattos_element118fake = elementcattos.loc_txt {
@@ -524,6 +524,73 @@ return {
 					"convert cards of other suits to {C:green}Strange"
 				}
 			},
+			--non catto jokers for Strange Suit
+            j_ecattos_strange_sinful_joker={
+                name="Envious Joker",
+                text={
+                    "Played cards with",
+                    "{C:green}#2#{} suit give",
+                    "{C:mult}+#1#{} Mult when scored",
+                },
+            },
+            j_ecattos_strange_virtuous_joker={
+                name="Kind Joker",
+                text={
+                    "Played cards with",
+                    "{C:green}#2#{} suit give",
+                    "{C:chips}+#1#{} Chips when scored",
+                },
+            },
+            j_ecattos_strange_fusion_joker={
+                name="{C:green}Strange{} Member",
+                text={
+					"{C:green}#1# in #2#{} chance to retrigger",
+					"each card of {C:green}Strange{} suit",
+                    "{C:green}#1# in #2#{} chance for", --2 in 5
+                    "played cards with",
+                    "{C:green}Strange{} suit to give",
+                    "{X:chips,C:white} X#3# {} Chips when scored",
+                },
+            },
+            j_ecattos_strange_mineral={
+                name="{C:green}Strange{} Mineral",
+                text={
+                    "{C:green}#1# in #2#{} chance for", --2 in 5
+                    "played cards with",
+                    "{C:green}Strange{} suit to give",
+                    "{X:chips,C:white} X#3# {} Chips when scored",
+                },
+                unlock={
+                    "Have at least {E:1,C:attention}#1#",
+                    "cards with {E:1,C:green}#2#",
+                    "suit in your deck",
+                },
+            },
+            j_ecattos_ortalab_strange_mineral={
+                name="{C:green}Strange{} Mineral",
+                text={
+                    "{C:green}#1# in #2#{} chance for", --2 in 5
+                    "played cards with",
+                    "{C:green}Strange{} suit to give",
+                    "{X:chips,C:white} X#3# {} Chips when scored",
+                }
+            },
+            j_ecattos_strange_food={
+                name="{C:green}Strange{} Matter on a Stick",
+                text={
+                    "Played cards with",
+                    "{C:green}#2#{} suit give",
+                    "{C:mult}+#1#{} Mult when scored",
+                },
+            },
+            j_ecattos_strange_stick={
+                name="{C:green}Strange{} Stick",
+                text={
+					"Gives {X:mult,C:white}X#1#{} Mult for every",
+					"{C:attention}\"Stick\"{} Joker you have",
+					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+                },
+            },
 			--Subatomic particles
 			j_ecattos_neutron = elementcattos.loc_txt {
 				name = "Neutron",

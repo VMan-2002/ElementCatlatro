@@ -169,7 +169,7 @@ local jokes = SMODS.Joker {
 	config = {extra = { mult = 4 }},
 	pronouns = next(SMODS.find_mod("BigNatties")) and "she_her" or "he_him",
 	atlas = "special",
-	rarity = "ecatto_handmade",
+	rarity = safari_rarity(),
 	pos = {x = 0, y = 0},
 	element_symbol = "J",
 	loc_vars = {"mult"},

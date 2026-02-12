@@ -119,18 +119,26 @@ local elements = {
 	{7, "N", "Nitrogen", "she_her", 14, function(self, card, context)
         if context.before then
             local suits = {}
-            local wilds = 0
+            --local wilds = 0
             for _, playing_card in ipairs(context.scoring_hand) do
 				if playing_card == G.P_CENTERS.m_wild then
-                    wilds = wilds + 1
+                    --wilds = wilds + 1
+					return {
+						chips = card.ability.extra.s_chips
+					}
                 elseif playing_card.base.suit then 
-					suits[playing_card.base.suit] = true 
+					if not suits[playing_card.base.suit] == true then
+						suits[playing_card.base.suit] = true 
+						return {
+							chips = card.ability.extra.s_chips
+						}
+					end
 				end
 			end
-			card.ability.extra.suit_count = wilds
-			for _,_ in pairs(suits) do
-				card.ability.extra.suit_count = card.ability.extra.suit_count + 1
-			end
+			--card.ability.extra.suit_count = wilds
+			--for _,_ in pairs(suits) do
+				--card.ability.extra.suit_count = card.ability.extra.suit_count + 1
+			--end
         end
         if context.joker_main then
 			return {
@@ -175,7 +183,7 @@ local elements = {
 		G.GAME.interest_cap = G.GAME.interest_cap - card.ability.extra.more
 	end, config = { extra = { more = 1 } }},
 	
-	{15, "P", "Phosphorus", "he_him", 31, rarity = 1, nonfunctional = true},
+	{15, "P", "Phosphorus", "he_him", 31, rarity = 1, nonfunctional = true, blackjack_na = true},
 	
 	{16, "S", "Sulfur", "she_her", 32, rarity = 1, nonfunctional = true},
 	
@@ -302,7 +310,7 @@ local elements = {
 				}
 			end
         end
-    end, config = { extra = { repetitions = 1, odds = 2 } }, rarity = 3
+    end, config = { extra = { repetitions = 1, odds = 2 } }, rarity = 3, blackjack_na = true
 	},
 	
 	{61, "Pm", "Promethium", "she_her", 147, nonfunctional = true},
@@ -378,9 +386,20 @@ local elements = {
 	
 	{93, "Np", "Neptunium", "he_any", 237, nonfunctional = true},
 	
-	{94, "Pu", "Plutonium", "he_any", 244, nonfunctional = true},
+	{94, "Pu", "Plutonium", "he_any", 244, nonfunctional = true, blackjack_na = true},
 	
-	{95, "Am", "Americium", "ecatto_eaglenoise_any", 243, config = { extra = {xmult = 3} }, loc_vars = {"xmult"}},
+	{95, "Am", "Americium", "ecatto_eaglenoise_any", 243, function(self, card, context)
+		local fail = false
+		if context.individual and context.cardarea == G.play and not
+            (context.other_card:is_suit(card.ability.extra.suits[1]) or context.other_card:is_suit(card.ability.extra.suits[2]) or context.other_card:is_suit(card.ability.extra.suits[3])) then
+				fail = true
+        end
+        if context.joker_main and not fail then
+			return {
+				xmult = card.ability.extra.s_xmult
+            }
+        end
+	end, config = { extra = {s_xmult = 3, suits = {'Hearts', 'Clubs', 'paperback_stars'}}}, loc_vars = {"s_xmult"}},
 	
 	{96, "Cm", "Curium", "she_her", 250, nonfunctional = true},
 	
@@ -462,7 +481,8 @@ local inpool = function(self)
 		percent = count / G.jokers.config.card_limit
 	end
 	local dups = true
-	if self.rarity == "ecatto_handmade" then return false, {allow_duplicates = 0} end
+	if self.rarity == "ecatto_handmade" or (self.blackjack_na and G.GAME.modifiers.dungeon) --
+	then return false, {allow_duplicates = 0} end
 	if self.rarity >= 4 then
 		local purrcentcount = elementcattos.countJokers("j_ecattos_purrcent")
 		dups = purrcentcount >= 1 + (percent * 4)
