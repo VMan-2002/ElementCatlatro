@@ -626,11 +626,38 @@ return {
 					"{_A:bs_channel} {_A:bs_mineral} {_A:bs_rune} {_A:bs_ritual}"
 				}
 			},
+			j_ecattos_planet_venus = elementcattos.loc_txt_planet {
+				name = "Venus",
+				text = {
+					"text format test",
+					"{_A:bs_red} {_A:bs_green} {_A:bs_blue} {_A:bs_yellow} {_A:bs_purple} {_A:bs_faded}",
+					"{_A:bs_channel} {_A:bs_mineral} {_A:bs_rune} {_A:bs_ritual}"
+				}
+			},
 			j_ecattos_moon_luna = elementcattos.loc_txt_planet {
 				name = "Luna",
 				text = {
-					"Retriggers call",
-					"scored {_A:bs_faded} Blinds"
+					"{C:attention}The Tablet{} is not",
+					"{C:attention}Temporary{} and gives",
+					"{_A:xmult:#1#} when scored"
+				}
+			},
+			j_ecattos_planet_mars = elementcattos.loc_txt_planet {
+				name = "Mars",
+				text = {
+					""
+				}
+			},
+			j_ecattos_moon_phobos = elementcattos.loc_txt_planet {
+				name = "Phobos",
+				text = {
+					""
+				}
+			},
+			j_ecattos_moon_deimos = elementcattos.loc_txt_planet {
+				name = "Deimos",
+				text = {
+					""
 				}
 			},
 			j_ecattos_planet_jupiter = elementcattos.loc_txt_planet {
@@ -884,6 +911,20 @@ return {
 				text = topuplib.asub {
 					"{C:attention}Retriggers{} all Moons of",
 					"{C:attention}leftmost{} Planet Catto"
+				}
+			}
+		},
+		bld_obj_ritual = {
+			c_ecattos_bs_lightbulb = {
+				name = "Lightbulb",
+				text = {
+					{
+						"Add {C:dark_edition}Finish{} edition to",
+						"up to {C:attention}#1#{} selected Blinds"
+					}, {
+						"Can only be used if",
+						"you have {C:attention}The Sun"
+					}
 				}
 			}
 		}

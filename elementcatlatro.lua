@@ -364,6 +364,34 @@ local oldfunc = Game.main_menu
 Game.main_menu = function(change_context)
 	local ret = oldfunc(change_context)
 	
+	if BLINDSIDE then
+		G.E_MANAGER:add_event(Event({
+			trigger = "after",
+			delay = 0,
+			blockable = false,
+			blocking = false,
+			func = function()
+				local planet = SMODS.add_card({set = "Joker", key = "j_ecattos_planet_earth", no_edition = true, area = G.blindside_title_top})
+				planet.no_ui = true
+				planet:start_materialize()
+				
+				G.blindside_title_top.T.w = G.blindside_title_top.T.w * 1.7675
+				G.blindside_title_top.T.x = G.blindside_title_top.T.x - 0.8
+				
+				local iron = SMODS.add_card({set = "Joker", key = "j_ecattos_element26", area = G.title_top, no_edition = true})
+				iron.no_ui = true
+				iron:start_materialize()
+				iron.T.w = iron.T.w * 1.1 * 1.2
+				iron.T.h = iron.T.h * 1.1 * 1.2
+				
+				G.title_top.T.w = G.title_top.T.w * 1.7675
+				G.title_top.T.x = G.title_top.T.x - 0.8
+				return true
+			end,
+		}))
+		return ret
+	end
+	
 	elementcattos.title_cardarea = CardArea(
         0, 0,
         G.CARD_W * 7,G.CARD_H,

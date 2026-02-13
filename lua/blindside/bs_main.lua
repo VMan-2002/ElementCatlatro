@@ -43,6 +43,12 @@ SMODS.Atlas({
 	px = 71,
 	py = 95
 })
+SMODS.Atlas({
+	key = "bs_consumables",
+	path = "blindside/consumables.png",
+	px = 71,
+	py = 95
+})
 elementcattos.moon_in_pool = function(self, args)
 	if next(SMODS.find_card(self.ecattos_conf.owner_key, true)) then
 		return true
@@ -57,11 +63,10 @@ elementcattos.Bs_Planet = function(d)
 	d.loc_txt = d.loc_txt or {
 		name = string.upper(string.sub(d.key, 1, 1)) .. string.sub(d.key, 2)
 	}
+	d.soul_pos = d.soul_pos or {x = d.pos.x, y = d.pos.y + 1}
 	d.key = (d.keyprefix or "planet_") .. d.key
 	d.keyprefix = nil
-	local ret = SMODS.Joker(d)
-	table.insert(SMODS.ObjectTypes.bld_obj_blindside.cards, ret.key)
-	return ret
+	return elementcattos.Bs_Add(SMODS.Joker(d))
 end
 elementcattos.Bs_Moon = function(d)
 	d.rarity = d.rarity or "bld_keepsake"
@@ -73,13 +78,28 @@ elementcattos.Bs_Moon = function(d)
 	d.in_pool = d.in_pool or elementcattos.moon_in_pool
 	return elementcattos.Bs_Planet(d)
 end
+elementcattos.Bs_Add = function(obj)
+	table.insert(SMODS.ObjectTypes.bld_obj_blindside.cards, obj.key)
+	return obj
+end
 
 local rq = {
+	--Planets
 	"bs_planets_inner_solar_system",
 	"bs_planets_outer_solar_system",
 	"bs_planets_hoax_objects",
+	
+	--Others
+	"bs_consumables",
 	"modifiers/bs_edition_crescent"
 }
+
+--[[local edition_hook = BLINDSIDE.get_blindside_editions
+function BLINDSIDE.get_blindside_editions()
+	local r = edition_hook()
+	r[#r+1] = "e_ecattos_crescent"
+	return r
+end]]
 
 for i, v in ipairs(rq) do
 	if v then
