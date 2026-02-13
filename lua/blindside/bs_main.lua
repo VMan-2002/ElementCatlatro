@@ -57,7 +57,7 @@ elementcattos.moon_in_pool = function(self, args)
 end
 elementcattos.moonsRemaining = function(key)
 	local center = G.P_CENTERS[key]
-	if not center.ecattos_conf and not center.ecattos_conf.child_keys then return {} end
+	if not center.ecattos_conf or not center.ecattos_conf.child_keys then return {} end
 	local result = {}
 	for k,v in pairs(G.P_CENTERS[key].ecattos_conf.child_keys) do
 		if not next(SMODS.find_card(v)) then result[#result+1] = v end
