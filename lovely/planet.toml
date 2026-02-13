@@ -1,0 +1,13 @@
+[manifest]
+version = "1.0.0"
+priority = 4
+
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS Blindside "items/enhancements/Tablet.lua"]'''
+position = "before"
+pattern = '''if context.end_of_round then'''
+payload = '''if context.end_of_round and next(SMODS.find_card("j_ecattos_moon_luna")) then
+	return
+end'''
+match_indent = true
