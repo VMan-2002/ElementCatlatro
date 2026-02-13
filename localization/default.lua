@@ -645,25 +645,77 @@ return {
 			j_ecattos_planet_mars = elementcattos.loc_txt_planet {
 				name = "Mars",
 				text = {
-					""
+					"{_A:xmult:#1#} per scored",
+					"Blind matching the",
+					"{C:attention}leftmost{} Blind's hue"
 				}
 			},
 			j_ecattos_moon_phobos = elementcattos.loc_txt_planet {
 				name = "Phobos",
 				text = {
-					""
+					"Gain {_A:money:#1#} per {C:red}discard{} or",
+					"when {C:attention}Mars{} is triggered"
 				}
 			},
 			j_ecattos_moon_deimos = elementcattos.loc_txt_planet {
 				name = "Deimos",
 				text = {
-					""
+					"Every {C:attention}#2#{} discards or",
+					"{C:attention}Mars{} triggers, gain",
+					"{C:red}+#3#{} Discard",
+					"{_A:currently:#1#/#2#}"
 				}
 			},
 			j_ecattos_planet_jupiter = elementcattos.loc_txt_planet {
 				name = "Jupiter",
 				text = {
 					""
+				}
+			},
+			j_ecattos_planet_saturn = elementcattos.loc_txt_planet {
+				name = "Saturn",
+				text = {
+					"1 in 2 chance to",
+					"create a Dental Tag",
+					"before hand scores"
+				}
+			},
+			j_ecattos_planet_saturn = elementcattos.loc_txt_planet {
+				name = "Saturn",
+				text = {
+					"1 in 2 chance to",
+					"create a Dental Tag",
+					"before hand scores"
+				}
+			},
+			j_ecattos_moon_s2009s1 = elementcattos.loc_txt_planet {
+				name = "S/2009 S 1",
+				text = {
+					"{_A:mult:+2} and {_A:chips:+9}",
+					"when another moon of",
+					"{C:attention}Saturn{} triggers"
+				}
+			},
+			j_ecattos_moon_pan = elementcattos.loc_txt_planet {
+				name = "Pan",
+				text = {
+					"{C:attention}Floral Blind{}'s",
+					"probabilities",
+					"are {C:attention}doubled{}"
+				}
+			},
+			j_ecattos_moon_daphnis = elementcattos.loc_txt_planet {
+				name = "Daphnis",
+				text = {
+					"Retriggers modifiers",
+					"on Green blinds"
+				}
+			},
+			j_ecattos_moon_aegaeon = elementcattos.loc_txt_planet {
+				name = "Aegaeon",
+				text = {
+					"Retriggers modifiers",
+					"on Green blinds"
 				}
 			},
 			j_ecattos_planet_planetx = elementcattos.loc_txt_planet {

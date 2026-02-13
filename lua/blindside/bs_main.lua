@@ -66,6 +66,9 @@ elementcattos.Bs_Planet = function(d)
 	d.soul_pos = d.soul_pos or {x = d.pos.x, y = d.pos.y + 1}
 	d.key = (d.keyprefix or "planet_") .. d.key
 	d.keyprefix = nil
+	if type(d.loc_vars) == "table" then
+		d.loc_vars = elementcattos.simpleLocVars(d.loc_vars)
+	end
 	return elementcattos.Bs_Add(SMODS.Joker(d))
 end
 elementcattos.Bs_Moon = function(d)

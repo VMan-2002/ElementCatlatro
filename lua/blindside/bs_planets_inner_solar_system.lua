@@ -30,7 +30,9 @@ do --Earth's moons
 end
 elementcattos.Bs_Planet {
 	key = "mars",
-	pos = {x=0, y=2}
+	pos = {x=0, y=2},
+	config = {extra = {xmult = 1.2}},
+	loc_vars = {"xmult"}
 }
 do --Mars's moons
 	elementcattos.Bs_Moon {
@@ -38,13 +40,17 @@ do --Mars's moons
 		ecattos_conf = {
 			moon_of = "mars",
 		},
-		pos = {x=1, y=2}
+		pos = {x=1, y=2},
+		config = {extra = {money = 1}},
+		loc_vars = {"money"}
 	}
 	elementcattos.Bs_Moon {
 		key = "deimos",
 		ecattos_conf = {
 			moon_of = "mars",
 		},
-		pos = {x=2, y=2}
+		pos = {x=2, y=2},
+		config = {extra = {counter = 0, max = 9, discardgain = 1}},
+		loc_vars = {"counter", "max", "discardgain"}
 	}
 end
