@@ -831,9 +831,9 @@ return {
 			ecattos_planet_moon_slots={
 				name="Has Moons",
 				text={
-					"Up to {C:attention}3{} owned {C:attention}Moons{}",
+					"Up to {C:attention}#1#{} owned {C:attention}Moons",
 					"of this {C:attention}Planet{} give",
-					"{C:attention}+1{} Trinket slot each",
+					"{C:attention}+#2#{} Trinket slots each",
 					"{C:inactive}(Selling this Planet",
 					"{C:inactive}will sell it's moons",
 					"{C:inactive}if there's no space)"

@@ -371,14 +371,32 @@ Game.main_menu = function(change_context)
 			blockable = false,
 			blocking = false,
 			func = function()
-				local planet = SMODS.add_card({set = "Joker", key = "j_ecattos_planet_earth", no_edition = true, area = G.blindside_title_top})
+				local planet = Card(
+					G.blindside_title_top.T.x,
+					G.blindside_title_top.T.y,
+					G.CARD_W,
+					G.CARD_H,
+					G.P_CARDS.empty,
+					G.P_CENTERS["j_ecattos_planet_earth"],
+					{ bypass_discovery_center = true }
+				)
+				G.blindside_title_top:emplace(planet)
 				planet.no_ui = true
 				planet:start_materialize()
 				
 				G.blindside_title_top.T.w = G.blindside_title_top.T.w * 1.7675
 				G.blindside_title_top.T.x = G.blindside_title_top.T.x - 0.8
 				
-				local iron = SMODS.add_card({set = "Joker", key = "j_ecattos_element26", area = G.title_top, no_edition = true})
+				local iron = Card(
+					G.title_top.T.x,
+					G.title_top.T.y,
+					G.CARD_W,
+					G.CARD_H,
+					G.P_CARDS.empty,
+					G.P_CENTERS["j_ecattos_element26"],
+					{ bypass_discovery_center = true }
+				)
+				G.title_top:emplace(iron)
 				iron.no_ui = true
 				iron:start_materialize()
 				iron.T.w = iron.T.w * 1.1 * 1.2
