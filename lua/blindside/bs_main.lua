@@ -55,9 +55,18 @@ elementcattos.moon_in_pool = function(self, args)
 	end
 	return math.random() > 0.85
 end
+elementcattos.moonsRemaining = function(key)
+	local center = G.P_CENTERS[key]
+	if not center.ecattos_conf and not center.ecattos_conf.child_keys then return {} end
+	local result = {}
+	for k,v in pairs(G.P_CENTERS[key].ecattos_conf.child_keys) do
+		if not next(SMODS.find_card(v)) then result[#result+1] = v end
+	end
+	return result
+end
 elementcattos.Bs_Planet = function(d)
 	d.rarity = d.rarity or "bld_trinket"
-	d.cost = d.cost or 15
+	d.cost = d.cost or 12
 	d.atlas = d.atlas or "planets"
 	d.not_in_booster = true
 	d.loc_txt = d.loc_txt or {
@@ -69,17 +78,24 @@ elementcattos.Bs_Planet = function(d)
 	if type(d.loc_vars) == "table" then
 		d.loc_vars = elementcattos.simpleLocVars(d.loc_vars)
 	end
+	d.ecattos_conf = d.ecattos_conf or {}
 	return elementcattos.Bs_Add(SMODS.Joker(d))
 end
 elementcattos.Bs_Moon = function(d)
 	d.rarity = d.rarity or "bld_keepsake"
-	d.cost = d.cost or 6
-	d.atlas = d.atlas or "planets"
+	d.cost = d.cost or 5
 	d.not_in_booster = true
 	d.keyprefix = "moon_"
-	d.ecattos_conf.owner_key = "j_ecattos_planet_"..d.ecattos_conf.moon_of
+	
+	d.ecattos_conf.owner_key = string.sub(d.ecattos_conf.moon_of, 1, 2) ~= "j_" and ("j_ecattos_planet_"..d.ecattos_conf.moon_of) or d.ecattos_conf.moon_of
+	
+	local oconf = SMODS.Centers[d.ecattos_conf.owner_key].ecattos_conf
+	oconf.child_keys = oconf.child_keys or {}
+	
 	d.in_pool = d.in_pool or elementcattos.moon_in_pool
-	return elementcattos.Bs_Planet(d)
+	local r = elementcattos.Bs_Planet(d)
+	table.insert(oconf.child_keys, r.key)
+	return r
 end
 elementcattos.Bs_Add = function(obj)
 	table.insert(SMODS.ObjectTypes.bld_obj_blindside.cards, obj.key)

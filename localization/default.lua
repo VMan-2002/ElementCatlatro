@@ -978,6 +978,17 @@ return {
 						"you have {C:attention}The Sun"
 					}
 				}
+			},
+			c_ecattos_bs_mooncreate = {
+				name = "Mooncreate", --todo: rename to fit other ritual cards
+				text = {
+					{
+						"Select {C:attention}#1#{} Planet Catto,",
+						"create {C:attention}1{} of it's",
+						"remaining Moons",
+						"{C:inactive}(Does not require room)"
+					}
+				}
 			}
 		}
     }
