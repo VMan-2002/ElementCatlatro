@@ -44,6 +44,12 @@ SMODS.Atlas({
 	py = 95
 })
 SMODS.Atlas({
+	key = "sun",
+	path = "blindside/sun.png",
+	px = 71,
+	py = 95
+})
+SMODS.Atlas({
 	key = "bs_consumables",
 	path = "blindside/consumables.png",
 	px = 71,

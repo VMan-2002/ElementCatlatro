@@ -1,6 +1,12 @@
 elementcattos.Bs_Planet {
 	key = "sun",
-	pos = {x=1, y=0}
+	atlas = "sun",
+	pos = {x=0, y=0},
+	topuplib_anim = {
+		vars = {x = true, soulx = true},
+		frameCount = 6,
+		rate = 8
+	}
 }
 elementcattos.Bs_Planet {
 	key = "mercury",
