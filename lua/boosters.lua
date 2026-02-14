@@ -53,3 +53,14 @@ SMODS.Booster {
 	ecattos_booster_pool = "tool",
 	create_card = elementcattos.boosterPackCard
 }
+
+SMODS.Booster {
+	key = "element_toolbox",
+	config = {extra = 7, choose = 2},
+	atlas = "boosters",
+	pos = {x = 4, y = 0},
+	cost = 8,
+	ecattos_booster_pool = "tool",
+	create_card = elementcattos.boosterPackCard,
+	in_pool = topuplib.returnFalse
+}

@@ -24,7 +24,7 @@ return {
 			k_ecatto_masterwork_tip = {
 				"Cannot appear in the Shop",
 				"Can only be obtained",
-				"by completing {E:1}{C:tarot}#1# blueprint{}",
+				"by completing {E:1}{C:tarot}its blueprint{}",
 			},
 			
 			ecattos_compoundcreator_tocreate = "Compound to create",
@@ -417,7 +417,10 @@ return {
 				name = "Oganesson",
 				text = {
 					"Balances {C:chips}Chips{} and {C:mult}Mult{}",
-					"before scoring"
+					"before scoring",
+					"{C:green}#1# in #2#{} chance this", --remove this when elements decaying is implemented
+                    "card is destroyed",
+                    "at end of round",
 				},
 				anum = 118,
 				sym = "Og"
@@ -506,7 +509,7 @@ return {
 					"+4 {C:mult}Mult{}",
 				},
 				anum = "139", --jacob: https://commons.wikimedia.org/wiki/File:Wales_Chem.png lol
-				sym = "JOKER"
+				sym = "J"
 			},
 			j_ecattos_element118fake = elementcattos.loc_txt {
 				name = "Ninovium",
@@ -860,7 +863,7 @@ return {
 				}
 			},
 			p_ecattos_element_rare = {
-				name = "Common Elements Pack",
+				name = "Rare Elements Pack",
 				text = topuplib.asub {
 					"Select {C:attention}1{} of {C:attention}3{} {_A:rare}",
 					"Element Cattos"
@@ -870,6 +873,13 @@ return {
 				name = "Tools Pack",
 				text = {
 					"Select {C:attention}1{} of {C:attention}4{} {C:tarot}Tools{}",
+					"to use immediately"
+				}
+			},
+			p_ecattos_element_toolbox = {
+				name = "Toolbox Pack",
+				text = {
+					"Select {C:attention}2{} of {C:attention}7{} {C:tarot}Tools{}",
 					"to use immediately"
 				}
 			},
@@ -921,7 +931,28 @@ return {
 					"Start with additional {_A:money:8}",
 					"and {C:attention}Overstock Plus{}"
 				}
+			},
+			b_ecattos_elements_blackjack = {
+				name = "Scandium Catto Deck",
+				text = topuplib.asub {
+                    "{C:attention}Blackjack Mode{}",
+					"Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+24{} Joker slots",
+					"Start with additional {_A:money:8}",
+					"and {C:attention}Overstock Plus{}"
+				}
 			}
+			b_ecattos_elements_ortalab = {
+				name = "Sottac Tnemele Deck",
+				text = topuplib.asub {
+					"Only Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+23{} Joker slots",
+					"Start with {C:attention}Clearance Sale{}",
+					"and {C:attention}Ad Campaign{}"
+				}
+			},
 		},
         Sleeve = {
             sleeve_ecattos_elements = {
@@ -939,6 +970,22 @@ return {
 				text = topuplib.asub {
 					"{C:tarot}Tool{} and {C:attention}Element{} Packs both have",
                     "{C:attention}2{} extra options to choose from",
+				}
+            },
+            sleeve_ecattos_elements_ortalab = {
+                name = "Sottac Tnemele Sleeve",
+				text = topuplib.asub {
+					"Only Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+24{} Joker slots",
+					"Start with additional {_A:money:8}",
+					"and {C:attention}Overstock Plus{}"
+				}
+            },
+            sleeve_ecattos_elements_ortalab_alt = {
+                name = "Sottac Tnemele Sleeve",
+				text = topuplib.asub {
+					"Start with {C:attention}Liquidation{}"
 				}
             },
         },
@@ -984,6 +1031,151 @@ return {
 					"{C:attention}leftmost{} Planet Catto"
 				}
 			}
-		}
+		},
+		Item = {
+            c_ecatto_pokeball = {
+                name = "Poké Ball?",
+                text = {
+                    "Creates a",
+                    "{C:attention}Stable{} Element Catto",
+                    "{C:inactive}(Must have room)"
+                },
+            },
+            c_ecatto_greatball = {
+                name = "Great Ball?",
+                text = {
+                    "Creates a",
+                    "{C:attention}Radioactive{} Element Catto",
+                    "with a Type sticker",
+                    "{C:inactive}(Must have room)"
+                },
+            },
+            c_ecatto_berry_juice_tool = {
+                name = "Tool Berry Juice",
+                text = {
+                    "{C:inactive}TODO",
+                },
+            }
+        },
+		Spectral = {
+            c_ecatto_transformation = {
+                name = "TBN",
+                text = {
+                    "Decays selected Element Cattos",
+                    "as much as possible",
+                    "{C:inactive}(Up to 100)"
+                },
+            },
+            c_ecatto_ultraball = {
+                name = "Ultra Ball?",
+                text = {
+                    "Creates a",
+                    "{C:attention}Synthesized{} Element Catto",
+                    "with Stabilized and {C:pink}Dragon Type{} stickers",
+                    "{C:inactive}(Must have room)"
+                },
+            },
+            c_ecatto_masterball = {
+                name = "Master Ball?",
+                text = {
+                    "Creates a",
+                    "{C:legendary,E:1}Legendary{} Element Catto",
+                    "{C:inactive}(Must have room)"
+                },
+            },
+        },
+		Tag = {
+            tag_ecatto_topup_tag = {
+                name = "Catto Top-up Tag",
+                text = {
+                    "Create up to {C:attention}#1#", -- 2, 3, or 4?
+                    "{C:blue}Common{} Element Cattos",
+                    "{C:inactive}(Must have room)",
+                }, 
+            },
+            tag_ecatto_uncommon_tag = {
+                name = "Uncommon Cattos Tag",
+                text = {
+                    "Gives a free",
+                    "{C:green}Uncommon Elements Pack",
+                }, 
+            },
+            tag_ecatto_rare_tag = {
+                name = "Rare Catto Tag",
+                text = {
+                    "Gives a free",
+                    "{C:red}Rare Elements Pack",
+                }, 
+            },
+            tag_ecatto_tool_tag = {
+                name = "Toolbox Tag",
+                text = {
+                    "Gives a free",
+                    "{C:attention}Toolbox Pack",
+                }, 
+            },
+            tag_ecatto_basic_tag = {
+                name = "Stable Catto Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:attention}Stable{} Element Cattos",
+                    "with an random edition",
+                    "from {C:attention}Element Catlatro",
+                    "{C:inactive}(Protons set between 1 and 83)"
+                }, 
+            },
+            tag_ecatto_stage_one_tag = {
+                name = "Radioactive Catto Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:attention}Radioactive{} Element Catto",
+                    "with an Stabilized sticker",
+                    "{C:inactive}(Protons set between 83 and 118)"
+                }, 
+            },
+            tag_ecatto_stage_two_tag = { --prob redundat
+                name = "Synthesized Catto Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:attention}Synthesized{} Element Catto",
+                    "with an Stabilized sticker",
+                    "{C:inactive}(Protons set between 94 and 180)"
+                }, 
+            },
+            tag_ecatto_safari_tag = {
+                name = "safari? Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:safari}trans-Unbinilium{} Joker",
+                    "{C:inactive}(Protons set between 121 and 140)"
+                }, 
+            },
+            tag_ecatto_safari_tag = {
+                name = "Black Hole Tag",
+                text = {
+					"Destroys {_A:attention:1} ALL",
+					"Element Cattos",
+					"{C:inactive}(Bypasses Eternal)",
+                }, 
+            },
+			--for blindside
+            tag_ecatto_planet_tag = {
+                name = "Black Hole Tag",
+                text = {
+					"Destroys {_A:attention:1} ALL",
+					"Element Cattos",
+					"{C:inactive}(Bypasses Eternal)",
+                }, 
+            },
+            tag_ecatto_moon_tag = {
+                name = "Black Hole Tag",
+                text = {
+					"Destroys {_A:attention:1} ALL",
+					"Element Cattos",
+					"{C:inactive}(Bypasses Eternal)",
+					""
+                }, 
+            },
+        },
     }
 }

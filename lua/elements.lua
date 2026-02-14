@@ -175,15 +175,12 @@ local elements = {
 	
 	{14, "Si", "Silicon", "he_him", 28, rarity = 1, config = { extra = {more = 1} }, loc_vars = {"more"},
 	add_to_deck = function(self, card, from_debuff)
-		if not G.GAME.extra_pocket_picks then
-			G.GAME.extra_pocket_picks = 1
-		else
-			G.GAME.extra_pocket_picks = G.GAME.extra_pocket_picks + 1
-		end
+		G.GAME.modifiers.booster_size_mod = (G.GAME.modifiers.booster_size_mod or 0) + card.ability.extra.more
 	end,
 	remove_from_deck = function(self, card, from_debuff)
-		G.GAME.interest_cap = G.GAME.interest_cap - card.ability.extra.more
-	end, config = { extra = { more = 1 } }},
+		G.GAME.modifiers.booster_size_mod = (G.GAME.modifiers.booster_size_mod or 0) - card.ability.extra.more 
+	end, 
+	config = { extra = { more = 1 } } },
 	
 	{15, "P", "Phosphorus", "he_him", 31, function(self, card, context)
 		if context.selling_self then
@@ -213,7 +210,9 @@ local elements = {
 			card.ability.extra.active = false
 			return {message = localize("k_reset")}
 		end
-	end, config = {extra = {mult = 24, active = false}}, loc_vars = function(self, info_queue, card)
+	end, config = {extra = {mult = 24, active = false}}, 
+	loc_vars = 
+	function(self, info_queue, card) 
 		return {vars = {card.ability.extra.mult, topuplib.localize()[card.ability.extra.active and "active" or "inactive"]}}
 	end, rarity = 1},
 	
@@ -481,7 +480,7 @@ local elements = {
 	
 	{118, "Og", "Oganesson", "he_him", 294, 
 	function(self, card, context)
-		--vv
+		--vv remove this when elements decaying is implemented
 		if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
             if SMODS.pseudorandom_probability(card, 'ecattos_element118', 1, card.ability.extra.odds) then
                 SMODS.destroy_cards(card, nil, nil, true)
@@ -499,7 +498,7 @@ local elements = {
 			return { balance = true }
 		end
 	end,
-	--vv
+	--vv remove this when elements decaying is implemented
 	loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'ecattos_element118')
         return { vars = { numerator, denominator } }
