@@ -451,7 +451,7 @@ for k,v in pairs(elements) do
 			y = math.floor(n / 8)
 		},
 		pronouns = v[4] or "she_her",
-		cost = v.cost or 1,
+		cost = v.cost or math.floor(1 + math.pow(v[1] * 0.02, 2.9)),
 		atomic_number = v[1] or v.atomic_number,
 		element_symbol = v[2] or v.element_symbol,
 		in_pool = inpool,
