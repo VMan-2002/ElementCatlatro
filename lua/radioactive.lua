@@ -91,10 +91,12 @@ elementcattos.radioactive = {
 	},
 	j_ecattos_element119 = {
 		glowrate = 7.5,
-		spr = "violet"
+		spr = "violet",
+		int = 1
 	},
 	j_ecattos_element120 = {
-		glowrate = 8
+		glowrate = 8,
+		spr = "violet"
 	},
 	j_ecattos_element_extended = {
 		glowrate = 2,

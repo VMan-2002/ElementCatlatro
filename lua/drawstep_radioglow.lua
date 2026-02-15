@@ -3,7 +3,7 @@ elementcattos.radioglow_sprites = {
 	yellow = "radioglow_yellow",
 	teal = "radioglow_teal",
 	radon = "radioglow_radon",
-	purple = "radioglow_violet",
+	violet = "radioglow_violet",
 	extended = "radioglow_extended"
 }
 
