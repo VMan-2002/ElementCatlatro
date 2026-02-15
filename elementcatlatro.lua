@@ -338,7 +338,7 @@ if CardPronouns then
 		key = "ecatto_na"
 	}
 	
-	elementcattos.usa_flag = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/usa.png"))
+	elementcattos.usa_flag = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/usa.png"), nil)
 end
 
 if Yahimod then
