@@ -8,68 +8,68 @@ do --Jupiter's moons
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=7, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "adrastea",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=8, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "amalthea",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=9, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "thebe",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=10, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "io",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=11, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "europa",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=12, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "ganymede",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=13, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "callisto",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=14, y=0}
 	}
 	elementcattos.Bs_Moon {
 		key = "pandia",
 		ecattos_conf = {
 			moon_of = "jupiter",
 		},
-		pos = {x=0, y=0}
+		pos = {x=15, y=0}
 	}
 end
 elementcattos.Bs_Planet {
 	key = "saturn",
-	pos = {x=0, y=0}
+	pos = {x=16, y=0}
 }
 do --Saturn's moons
 	elementcattos.Bs_Moon {
@@ -77,91 +77,91 @@ do --Saturn's moons
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=5, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "pan",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=6, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "daphnis",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=7, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "aegaeon",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=8, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "mimas",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=9, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "methone",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=10, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "enceladus",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=11, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "tethys",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=12, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "dione",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=13, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "rhea",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=14, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "titan",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=15, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "hypenon",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=16, y=2}
 	}
 	elementcattos.Bs_Moon {
 		key = "iapetus",
 		ecattos_conf = {
 			moon_of = "saturn",
 		},
-		pos = {x=0, y=0}
+		pos = {x=17, y=2}
 	}
 end
 elementcattos.Bs_Planet {

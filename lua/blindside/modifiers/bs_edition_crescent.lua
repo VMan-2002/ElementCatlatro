@@ -26,6 +26,7 @@ local crescent = SMODS.Edition {
 	shader = "crescent",
     atlas = 'bld_blindrank',
     pos = {x = 3, y = 0},
+    weight = 0.2,
     in_shop = false,
 	calculate = function(self, card, context)
 	end,

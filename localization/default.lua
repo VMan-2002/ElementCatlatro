@@ -727,17 +727,96 @@ return {
 					"{_A:bs_channel} {_A:bs_mineral} {_A:bs_rune} {_A:bs_ritual}"
 				}
 			},
+			j_ecattos_planet_venus = elementcattos.loc_txt_planet {
+				name = "Venus",
+				text = {
+					"text format test",
+					"{_A:bs_red} {_A:bs_green} {_A:bs_blue} {_A:bs_yellow} {_A:bs_purple} {_A:bs_faded}",
+					"{_A:bs_channel} {_A:bs_mineral} {_A:bs_rune} {_A:bs_ritual}"
+				}
+			},
 			j_ecattos_moon_luna = elementcattos.loc_txt_planet {
 				name = "Luna",
 				text = {
-					"Retriggers call",
-					"scored {_A:bs_faded} Blinds"
+					"{C:attention}The Tablet{} is not",
+					"{C:attention}Temporary{} and gives",
+					"{_A:xmult:#1#} when scored"
+				}
+			},
+			j_ecattos_planet_mars = elementcattos.loc_txt_planet {
+				name = "Mars",
+				text = {
+					"{_A:xmult:#1#} per scored",
+					"Blind matching the",
+					"{C:attention}leftmost{} Blind's hue"
+				}
+			},
+			j_ecattos_moon_phobos = elementcattos.loc_txt_planet {
+				name = "Phobos",
+				text = {
+					"Gain {_A:money:#1#} per {C:red}discard{} or",
+					"when {C:attention}Mars{} is triggered"
+				}
+			},
+			j_ecattos_moon_deimos = elementcattos.loc_txt_planet {
+				name = "Deimos",
+				text = {
+					"Every {C:attention}#2#{} discards or",
+					"{C:attention}Mars{} triggers, gain",
+					"{C:red}+#3#{} Discard",
+					"{_A:currently:#1#/#2#}"
 				}
 			},
 			j_ecattos_planet_jupiter = elementcattos.loc_txt_planet {
 				name = "Jupiter",
 				text = {
 					""
+				}
+			},
+			j_ecattos_planet_saturn = elementcattos.loc_txt_planet {
+				name = "Saturn",
+				text = {
+					"1 in 2 chance to",
+					"create a Dental Tag",
+					"before hand scores"
+				}
+			},
+			j_ecattos_planet_saturn = elementcattos.loc_txt_planet {
+				name = "Saturn",
+				text = {
+					"1 in 2 chance to",
+					"create a Dental Tag",
+					"before hand scores"
+				}
+			},
+			j_ecattos_moon_s2009s1 = elementcattos.loc_txt_planet {
+				name = "S/2009 S 1",
+				text = {
+					"{_A:mult:+2} and {_A:chips:+9}",
+					"when another moon of",
+					"{C:attention}Saturn{} triggers"
+				}
+			},
+			j_ecattos_moon_pan = elementcattos.loc_txt_planet {
+				name = "Pan",
+				text = {
+					"{C:attention}Floral Blind{}'s",
+					"probabilities",
+					"are {C:attention}doubled{}"
+				}
+			},
+			j_ecattos_moon_daphnis = elementcattos.loc_txt_planet {
+				name = "Daphnis",
+				text = {
+					"Retriggers modifiers",
+					"on Green blinds"
+				}
+			},
+			j_ecattos_moon_aegaeon = elementcattos.loc_txt_planet {
+				name = "Aegaeon",
+				text = {
+					"Retriggers modifiers",
+					"on Green blinds"
 				}
 			},
 			j_ecattos_planet_planetx = elementcattos.loc_txt_planet {
@@ -912,9 +991,9 @@ return {
 			ecattos_planet_moon_slots={
 				name="Has Moons",
 				text={
-					"Up to {C:attention}3{} owned {C:attention}Moons{}",
+					"Up to {C:attention}#1#{} owned {C:attention}Moons",
 					"of this {C:attention}Planet{} give",
-					"{C:attention}+1{} Trinket slot each",
+					"{C:attention}+#2#{} Trinket slots each",
 					"{C:inactive}(Selling this Planet",
 					"{C:inactive}will sell it's moons",
 					"{C:inactive}if there's no space)"
@@ -1033,23 +1112,6 @@ return {
 			}
 		},
 		Item = {
-            c_ecatto_pokeball = {
-                name = "Poké Ball?",
-                text = {
-                    "Creates a",
-                    "{C:attention}Stable{} Element Catto",
-                    "{C:inactive}(Must have room)"
-                },
-            },
-            c_ecatto_greatball = {
-                name = "Great Ball?",
-                text = {
-                    "Creates a",
-                    "{C:attention}Radioactive{} Element Catto",
-                    "with a Type sticker",
-                    "{C:inactive}(Must have room)"
-                },
-            },
             c_ecatto_berry_juice_tool = {
                 name = "Tool Berry Juice",
                 text = {
@@ -1064,23 +1126,6 @@ return {
                     "Decays selected Element Cattos",
                     "as much as possible",
                     "{C:inactive}(Up to 100)"
-                },
-            },
-            c_ecatto_ultraball = {
-                name = "Ultra Ball?",
-                text = {
-                    "Creates a",
-                    "{C:attention}Synthesized{} Element Catto",
-                    "with Stabilized and {C:pink}Dragon Type{} stickers",
-                    "{C:inactive}(Must have room)"
-                },
-            },
-            c_ecatto_masterball = {
-                name = "Master Ball?",
-                text = {
-                    "Creates a",
-                    "{C:legendary,E:1}Legendary{} Element Catto",
-                    "{C:inactive}(Must have room)"
                 },
             },
         },
@@ -1150,32 +1195,57 @@ return {
                     "{C:inactive}(Protons set between 121 and 140)"
                 }, 
             },
-            tag_ecatto_safari_tag = {
+            tag_ecatto_void_tag = { --bad idea?
                 name = "Black Hole Tag",
-                text = {
-					"Destroys {_A:attention:1} ALL",
-					"Element Cattos",
+                text = topuplib.asub {
+					"Destroys {C:attention}5",
+					"Random Element Cattos",
 					"{C:inactive}(Bypasses Eternal)",
                 }, 
             },
 			--for blindside
             tag_ecatto_planet_tag = {
-                name = "Black Hole Tag",
+                name = "Planetary Tag",
                 text = {
-					"Destroys {_A:attention:1} ALL",
-					"Element Cattos",
-					"{C:inactive}(Bypasses Eternal)",
+                    "Creates an {C:attention}Planet Catto",
+                    "{C:inactive}(Must have room)",
                 }, 
             },
             tag_ecatto_moon_tag = {
-                name = "Black Hole Tag",
+                name = "Lunar Tag",
                 text = {
-					"Destroys {_A:attention:1} ALL",
-					"Element Cattos",
-					"{C:inactive}(Bypasses Eternal)",
-					""
+                    "Creates a {C:attention}Moon",
+					"for a Planet Catto",
+					"for a Planet Catto",
+                    "{C:inactive}(Must have a Planet Catto",
+					"with remaining Moons)"
                 }, 
             },
         },
+		bld_obj_ritual = {
+			c_ecattos_bs_lightbulb = {
+				name = "Lightbulb",
+				text = {
+					{
+						"Add {C:dark_edition}Finish{} edition to",
+						"up to {C:attention}#1#{} selected Blinds"
+					}, {
+						"Can only be used if",
+						"you have {C:attention}The Sun"
+					}
+				}
+			},
+			c_ecattos_bs_mooncreate = {
+				name = "Mooncreate", --todo: rename to fit other ritual cards
+				text = {
+					{
+						"Select {C:attention}#1#{} Planet Catto,",
+						"create {C:attention}1{} of it's",
+						"remaining Moons",
+						"{C:inactive}(Does not require room)"
+					}
+				}
+			}
+		}
     }
 }
