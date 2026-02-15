@@ -53,7 +53,7 @@ elementcattos = {
 	end,
 	--Radioactive
 	isRadioactive = function(card)
-		return elementcattos.radioactive(card.config.center.key) ~= nil
+		return elementcattos.radioactive[card.config.center_key]
 	end,
 	fromyears = function(n) return n * 315570000 end,
 	fromminutes = function(n) return n * 60 end,
@@ -196,7 +196,7 @@ SMODS.current_mod.custom_collection_tabs = function()
 end
 --todo: element decaying and isotopes are gonna be a thing to figure out
 elementcattos.radioactive = {
-	ecatto_element82_214 = { --lead 214
+	--[[ecatto_element82_214 = { --lead 214
 		hands = elementcattos.halflife(elementcattos.fromminutes(27.06)),
 		result = "ecatto_element83_214"
 	},
@@ -236,7 +236,7 @@ elementcattos.radioactive = {
 	ecatto_element118 = { --oganesson
 		explode = true,
 		hands = 0
-	}
+	}]]
 }
 
 local rq = {
@@ -253,6 +253,8 @@ local rq = {
 	"suits",
 	"modifiers/sticker_stabilized",
 	"modifiers/edition_pcb",
+	"radioactive",
+	"drawstep_radioglow",
 	"patches",
 	BLINDSIDE and "blindside/bs_main" or nil
 }
