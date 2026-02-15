@@ -2,30 +2,15 @@ return {
 	misc = {
 		dictionary = {
 			k_ecatto_handmade = "Handmade",
-			k_ecatto_handmade_tip = {
-				"Cannot appear in the Shop",
-				"Can only be obtained",
-				"by using certain {C:tarot}Tarot Cards{}"
-			},
             --k_common = "Common",
             --k_uncommon = "Uncommon",
             k_ecatto_safari = "Safari",
-			k_ecatto_safari_tip = {
-				"Cannot appear in the Shop",
-				"Can only be obtained",
-				"by using certain {C:tarot}Tarot Cards{}",
-				"or the decay of an {C:attention}Element Catto"
-			},
 			--k_rare = "Rare",
 			--k_cry_epic = "Epic",
             --k_legendary = "Legendary",
             --k_cry_exotic = "Exotic",
             k_ecatto_masterwork = "Masterwork",
-			k_ecatto_masterwork_tip = {
-				"Cannot appear in the Shop",
-				"Can only be obtained",
-				"by completing {E:1}{C:tarot}its blueprint{}",
-			},
+			k_ecattos_strange = "Strange",
 			
 			ecattos_compoundcreator_tocreate = "Compound to create",
 			ecattos_compoundcreator_confirm = "Confirm",
@@ -66,9 +51,7 @@ return {
 			
 			ecattos_planet_category_inner_solar = "Inner Solar System",
 			ecattos_planet_category_hoax = "Hoax Object",
-			ecattos_planet_category_outer_solar = "Outer Solar System",
-			
-			k_ecattos_strange = "Strange"
+			ecattos_planet_category_outer_solar = "Outer Solar System"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well
@@ -998,7 +981,42 @@ return {
 					"{C:inactive}will sell it's moons",
 					"{C:inactive}if there's no space)"
 				}
-			}
+			},
+			ecatto_handmade_tip = {
+                name = "Handmade",
+                text = {
+					"Cannot appear in the Shop",
+					"Does nothing.",
+                }
+			},
+			safaridesc = {
+                name = "Safari",
+                text = {
+                    "Can only be obtained",
+                    "through Pokemon {C:attention}Evolution{},",
+                    "or a {C:safari}really heavy{}",
+					"{C:attention}Element Catto's Decay{},",
+                    "or using certain {C:attention}Pokeball Items{}",
+					"or {C:tarot}Tools{}"
+                } 
+            },
+			ecatto_safari_tip = {
+                name = "Safari",
+                text = {
+                    "Can only be obtained",
+                    "through using certain {C:tarot}Tools{}",
+                    "or a {C:safari}really heavy{}",
+					"{C:attention}Element Catto's Decay{}"
+                } 
+            },
+			ecatto_handmade_tip = {
+                name = "Masterwork",
+                text = {
+					"Cannot appear in the Shop",
+					"Can only be obtained",
+					"by completing {E:1}{C:tarot}their blueprint{}",
+                } 
+            },
 		},
 		Back = {
 			b_ecattos_elements = {
@@ -1021,7 +1039,7 @@ return {
 					"Start with additional {_A:money:8}",
 					"and {C:attention}Overstock Plus{}"
 				}
-			}
+			},
 			b_ecattos_elements_ortalab = {
 				name = "Sottac Tnemele Deck",
 				text = topuplib.asub {
