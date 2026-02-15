@@ -116,6 +116,7 @@ local rq = {
 	
 	--Others
 	"bs_consumables",
+	"bs_levels",
 	"modifiers/bs_edition_crescent"
 }
 

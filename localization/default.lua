@@ -604,9 +604,9 @@ return {
 			--Blindside
 			j_ecattos_planet_sun = elementcattos.loc_txt_planet {
 				name = "The Sun",
-				text = {
-					"{C:attention}Retrigger{} the first",
-					"Blind of each Hue"
+				text = { --TODO: still not sure about this effect
+					"Price Tags are $1 cheaper",
+					"per owned Planet or Moon Catto"
 				}
 			},
 			j_ecattos_planet_earth = elementcattos.loc_txt_planet {
@@ -988,6 +988,19 @@ return {
 						"remaining Moons",
 						"{C:inactive}(Does not require room)"
 					}
+				}
+			}
+		},
+		Stake = {
+			stake_ecattos_bs_ecattos_deck = {
+				name = "Element Cattos Stake?",
+				text = {
+					"Jokers are {C:attention}Element Cattos",
+					--TODO: that shouldn't be the only change
+				},
+				unlock = {
+					"Discover 10 Planet or Moon",
+					"Cattos in the Collection"
 				}
 			}
 		}
