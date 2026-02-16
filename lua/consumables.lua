@@ -174,19 +174,6 @@ if topuplib.debug then
 	}.key)
 	
 	table.insert(elementcattos.tools, SMODS.Consumable {
-		key = "stabilizer",
-		set = "Tarot",
-		atlas = "tools",
-		pos = {x = 0, y = 1},
-		can_use = function()
-			return #G.jokers.highlighted == 1 and elementcattos.cardFromMod(G.jokers.highlighted[1])
-		end,
-		use = function()
-			G.jokers.highlighted[1].ability.ecattos_stabilized = (G.jokers.highlighted[1].ability.ecattos_stabilized or 0) + 2
-		end
-	}.key)
-	
-	table.insert(elementcattos.tools, SMODS.Consumable {
 		key = "lightbulb",
 		set = "Tarot",
 		atlas = "tools",
@@ -240,6 +227,30 @@ if topuplib.debug then
 		end
 	}.key)
 end
+
+table.insert(elementcattos.tools, SMODS.Consumable {
+	key = "stabilizer",
+	set = "Tarot",
+	atlas = "tools",
+	pos = {x = 0, y = 1},
+	can_use = function()
+		return #G.jokers.highlighted == 1 and elementcattos.cardFromMod(G.jokers.highlighted[1])
+	end,
+	use = function()
+		local j = G.jokers.highlighted[1]
+		j.ability.ecattos_stabilized = (j.ability.ecattos_stabilized or 0) + 2
+		j:juice_up()
+		play_sound("ecattos_stabilized")
+	end
+}.key)
+SMODS.Sound({
+	key = "stabilized",
+	path = "stabilized.ogg"
+})
+SMODS.Sound({
+	key = "unstabilized",
+	path = "unstabilized.ogg"
+})
 
 table.insert(elementcattos.tools, SMODS.Consumable {
 	key = "duplicator",

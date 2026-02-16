@@ -16,7 +16,9 @@ SMODS.Sticker {
 			if card.ability.ecattos_stabilized <= 0 then
 				card.ability.ecattos_stabilized = false
 				return {
-					message = localize("ecattos_stabilizer_broke")
+					message = localize("ecattos_stabilizer_broke"),
+					sound = "ecattos_unstabilized",
+					pitch = 1
 				}
 			end
 		end
