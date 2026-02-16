@@ -4,6 +4,8 @@ return {
 			ecattos_compoundcreator_tocreate = "Compound to create",
 			ecattos_compoundcreator_confirm = "Confirm",
 			
+			ecattos_stabilizer_broke = "Stabilizer Broke!",
+			
 			ecattos_endedworld = {
 				"The element was so dense,",
 				"that the world was destroyed..."
