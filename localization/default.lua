@@ -997,7 +997,7 @@ return {
 			stake_ecattos_bs_ecattos_deck = {
 				name = "Element Cattos Stake?",
 				text = {
-					"Jokers are {C:attention}Element Cattos",
+					"Enemy Jokers are {C:attention}Element Cattos",
 					--TODO: that shouldn't be the only change
 				},
 				unlock = {
