@@ -5,7 +5,8 @@ elementcattos.radioglow_sprites = {
 	radon = "radioglow_radon",
 	violet = "radioglow_violet",
 	extended = "radioglow_extended",
-	sun = "radioglow_sun"
+	sun = "radioglow_sun",
+	compoundcreator = "radioglow_compoundcreator"
 }
 
 for k,v in pairs(elementcattos.radioglow_sprites) do

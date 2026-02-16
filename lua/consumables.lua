@@ -296,6 +296,12 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 	end,
 	use = elementcattos.ui_compound_creator
 }.key)
+elementcattos.radioactive.c_ecattos_compoundcreator = {
+	glowrate = 2,
+	spr = "compoundcreator",
+	int = 0.5,
+	glowonly = true
+}
 
 return function(t)
 	legitimate = t.legitimate

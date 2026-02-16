@@ -240,6 +240,7 @@ elementcattos.radioactive = {
 }
 
 local rq = {
+	"radioactive",
 	"elements",
 	"compoundcreator",
 	"consumables",
@@ -253,7 +254,6 @@ local rq = {
 	"suits",
 	"modifiers/sticker_stabilized",
 	"modifiers/edition_pcb",
-	"radioactive",
 	"drawstep_radioglow",
 	"patches",
 	BLINDSIDE and "blindside/bs_main" or nil
