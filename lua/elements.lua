@@ -74,7 +74,15 @@ local elements = {
         end
     end, config = { extra = {s_chips = 15, suit_count = 0} }, loc_vars = {"s_chips", "suit_count"}, rarity = 1},
 	
-	{8, "O", "Oxygen", "she_her", 16, rarity = 1, config = { extra = {chips = 10, mult = 0.5} }, loc_vars = {"chips", "mult"}},
+	{8, "O", "Oxygen", "she_her", 16, function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if SMODS.pseudorandom_probability(card, "ecattos_element8", 1, 2, nil, true) then
+				return {chips = card.ability.extra.chips}
+			else
+				return {mult = card.ability.extra.mult}
+			end
+		end
+	end, rarity = 1, config = { extra = {chips = 10, mult = 0.5} }, loc_vars = {"chips", "mult"}},
 	
 	{9, "F", "Fluorine", "she_her", 19, rarity = 2},
 	
@@ -378,7 +386,24 @@ local elements = {
 		end
 	end}, 
 	
-	{119, "Uue", "Ununennium", "unknown", 297, rarity = 4}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
+	{119, "Uue", "Ununennium", "unknown", 297, function(self, card, context)
+		if not context.blueprint then
+			if context.initial_scoring_step then
+				card.ability.extra.scoredranks = {}
+			end
+		end
+		if context.individual and context.cardarea == G.play then
+			local rank = context.other_card.config.card.value
+			local id = (context.blueprint_copiers_stack[1] or card).ID
+			if not card.ability.extra.scoredranks[id] then
+				card.ability.extra.scoredranks[id] = {}
+			elseif card.ability.extra.scoredranks[id][rank] then
+				return
+			end
+			card.ability.extra.scoredranks[id][rank] = true
+			return { e_chips = 1.025 }
+		end
+	end, rarity = 4, config = {extra = {echips = 1.025}, scoredranks = {}}, loc_vars = {"echips"}}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
 	
 	{120, "Ubn", "Unbinilium", "unknown", 300, rarity = 4}
 }
