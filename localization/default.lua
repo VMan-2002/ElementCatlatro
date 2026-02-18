@@ -396,7 +396,7 @@ return {
 			j_ecattos_element119 = elementcattos.loc_txt {
 				name = "Ununennium",
 				text = {
-					"{_A:echips:1.025} per scored",
+					"{_A:echips:#1#} per scored",
 					"unique rank in hand"
 				},
 				anum = 119,
