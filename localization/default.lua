@@ -1,15 +1,15 @@
 return {
 	misc = {
 		dictionary = {
-			k_ecatto_handmade = "Handmade",
+			k_ecattos_handmade = "Handmade",
             --k_common = "Common",
             --k_uncommon = "Uncommon",
-            k_ecatto_safari = "Safari",
+            k_ecattos_safari = "Safari",
 			--k_rare = "Rare",
 			--k_cry_epic = "Epic",
+            k_ecattos_masterwork = "Masterwork",
             --k_legendary = "Legendary",
             --k_cry_exotic = "Exotic",
-            k_ecatto_masterwork = "Masterwork",
 			k_ecattos_strange = "Strange",
 			
 			ecattos_compoundcreator_tocreate = "Compound to create",
@@ -675,6 +675,14 @@ return {
 				},
 				compound = "titin"
 			},
+			j_ecattos_compound_titin_mortal = elementcattos.loc_txt {
+				name = "Actin",
+				text = {
+					"If {C:important}played hand{} contains at least",
+					"{C:important}5{} cards, {_A:xmult:#1#} per scored card"
+				},
+				compound = "actin"
+			},
 			j_ecattos_compound_titin_cheated = {
 				name = "''Titin''",
 				text = {
@@ -982,25 +990,14 @@ return {
 					"{C:inactive}if there's no space)"
 				}
 			},
-			ecatto_handmade_tip = {
+			ecattos_handmade_tip = {
                 name = "Handmade",
                 text = {
 					"Cannot appear in the Shop",
 					"Does nothing.",
                 }
 			},
-			safaridesc = {
-                name = "Safari",
-                text = {
-                    "Can only be obtained",
-                    "through Pokemon {C:attention}Evolution{},",
-                    "or a {C:safari}really heavy{}",
-					"{C:attention}Element Catto's Decay{},",
-                    "or using certain {C:attention}Pokeball Items{}",
-					"or {C:tarot}Tools{}"
-                } 
-            },
-			ecatto_safari_tip = {
+			ecattos_safari_tip = {
                 name = "Safari",
                 text = {
                     "Can only be obtained",
@@ -1009,7 +1006,7 @@ return {
 					"{C:attention}Element Catto's Decay{}"
                 } 
             },
-			ecatto_handmade_tip = {
+			ecattos_masterwork_tip = {
                 name = "Masterwork",
                 text = {
 					"Cannot appear in the Shop",

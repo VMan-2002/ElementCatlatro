@@ -10,7 +10,7 @@ SMODS.Atlas({
 SMODS.Joker {
 	key = "neutron",
 	atlas = "special",
-	rarity = "ecatto_handmade",
+	rarity = "ecattos_handmade",
 	price = 3,
 	pos = {x = 6, y = 0},
 	in_pool = topuplib.returnFalse,
@@ -20,7 +20,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "electron",
 	atlas = "special",
-	rarity = "ecatto_handmade",
+	rarity = "ecattos_handmade",
 	price = 3,
 	pos = {x = 7, y = 0},
 	in_pool = topuplib.returnFalse,
@@ -30,7 +30,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "photon",
 	atlas = "special",
-	rarity = "ecatto_handmade",
+	rarity = "ecattos_handmade",
 	price = 3,
 	pos = {x = 1, y = 1},
 	in_pool = topuplib.returnFalse,
@@ -174,6 +174,14 @@ local jokes = SMODS.Joker {
 }
 elementcattos.atomicnumber[139] = jokes.key
 
+local card_add_to_deck_ref = get_current_pool
+function Card:get_current_pool(_type, _rarity, _legendary, _append)
+	if (#_pool == 1 and _pool[#_pool] == "j_joker" and G.GAME.starting_params.ecattos_deck == true) then
+		return j_ecattos_joker
+	end
+    return get_current_pool(self, _type, _rarity, _legendary, _append)
+end
+
 -- if a state change or deletion should happen, but eternal prevents it from fully completing,
 -- you should get garbage instead
 elementcattos.garbage = SMODS.Joker {
@@ -181,7 +189,7 @@ elementcattos.garbage = SMODS.Joker {
 	price = 0,
 	pronouns = "it_its",
 	atlas = "special",
-	rarity = "ecatto_handmade",
+	rarity = "ecattos_handmade",
 	pos = {x = 0, y = 1},
 	in_pool = topuplib.returnFalse,
 	no_collection = true,
@@ -191,11 +199,6 @@ elementcattos.garbage = SMODS.Joker {
 elementcattos.becomeGarbage = function(card)
 	card:set_ability(elementcattos.garbage)
 end
-
-SMODS.Rarity {
-	key = "strange",
-	badge_color = HEX("ACF4B9")
-}
 
 SMODS.Joker {
 	key = "strange",

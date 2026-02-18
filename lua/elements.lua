@@ -18,73 +18,6 @@
 	idk what do for further rarity stuff aaaaa
 ]]
 
--- for cattos that don't do anything by themselfs (ie garb)
--- also used for nonfunctional cattos with `disable_nonfunctional_cattos` enabled
-SMODS.Rarity{ 
-    key = "ecatto_handmade",
-    prefix_config = { key = false },
-    default_weight = 0, 
-    badge_colour = HEX("D2DBE2"),
-    pools = {["Joker"] = true},
-    get_weight = function(self, weight, object_type)
-        return weight
-    end
-}
---for cattos that don't appear in shops, with power below epic/masterwork
---used for trans-Unbinilium cattos and Jimbonium
-if not next(SMODS.find_mod("Pokermon")) then 
-	SMODS.Rarity{ 
-		key = "ecatto_safari",
-		prefix_config = { key = false },
-		default_weight = 0, 
-		badge_colour = HEX("F2C74E"),
-		pools = {["Joker"] = true},
-		get_weight = function(self, weight, object_type)
-			return weight
-		end
-	}
-end
---for non-Legendary cattos that don't appear in shops, with power above Rare.
---used for Titin (without Cryptid)
-SMODS.Rarity { 
-	key = "ecatto_masterwork",
-	prefix_config = { key = false },
-	default_weight = 0,
-	badge_colour = HEX("774FCC"),
-	pools = {["Joker"] = true},
-	get_weight = function(self, weight, object_type)
-		return weight
-	end
-}
-
-function ishandmade(rarity, nonfunctional )
-    if nonfunctional and SMODS.current_mod.config["disable_nonfunctional_cattos"] then
-        return "ecatto_handmade"
-    end
-    return rarity or 3
-end
-
-function safari_rarity()
-    if next(SMODS.find_mod("Pokermon")) then
-        return "poke_safari"
-    end
-    return "ecatto_safari"
-end
-
-function epic_rarity()
-    if next(SMODS.find_mod("Cryptid")) then
-        return "cry_epic"
-    end
-    return "ecatto_masterwork"
-end
-
-function exotic_rarity()
-    if next(SMODS.find_mod("Cryptid")) then
-        return "cry_exotic"
-    end
-    return "ecatto_masterwork"
-end
-
 local block = elementcattos.blocks
 
 local elements = {
@@ -536,7 +469,7 @@ local inpool = function(self)
 		percent = count / G.jokers.config.card_limit
 	end
 	local dups = true
-	if self.rarity == "ecatto_handmade" or (self.blackjack_na and G.GAME.modifiers.dungeon) --
+	if self.rarity == "ecattos_handmade" or (self.blackjack_na and G.GAME.modifiers.dungeon) --
 	then return false, {allow_duplicates = 0} end
 	if self.rarity >= 4 then
 		local purrcentcount = elementcattos.countJokers("j_ecattos_purrcent")

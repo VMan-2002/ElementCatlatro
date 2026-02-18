@@ -75,7 +75,7 @@ local compounds = {
 		id = "titin",
 		pronouns = "he_they",
 		formula = {{"C", 169719}, {"H", 270446}, {"N", 45688}, {"O", 52238}, {"S", 911}},
-		rarity = (SMODS.find_mod("Talisman") and Cryptid) and "cry_exotic" or "ecatto_masterwork",
+		rarity = exotic_rarity(),
 		cost = 500000,
 		config = {extra = {emult = 3}},
 		loc_vars = function(self, info_queue, card)

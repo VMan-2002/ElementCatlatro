@@ -254,6 +254,7 @@ mod.config_tab = function()
 end
 
 local rq = {
+	"rarities",
 	"elements",
 	"compoundcreator",
 	"consumables",
@@ -352,7 +353,7 @@ if CardPronouns then
 		key = "ecatto_na"
 	}
 	
-	elementcattos.usa_flag = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/usa.png"))
+	elementcattos.usa_flag = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/usa.png"), nil)
 end
 
 if Yahimod then
@@ -369,7 +370,7 @@ topuplib.addDebugCollectionItem("c_ecattos_stabilizer")
 local meme = topuplib.createFallbackPoolItem
 topuplib.createFallbackPoolItem = function(type, pool)
 	if type == "Joker" and G.GAME.starting_params.ecattos_deck then
-		return elementcattos.fallbacks[math.random(#elementcattos.fallbacks)]
+		return elementcattos.fallbacks[math.random(#elementcattos.fallbacks)] --todo: please use seeded rng
 	end
 	return meme(type, pool)
 end
@@ -515,12 +516,15 @@ elementcattos.booster_pools = {
 	[3] = {},
 	[4] = {},
 	tool = {},
-	["ecatto_handmade"] = {}
+	["ecattos_handmade"] = {},
+	["ecattos_safari"] = {},
+	["ecattos_masterwork"] = {},
+	["ecattos_strange"] = {},
 }
 
 for k,v in pairs(SMODS.Centers) do
 	if v.original_mod and v.original_mod.id == SMODS.current_mod.id then
-		if (not v.not_in_booster) or (not v.rarity == "handmade") then
+		if (not v.not_in_booster and not v.rarity == "ecattos_handmade") then
 			if v.set == "Joker" then
 				table.insert(elementcattos.booster_pools[v.rarity], v.key)
 			elseif v.set == "Tarot" then
