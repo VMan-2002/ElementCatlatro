@@ -843,7 +843,7 @@ return {
 				}
 			},
 			p_ecattos_element_rare = {
-				name = "Common Elements Pack",
+				name = "Rare Elements Pack",
 				text = topuplib.asub {
 					"Select {C:attention}1{} of {C:attention}3{} {_A:rare}",
 					"Element Cattos"
@@ -1004,6 +1004,12 @@ return {
 					"Discover 10 Planet or Moon",
 					"Cattos in the Collection"
 				}
+			}
+		},
+		Blind = {
+			bl_ecattos_bs_j1 = {
+				name = "Hydrogen",
+				text = {"Gains +1 Mult","after every hand"}
 			}
 		}
     }

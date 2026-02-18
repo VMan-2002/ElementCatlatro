@@ -13,6 +13,13 @@ SMODS.Stake{
     
     modifiers = function()
         G.GAME.modifiers.bs_ecattos_stake = true
+		G.GAME.ecattos_bs_jokers_available = {{},{},{},{},{},{},{},{}}
+		G.GAME.ecattos_bs_jokers_seen = {{},{},{},{},{},{},{},{}}
+		for k,v in pairs(SMODS.Blinds) do
+			if v.ecattos_conf.bs_joker then
+				table.insert(G.GAME.ecattos_bs_jokers_available[v.ecattos_conf.tier], v.key)
+			end
+		end
     end,
     
     --colour = ,
