@@ -31,7 +31,7 @@ local elements = {
 	{3, "Li", "Lithium", "he_him", 7, rarity = 2, config = { extra = {chips = 0} }, loc_vars = {"chips"}},
 	
 	{4, "Be", "Beryllium", "she_her", 9, function(self, card, context)
-		if context.individual and context.cardarea == G.play and context.other_card.edition then
+		if (context.individual and context.cardarea == G.play and context.other_card.edition) or context.forcetrigger then
             return {
                 mult = card.ability.extra.mult, --attempt to index field 'extra' (a nil value)
                 colour = G.C.MULT,
@@ -49,6 +49,11 @@ local elements = {
                 x_chips = card.ability.extra.s_xchips
             }
         end
+		if context.forcetrigger then
+            return {
+                x_chips = card.ability.extra.s_xchips
+            }
+		end
     end, rarity = 1, config = { extra = {s_xchips = 1.15, suits = {'Spades', 'Clubs'}} }, loc_vars = {"s_xchips"}},
 	
 	{7, "N", "Nitrogen", "she_her", 14, function(self, card, context)
@@ -75,7 +80,7 @@ local elements = {
     end, config = { extra = {s_chips = 15, suit_count = 0} }, loc_vars = {"s_chips", "suit_count"}, rarity = 1},
 	
 	{8, "O", "Oxygen", "she_her", 16, function(self, card, context)
-		if context.individual and context.cardarea == G.play then
+		if (context.individual and context.cardarea == G.play) or context.forcetrigger then
 			if SMODS.pseudorandom_probability(card, "ecattos_element8", 1, 2, nil, true) then
 				return {chips = card.ability.extra.chips}
 			else
@@ -97,7 +102,7 @@ local elements = {
 	{14, "Si", "Silicon", "he_him", 28, rarity = 1, config = { extra = {more = 1} }, loc_vars = {"more"}},
 	
 	{15, "P", "Phosphorus", "he_him", 31, function(self, card, context)
-		if context.selling_self then
+		if context.selling_self or context.forcetrigger then
 			for k,v in pairs(G.hand.cards) do
 				v.ability.perma_mult = v.ability.perma_mult + (card.ability.extra.mult * G.GAME.round)
 			end
@@ -110,6 +115,9 @@ local elements = {
 	end, config = {extra = {mult = 0.2}}, rarity = 1},
 	
 	{16, "S", "Sulfur", "she_her", 32, function(self, card, context) 
+		if context.forcetrigger then
+			return {mult = card.ability.extra.mult}
+		end
 		if not card.ability.extra.active then
 			if context.ecattos_explosion then
 				card.ability.extra.active = true
@@ -294,7 +302,11 @@ local elements = {
 	
 	{78, "Pt", "Platinum", "she_her", 195, rarity = 3},
 	
-	{79, "Au", "Gold", "she_her", 197, function(self, card, context) end,
+	{79, "Au", "Gold", "she_her", 197, function(self, card, context)
+		if context.forcetrigger then
+			return {dollars = card.ability.extra.interest}
+		end
+	end,
 	add_to_deck = function(self, card, from_debuff)
 		G.GAME.interest_cap = G.GAME.interest_cap + card.ability.extra.interest
 	end,
@@ -387,6 +399,9 @@ local elements = {
 	end}, 
 	
 	{119, "Uue", "Ununennium", "unknown", 297, function(self, card, context)
+		if context.forcetrigger then
+			return {e_chips = card.ability.extra.echips}
+		end
 		if not context.blueprint then
 			if context.initial_scoring_step then
 				card.ability.extra.scoredranks = {}
@@ -401,7 +416,7 @@ local elements = {
 				return
 			end
 			card.ability.extra.scoredranks[id][rank] = true
-			return { e_chips = 1.025 }
+			return {e_chips = card.ability.extra.echips}
 		end
 	end, rarity = 4, config = {extra = {echips = 1.025}, scoredranks = {}}, loc_vars = {"echips"}}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
 	
