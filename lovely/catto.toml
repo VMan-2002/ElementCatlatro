@@ -33,3 +33,19 @@ payload = '''if _c.set == "ECattos_Compound" then
 	badges.card_type = nil
 end'''
 match_indent = true
+
+[[patches]]
+# Radioactive info_queue
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = 'for _, v in ipairs(info_queue) do'
+position = "before"
+payload = '''
+if card then
+	local rd = elementcattos.isRadioactive(card)
+	if rd and rd.hands and not rd.glowonly then
+		info_queue[#info_queue+1] = {set = "Other", key = rd.explode and "ecattos_radioactive_explodes" or "ecattos_radioactive", specific_vars = {rd.hands}}
+	end
+end
+'''
+match_indent = true

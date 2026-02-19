@@ -31,7 +31,7 @@ local elements = {
 	{3, "Li", "Lithium", "he_him", 7, rarity = 2, config = { extra = {chips = 0} }, loc_vars = {"chips"}, nonfunctional = true},
 	
 	{4, "Be", "Beryllium", "she_her", 9, function(self, card, context)
-		if context.individual and context.cardarea == G.play and context.other_card.edition then
+		if (context.individual and context.cardarea == G.play and context.other_card.edition) or context.forcetrigger then
             return {
                 mult = card.ability.extra.mult,
                 colour = G.C.MULT,
@@ -49,15 +49,20 @@ local elements = {
                 x_chips = card.ability.extra.s_xchips
             }
         end
+		if context.forcetrigger then
+            return {
+                x_chips = card.ability.extra.s_xchips
+            }
+		end
     end, rarity = 1, config = { extra = {s_xchips = 1.15, suits = {'Spades', 'Clubs'}} }, loc_vars = {"s_xchips"}}, --im sorry :sob:
 	
 	{7, "N", "Nitrogen", "she_her", 14, function(self, card, context)
-        if context.before then
+        if (context.individual and context.cardarea == G.play) then
             local suits = {}
-            --local wilds = 0
+            local wilds = 0
             for _, playing_card in ipairs(context.scoring_hand) do
 				if playing_card == G.P_CENTERS.m_wild then
-                    --wilds = wilds + 1
+                    wilds = wilds + 1
 					return {
 						chips = card.ability.extra.s_chips
 					}
@@ -75,26 +80,22 @@ local elements = {
 				--card.ability.extra.suit_count = card.ability.extra.suit_count + 1
 			--end
         end
-        if context.joker_main then
-			return {
-				chips = card.ability.extra.s_chips * card.ability.extra.suit_count
+        if context.forcetrigger then
+			  return {
+				      chips = card.ability.extra.s_chips * card.ability.extra.suit_count
             }
         end
     end, config = { extra = {s_chips = 15, suit_count = 0} }, loc_vars = {"s_chips", "suit_count"}, rarity = 1},
 	
 	{8, "O", "Oxygen", "she_her", 16, function(self, card, context)
-        if context.individual and context.cardarea == G.play then
-			if SMODS.pseudorandom_probability(card, 'ecattos_element8', 1, 2) then 
-				return {
-					chips = card.ability.extra.r_chips
-				}
-			else 
-				return {
-					mult = card.ability.extra.r_mult
-				}
+		if (context.individual and context.cardarea == G.play) or context.forcetrigger then
+			if SMODS.pseudorandom_probability(card, "ecattos_element8", 1, 2, nil, true) then
+				return {chips = card.ability.extra.chips}
+			else
+				return {mult = card.ability.extra.mult}
 			end
-        end
-    end, rarity = 1, config = { extra = { r_chips = 10, r_mult = 0.5 } }, loc_vars = {"r_chips", "r_mult"}},
+		end
+	end, rarity = 1, config = { extra = {chips = 10, mult = 0.5} }, loc_vars = {"chips", "mult"}},
 	
 	{9, "F", "Fluorine", "she_her", 19, rarity = 2, nonfunctional = true},
 	
@@ -116,7 +117,7 @@ local elements = {
 	config = { extra = { more = 1 } } },
 	
 	{15, "P", "Phosphorus", "he_him", 31, function(self, card, context)
-		if context.selling_self then
+		if context.selling_self or context.forcetrigger then
 			for k,v in pairs(G.hand.cards) do
 				v.ability.perma_mult = v.ability.perma_mult + (card.ability.extra.mult * G.GAME.round)
 			end
@@ -129,6 +130,9 @@ local elements = {
 	end, config = {extra = {mult = 0.2}}, rarity = 1, blackjack_na = true},
 	
 	{16, "S", "Sulfur", "she_her", 32, function(self, card, context) 
+		if context.forcetrigger then
+			return {mult = card.ability.extra.mult}
+		end
 		if not card.ability.extra.active then
 			if context.ecattos_explosion then
 				card.ability.extra.active = true
@@ -315,7 +319,11 @@ local elements = {
 	
 	{78, "Pt", "Platinum", "she_her", 195, rarity = 3, nonfunctional = true},
 	
-	{79, "Au", "Gold", "she_her", 197, function(self, card, context) end,
+	{79, "Au", "Gold", "she_her", 197, function(self, card, context)
+		if context.forcetrigger then
+			return {dollars = card.ability.extra.interest}
+		end
+	end,
 	add_to_deck = function(self, card, from_debuff)
 		G.GAME.interest_cap = G.GAME.interest_cap + card.ability.extra.interest
 	end,
@@ -354,7 +362,7 @@ local elements = {
 	
 	{94, "Pu", "Plutonium", "he_any", 244, nonfunctional = true, blackjack_na = true},
 	
-	{95, "Am", "Americium", "ecatto_eaglenoise_any", 243, function(self, card, context)
+	{95, "Am", "Americium", "ecatto_eaglenoise_any", 243, function(self, card, context) --don't think this works as intended
 		local fail = false
 		if context.individual and context.cardarea == G.play and not
             (context.other_card:is_suit(card.ability.extra.suits[1]) or context.other_card:is_suit(card.ability.extra.suits[2]) or context.other_card:is_suit(card.ability.extra.suits[3])) then
@@ -413,36 +421,34 @@ local elements = {
 	
 	{118, "Og", "Oganesson", "he_him", 294, 
 	function(self, card, context)
-		--vv remove this when elements decaying is implemented
-		if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-            if SMODS.pseudorandom_probability(card, 'ecattos_element118', 1, card.ability.extra.odds) then
-                SMODS.destroy_cards(card, nil, nil, true)
-                return {
-                    message = localize('k_extinct_ex')
-                }
-            else
-                return {
-                    message = localize('k_safe_ex')
-                }
-            end
-        end
-		--^^
 		if (context.joker_main and not context.debuffed_hand) or context.forcetrigger then
 			return { balance = true }
 		end
-	end,
-	--vv remove this when elements decaying is implemented
-	loc_vars = function(self, info_queue, card)
-        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'ecattos_element118')
-        return { vars = { numerator, denominator } }
-    end,
-    config = { extra = { odds = 6 } },
-	--^^
-	}, 
+	end}, 
 	
-	{119, "Uue", "Ununennium", "unknown", 297, rarity = 4, nonfunctional = true}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
+	{119, "Uue", "Ununennium", "unknown", 297, function(self, card, context)
+		if context.forcetrigger then
+			return {e_chips = card.ability.extra.echips}
+		end
+		if not context.blueprint then
+			if context.initial_scoring_step then
+				card.ability.extra.scoredranks = {}
+			end
+		end
+		if context.individual and context.cardarea == G.play then
+			local rank = context.other_card.config.card.value
+			local id = (context.blueprint_copiers_stack[1] or card).ID
+			if not card.ability.extra.scoredranks[id] then
+				card.ability.extra.scoredranks[id] = {}
+			elseif card.ability.extra.scoredranks[id][rank] then
+				return
+			end
+			card.ability.extra.scoredranks[id][rank] = true
+			return {e_chips = card.ability.extra.echips}
+		end
+	end, rarity = 4, config = {extra = {echips = 1.025}, scoredranks = {}}, loc_vars = {"echips"}}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
 	
-	{120, "Ubn", "Unbinilium", "unknown", 300, rarity = 4, nonfunctional = true}
+	{120, "Ubn", "Unbinilium", "unknown", 300, rarity = 4}
 }
 
 SMODS.Atlas({
@@ -516,7 +522,7 @@ for k,v in pairs(elements) do
 			y = math.floor(n / 8)
 		},
 		pronouns = v[4] or "she_her",
-		cost = v.cost or 1,
+		cost = v.cost or math.floor(1 + math.pow(v[1] * 0.02, 2.9)),
 		atomic_number = v[1] or v.atomic_number,
 		element_symbol = v[2] or v.element_symbol,
 		in_pool = inpool,
