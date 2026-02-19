@@ -39,11 +39,12 @@ elementcattos = {
 	loc_txt_planet = function(d)
 		return {name = d.name}
 	end,
-	doExplosion = function(src, joker_fract, joker_add, deck_fract, deck_add)
+	doExplosion = function(src, joker_fract, joker_add, deck_fract, deck_add, shake_int)
 		local debuff_jokers = G.jokers and ((G.jokers.config.card_limit * (joker_fract or 0.3)) + (joker_add or 2))
 		local debuff_cards = G.playing_cards and ((#G.playing_cards * (deck_fract or 0.05)) + (deck_add or 2))
 		local area = src and src.area
 		local validate_tb = {}
+		G.ROOM.jiggle = G.ROOM.jiggle + ((300 - (G.SETTINGS.screenshake * 1.5)) * (shake_int or 1))
 		SMODS.calculate_context({ecattos_explosion_validate = true, src = src, cardarea = area}, validate_tb)
 		print("Validate table")
 		--todo: why is this empty
@@ -346,7 +347,7 @@ end
 if Yahimod then
 	local explode_hook = explodeCard
 	function explodeCard(card, ...)
-		elementcattos.doExplosion(src, 0, 0, 0, 0)
+		elementcattos.doExplosion(src, 0, 0, 0, 0, 0)
 		return explode_hook(card, ...)
 	end
 end
@@ -477,6 +478,11 @@ SMODS.Sound {
 	select_music_track = function(self)
 		return G.OVERLAY_MENU and topuplib.music == "ecattos"
 	end
+}
+
+SMODS.Sound {
+	key = "explode",
+	path = "explode.ogg"
 }
 
 SMODS.Atlas({

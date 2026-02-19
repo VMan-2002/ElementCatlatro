@@ -198,3 +198,31 @@ e.radioactive = {
 		explode = true
 	}
 }
+
+e.radioactiveCalculate = function()
+	G.E_MANAGER:add_event(Event({
+	trigger = 'after',
+	delay = 0.1,
+	func = function()
+		for k,v in pairs(G.jokers.cards) do
+			local rd = e.isRadioactive(v)
+			if rd and v.ability.ecattos_stabilized == nil then
+				v.ability.ecattos_rd_hands = (v.ability.ecattos_rd_hands or rd.hands) - 1
+				if v.ability.ecattos_rd_hands <= 0 then
+					play_sound("ecattos_explode")
+					e.doExplosion(v)
+					v.ability.ecattos_rd_hands = nil
+					--TODO: implement actual decay results. as placeholder, we destroy the card or become garbage
+					if SMODS.is_eternal(v) then
+						e.becomeGarbage(v)
+					else
+						v:start_dissolve()
+					end
+				end
+			elseif v.ability.ecattos_stabilized == false then
+				v.ability.ecattos_stabilized = nil
+			end
+		end
+		return true
+	end }))
+end

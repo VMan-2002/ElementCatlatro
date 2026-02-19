@@ -44,8 +44,19 @@ payload = '''
 if card then
 	local rd = elementcattos.isRadioactive(card)
 	if rd and rd.hands and not rd.glowonly then
-		info_queue[#info_queue+1] = {set = "Other", key = rd.explode and "ecattos_radioactive_explodes" or "ecattos_radioactive", specific_vars = {rd.hands}}
+		info_queue[#info_queue+1] = {set = "Other", key = rd.explode and "ecattos_radioactive_explodes" or "ecattos_radioactive", specific_vars = {card.ability.ecattos_rd_hands or rd.hands}}
 	end
 end
+'''
+match_indent = true
+
+[[patches]]
+# Radioactive calculate
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '-- TARGET: effects before deck final_scoring_step'
+position = "before"
+payload = '''
+	elementcattos.radioactiveCalculate()
 '''
 match_indent = true

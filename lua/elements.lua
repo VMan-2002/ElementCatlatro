@@ -409,7 +409,7 @@ local elements = {
 		end
 		if context.individual and context.cardarea == G.play then
 			local rank = context.other_card.config.card.value
-			local id = (context.blueprint_copiers_stack[1] or card).ID
+			local id = (context.blueprint_print and context.blueprint_copiers_stack[1] or card).ID
 			if not card.ability.extra.scoredranks[id] then
 				card.ability.extra.scoredranks[id] = {}
 			elseif card.ability.extra.scoredranks[id][rank] then
