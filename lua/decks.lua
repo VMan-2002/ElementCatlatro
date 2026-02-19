@@ -29,7 +29,7 @@ if next(SMODS.find_mod("HIT")) then
 	SMODS.Back({
 		key = "elements_blackjack",
 		atlas = "decks",
-		pos = {x = 0, y = 2},
+		pos = {x = 2, y = 0},
 		config = {
 			joker_slot = 24,
 			dollars = 8,
@@ -50,7 +50,7 @@ if next(SMODS.find_mod("Ortalab")) then
 	SMODS.Back({
 		key = "elements_ortalab",
 		atlas = "decks",
-		pos = {x = 0, y = 3},
+		pos = {x = 3, y = 0},
 		config = {
 			joker_slot = 20,
 			vouchers = {'v_ortalab_catalog', 'v_ortalab_ad_campaign', 'v_clearance_sale'}
