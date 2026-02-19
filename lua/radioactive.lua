@@ -10,19 +10,23 @@ e.radioactive = {
 		hands = e.halflife(e.fromyears(211e3))
 	},
 	j_ecattos_element49 = {
-		hands = e.halflife(e.fromyears(441e12))
+		hands = e.halflife(e.fromyears(441e12)),
+		explode = true
 	},
 	j_ecattos_element52 = {
-		hands = e.halflife(e.fromyears(791e18))
+		hands = e.halflife(e.fromyears(791e18)),
+		explode = true
 	},
 	j_ecattos_element61 = {
-		hands = e.halflife(e.fromyears(2.6))
+		hands = e.halflife(e.fromyears(2.6)),
+		explode = true
 	},
 	j_ecattos_element75 = {
-		hands = e.halflife(e.fromyears(2.6))
+		hands = e.halflife(e.fromyears(416e8)),
+		explode = true
 	},
 	j_ecattos_element83 = {
-		hands = e.halflife(e.fromyears(416e8))
+		hands = e.halflife(e.fromyears(201e17))
 	},
 	j_ecattos_element84 = {
 		hands = e.halflife(e.fromdays(138.4))
