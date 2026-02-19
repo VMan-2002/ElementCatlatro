@@ -59,7 +59,7 @@ elementcattos = {
 	fromminutes = function(n) return n * 60 end,
 	fromhours = function(n) return n * 3600 end,
 	fromdays = function(n) return n * 86400 end,
-	halflife = function(n) return math.floor((math.log(n) * 0.999) + (n * 0.001)) end,
+	halflife = function(n) return math.max(math.ceil((math.log(n) * 0.999) + (n * 0.001)) + 1, 0) end,
 	--Cards
 	defaultJokerCalculate = function(self, card, context)
 		if context.joker_main and card.ability.extra then
