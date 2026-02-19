@@ -54,13 +54,13 @@ elementcattos = {
 	end,
 	--Radioactive
 	isRadioactive = function(card)
-		return elementcattos.radioactive(card.config.center.key) ~= nil
+		return elementcattos.radioactive[card.config.center_key]
 	end,
 	fromyears = function(n) return n * 315570000 end,
 	fromminutes = function(n) return n * 60 end,
 	fromhours = function(n) return n * 3600 end,
 	fromdays = function(n) return n * 86400 end,
-	halflife = function(n) return math.floor((math.log(n) * 0.999) + (n * 0.001)) end,
+	halflife = function(n) return math.max(math.ceil((math.log(n) * 0.999) + (n * 0.001)) + 1, 0) end,
 	--Cards
 	defaultJokerCalculate = function(self, card, context)
 		if context.joker_main and card.ability.extra then
@@ -198,7 +198,7 @@ SMODS.current_mod.custom_collection_tabs = function()
 end
 --todo: element decaying and isotopes are gonna be a thing to figure out
 elementcattos.radioactive = {
-	ecatto_element82_214 = { --lead 214
+	--[[ecatto_element82_214 = { --lead 214
 		hands = elementcattos.halflife(elementcattos.fromminutes(27.06)),
 		result = "ecatto_element83_214"
 	},
@@ -238,7 +238,7 @@ elementcattos.radioactive = {
 	ecatto_element118 = { --oganesson
 		explode = true,
 		hands = 0
-	}
+	}]]
 }
 
 mod.config_tab = function()
@@ -255,6 +255,7 @@ end
 
 local rq = {
 	"rarities",
+	"radioactive",
 	"elements",
 	"compoundcreator",
 	"consumables",
@@ -268,6 +269,7 @@ local rq = {
 	"suits",
 	"modifiers/sticker_stabilized",
 	"modifiers/edition_pcb",
+	"drawstep_radioglow",
 	"patches",
 	BLINDSIDE and "blindside/bs_main" or nil
 }
@@ -516,8 +518,8 @@ elementcattos.booster_pools = {
 	[3] = {},
 	[4] = {},
 	tool = {},
-	["ecattos_handmade"] = {},
-	["ecattos_safari"] = {},
+	["ecattos_handmade"] = {}, --don't think is needed
+	["ecattos_safari"] = {},   --but just in case
 	["ecattos_masterwork"] = {},
 	["ecattos_strange"] = {},
 }

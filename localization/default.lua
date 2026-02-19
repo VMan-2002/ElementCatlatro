@@ -15,6 +15,8 @@ return {
 			ecattos_compoundcreator_tocreate = "Compound to create",
 			ecattos_compoundcreator_confirm = "Confirm",
 			
+			ecattos_stabilizer_broke = "Stabilizer Broke!",
+			
 			ecattos_endedworld = {
 				"The element was so dense,",
 				"that the world was destroyed..."
@@ -411,7 +413,7 @@ return {
 			j_ecattos_element119 = elementcattos.loc_txt {
 				name = "Ununennium",
 				text = {
-					"{_A:echips:1.025} per scored",
+					"{_A:echips:#1#} per scored",
 					"unique rank in hand"
 				},
 				anum = 119,
@@ -696,9 +698,9 @@ return {
 			--Blindside
 			j_ecattos_planet_sun = elementcattos.loc_txt_planet {
 				name = "The Sun",
-				text = {
-					"{C:attention}Retrigger{} the first",
-					"Blind of each Hue"
+				text = { --TODO: still not sure about this effect
+					"Price Tags are $1 cheaper",
+					"per owned Planet or Moon Catto"
 				}
 			},
 			j_ecattos_planet_earth = elementcattos.loc_txt_planet {
@@ -1260,6 +1262,25 @@ return {
 						"{C:inactive}(Does not require room)"
 					}
 				}
+			}
+		},
+		Stake = {
+			stake_ecattos_bs_ecattos_deck = {
+				name = "Element Cattos Stake?",
+				text = {
+					"Enemy Jokers are {C:attention}Element Cattos",
+					--TODO: that shouldn't be the only change
+				},
+				unlock = {
+					"Discover 10 Planet or Moon",
+					"Cattos in the Collection"
+				}
+			}
+		},
+		Blind = {
+			bl_ecattos_bs_j1 = {
+				name = "Hydrogen",
+				text = {"Gains +1 Mult","after every hand"}
 			}
 		}
     }

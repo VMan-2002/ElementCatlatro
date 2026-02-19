@@ -8,6 +8,12 @@ elementcattos.Bs_Planet {
 		rate = 8
 	}
 }
+elementcattos.radioactive.j_ecattos_planet_sun = {
+	glowrate = 3,
+	spr = "sun",
+	int = 0.6,
+	glowonly = true
+}
 elementcattos.Bs_Planet {
 	key = "mercury",
 	pos = {x=3, y=0}

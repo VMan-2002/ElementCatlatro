@@ -55,6 +55,12 @@ SMODS.Atlas({
 	px = 71,
 	py = 95
 })
+SMODS.Atlas({
+	key = "bs_jokers",
+	path = "blindside/jokers.png",
+	px = 34,
+	py = 34
+})
 elementcattos.moon_in_pool = function(self, args)
 	if next(SMODS.find_card(self.ecattos_conf.owner_key, true)) then
 		return true
@@ -117,6 +123,7 @@ local rq = {
 	
 	--Others
 	"bs_consumables",
+	"bs_levels",
 	"modifiers/bs_edition_crescent"
 }
 
