@@ -13,7 +13,8 @@ SMODS.Joker {
 	rarity = 1,
 	pos = {x = 6, y = 0},
 	in_pool = topuplib.returnFalse,
-    pixel_size = { w = 47, h = 39 }
+    pixel_size = { w = 47, h = 39 },
+	not_in_booster = true
 }
 
 SMODS.Joker {
@@ -22,7 +23,8 @@ SMODS.Joker {
 	rarity = 1,
 	pos = {x = 7, y = 0},
 	in_pool = topuplib.returnFalse,
-    pixel_size = { w = 26, h = 26 }
+    pixel_size = { w = 26, h = 26 },
+	not_in_booster = true
 }
 
 SMODS.Joker {
@@ -31,7 +33,8 @@ SMODS.Joker {
 	rarity = 1,
 	pos = {x = 1, y = 1},
 	in_pool = topuplib.returnFalse,
-    pixel_size = { w = 26, h = 26 }
+    pixel_size = { w = 26, h = 26 },
+	not_in_booster = true
 }
 
 --Cattos
