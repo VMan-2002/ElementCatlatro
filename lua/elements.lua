@@ -91,7 +91,11 @@ local elements = {
 	
 	{9, "F", "Fluorine", "she_her", 19, rarity = 2},
 	
-	{10, "Ne", "Neon", "she_her", 20, rarity = 1, config = { extra = {xmult = 1.5} }, loc_vars = {"xmult"}},
+	{10, "Ne", "Neon", "she_her", 20, function(self, card, context)
+		if context.initial_scoring_step then
+			return {x_mult = card.ability.extra.xmult}
+		end
+	end, rarity = 1, config = { extra = {xmult = 1.5} }, loc_vars = {"xmult"}},
 	
 	{11, "Na", "Sodium", "he_him", 23, rarity = 1},
 	
