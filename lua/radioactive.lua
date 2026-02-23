@@ -1,10 +1,19 @@
 local e = elementcattos
+local dcp = function(anum, iso) --to allow easier changing later
+	return {anum, iso}
+end
 e.radioactive = {
 	j_ecattos_element0 = {
 		glowrate = 7,
-		spr = "teal",
 		hands = 0,
 		explode = true
+	},
+	j_ecattos_element35 = {
+		glowonly = true,
+		glowrate = 2,
+		spr = "bromine",
+		blend = "alpha",
+		int = 1
 	},
 	j_ecattos_element43 = {
 		hands = e.halflife(e.fromyears(211e3))
@@ -46,7 +55,8 @@ e.radioactive = {
 	},
 	j_ecattos_element88 = {
 		hands = 0,
-		hands = e.halflife(e.fromminutes(4.8))
+		hands = e.halflife(e.fromminutes(4.8)),
+		spr = "green"
 	},
 	j_ecattos_element89 = {
 		hands = e.halflife(e.fromyears(1599))
@@ -58,7 +68,8 @@ e.radioactive = {
 		hands = e.halflife(e.fromyears(32650))
 	},
 	j_ecattos_element92 = {
-		hands = e.halflife(e.fromyears(4468e6))
+		hands = e.halflife(e.fromyears(4468e6)),
+		spr = "green"
 	},
 	j_ecattos_element93 = {
 		hands = e.halflife(e.fromyears(2144e3))
@@ -70,7 +81,8 @@ e.radioactive = {
 		hands = e.halflife(e.fromyears(7350))
 	},
 	j_ecattos_element96 = {
-		hands = e.halflife(e.fromyears(156e5))
+		hands = e.halflife(e.fromyears(156e5)),
+		spr = "pink"
 	},
 	j_ecattos_element97 = {
 		hands = e.halflife(e.fromyears(1380))
@@ -128,7 +140,8 @@ e.radioactive = {
 	j_ecattos_element109 = {
 		glowrate = 6,
 		hands = e.halflife(4),
-		explode = true
+		explode = true,
+		spr = "yellow"
 	},
 	j_ecattos_element110 = {
 		glowrate = 5,
@@ -175,7 +188,8 @@ e.radioactive = {
 	j_ecattos_element118 = {
 		glowrate = 7,
 		hands = 0,
-		explode = true
+		explode = true,
+		spr = "lime"
 	},
 	j_ecattos_element119 = {
 		glowrate = 7.5,

@@ -4,9 +4,13 @@ elementcattos.radioglow_sprites = {
 	teal = "radioglow_teal",
 	radon = "radioglow_radon",
 	violet = "radioglow_violet",
+	lime = "radioglow_lime",
+	pink = "radioglow_pink",
+	
 	extended = "radioglow_extended",
 	sun = "radioglow_sun",
-	compoundcreator = "radioglow_compoundcreator"
+	compoundcreator = "radioglow_compoundcreator",
+	bromine = "radioglow_bromine"
 }
 
 for k,v in pairs(elementcattos.radioglow_sprites) do
@@ -26,7 +30,7 @@ SMODS.DrawStep {
 				card.ecattos_radioglow = false
 				return
 			end
-			card.ecattos_radioglow = {1/(rd.glowrate - 0.05), 1/rd.glowrate, {}, rd.spr or "default", rd.int or 0.9}
+			card.ecattos_radioglow = {1/(rd.glowrate - 0.05), 1/rd.glowrate, {}, rd.spr or "default", rd.int or 0.9, rd.blend or "add"}
 			if rd.spr ~= nil and not elementcattos.radioglow_sprites[rd.spr] then
 				print("Radioglow sprite "..(rd.spr).." not found")
 				card.ecattos_radioglow[4] = "default"
@@ -48,7 +52,7 @@ SMODS.DrawStep {
 		local x = (px and px.x or 71) * 0.13
 		local y = (px and px.y or 95) * 0.13
 		local spr = elementcattos.radioglow_sprites[rg[4]]
-		love.graphics.setBlendMode("add")
+		love.graphics.setBlendMode(rg[6])
 		for k,v in pairs(rg[3]) do
 			v[2] = v[2] - dt
 			local a = 1 - math.abs(v[2] - 1)
