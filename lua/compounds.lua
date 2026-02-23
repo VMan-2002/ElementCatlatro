@@ -6,7 +6,12 @@ local compounds = {
 		name = "Water",
 		pronouns = "she_her",
 		formula = {{"H", 2}, "O"},
-		pos = {x = 1, y = 0}
+		pos = {x = 1, y = 0},
+		calculate = function(self, card, context)
+			if context.modify_scoring_hand and not context.blueprint then
+				return { add_to_hand = true }
+			end
+		end
 	},
 	{
 		id = "starch",
@@ -14,7 +19,7 @@ local compounds = {
 		pronouns = "she_her",
 		formula = {"_(", {"C", 6}, {"H", 10}, {"O", 5}, "_)n"},
 		rarity = 2,
-		cost = 18
+		cost = 18, functional = false
 	},
 	{
 		id = "oobleck",
@@ -26,6 +31,11 @@ local compounds = {
 		config = {extra = {big_xmult = 4, mult_threshold = 25, small_xmult = 0.5}},
 		loc_vars = function(self, info_queue, card)
 			return { vars = { card.ability.extra.big_xmult, card.ability.extra.small_xmult, card.ability.extra.mult_threshold } }
+		end,
+		calculate = function(self, card, context)
+			if context.modify_scoring_hand and not context.blueprint then
+				return { add_to_hand = true }
+			end
 		end
 	},
 	{
@@ -37,7 +47,7 @@ local compounds = {
 		config = {extra = {mult = 2}},
 		loc_vars = function(self, info_queue, card)
 			return { vars = { card.ability.extra.mult } }
-		end
+		end, functional = false
 	},
 	{
 		id = "neodymium_magnet",
@@ -65,7 +75,7 @@ local compounds = {
 		id = "titin",
 		pronouns = "he_they",
 		formula = {{"C", 169719}, {"H", 270446}, {"N", 45688}, {"O", 52238}, {"S", 911}},
-		rarity = (SMODS.find_mod("Talisman") and Cryptid) and "cry_exotic" or 4,
+		rarity = exotic_rarity(),
 		cost = 500000,
 		config = {extra = {emult = 3}},
 		loc_vars = function(self, info_queue, card)
@@ -113,7 +123,7 @@ for k,v in ipairs(compounds) do
 		cost = v.cost or 6,
 		compound_formula = v.formula,
 		element_symbol = v.id,
-		rarity = v.rarity,
+		rarity = ishandmade(v.rarity, v.functional),
 		in_pool = inpool,
 		config = v.config,
 		loc_vars = v.loc_vars,

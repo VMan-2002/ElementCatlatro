@@ -5,6 +5,7 @@ local mod = SMODS.current_mod
 local config = mod.config
 --anticheat? okay
 local legitimate = topuplib.debug and {titin = true, titin_recipe = {}} or nil
+
 elementcattos = {
 	loc_txt = function(d)
 		d.text = d.text and topuplib.asub(d.text) or nil
@@ -190,6 +191,7 @@ elementcattos = {
 		return inputs
 	end
 }
+
 SMODS.current_mod.custom_collection_tabs = function()
 	return { UIBox_button {
 		button = 'your_collection_ecattos_compounds', label = {localize("ecattos_compounds_recipes")}, minw = 5, id = 'your_collection_ecattos_compounds'
@@ -240,7 +242,20 @@ elementcattos.radioactive = {
 	}]]
 }
 
+mod.config_tab = function()
+    return {n = G.UIT.ROOT, config = {r = 0.1, minw = 8, minh = 6, align = "tl", padding = 0.2, colour = G.C.BLACK}, nodes = {
+        {n = G.UIT.C, config = {minw=1, minh=1, align = "tl", colour = G.C.CLEAR, padding = 0.15}, nodes = {
+			create_toggle({
+				label = "Disable Nonfunctional Cattos",
+				ref_table = config,
+				ref_value = 'disable_nonfunctional_cattos',
+			})
+        }}
+    }}
+end
+
 local rq = {
+	"rarities",
 	"radioactive",
 	"elements",
 	"compoundcreator",
@@ -358,7 +373,7 @@ topuplib.addDebugCollectionItem("c_ecattos_stabilizer")
 local meme = topuplib.createFallbackPoolItem
 topuplib.createFallbackPoolItem = function(type, pool)
 	if type == "Joker" and G.GAME.starting_params.ecattos_deck then
-		return elementcattos.fallbacks[math.random(#elementcattos.fallbacks)]
+		return elementcattos.fallbacks[math.random(#elementcattos.fallbacks)] --todo: please use seeded rng
 	end
 	return meme(type, pool)
 end
@@ -508,12 +523,16 @@ elementcattos.booster_pools = {
 	[2] = {},
 	[3] = {},
 	[4] = {},
-	tool = {}
+	tool = {},
+	["ecattos_handmade"] = {}, --don't think is needed
+	["ecattos_safari"] = {},   --but just in case
+	["ecattos_masterwork"] = {},
+	["ecattos_strange"] = {},
 }
 
 for k,v in pairs(SMODS.Centers) do
 	if v.original_mod and v.original_mod.id == SMODS.current_mod.id then
-		if not v.not_in_booster then
+		if (not v.not_in_booster and not v.rarity == "ecattos_handmade") then
 			if v.set == "Joker" then
 				table.insert(elementcattos.booster_pools[v.rarity], v.key)
 			elseif v.set == "Tarot" then
