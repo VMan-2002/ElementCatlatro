@@ -18,7 +18,7 @@
 	idk what do for further rarity stuff aaaaa
 ]]
 
-local block = elementcattos.blocks
+local enums = elementcattos.enums
 
 local elements = {
 	--Atomic number, Symbol, Name, Pronouns, Base Mass, Calculate
@@ -499,7 +499,11 @@ end
 
 local pools = {"ElementCattosCommon", "ElementCattosUncommon", "ElementCattosRare", "ElementCattosLegendary"}
 
-for k,v in pairs(elements) do
+local cPeriod = 1
+local periods = {1, 3, 11, 19, 37, 55, 87, 119}
+local groupstart = {nil, 11, 11, 1, 1, -13, -13, -math.huge}
+
+for k,v in ipairs(elements) do
 	local n = v[1] + 1
 	if v[4] and CardPronouns and not CardPronouns.badge_types[v[4]] then
 		v[4] = "ecatto_" .. v[4]
@@ -510,10 +514,16 @@ for k,v in pairs(elements) do
 	if type(v.loc_vars) == "table" then
 		v.loc_vars = elementcattos.simpleLocVars(v.loc_vars)
 	end
+	if periods[cPeriod + 1] == v[1] then
+		cPeriod = cPeriod + 1
+	end
+	local wperiod = v[1] - periods[cPeriod]
+	local group = wperiod > 1 and wperiod + groupstart[cPeriod] or (wperiod + 1)
+	if v[1] == 2 then group = 18 end
+	
 	--[[if not v.rarity then
 		print("ElementCatlatro | Not defined rarity for "..v[1].." "..v[3])
 	end]]
-	v.rarity = ishandmade(v.rarity, v.nonfunctional)
 	local j = SMODS.Joker({
 		key = "element" .. tostring(v[1]),
 		loc_txt = {
@@ -535,11 +545,14 @@ for k,v in pairs(elements) do
 			ElementCattosUncommon = true,
 			ElementCattosRare = true
 		},
-		rarity = v.rarity or 3,
+		rarity = elementcattos.ishandmade(v.rarity or 3, v.nonfunctional),
 		config = v.config,
 		loc_vars = v.loc_vars,
 		calculate = v[6] or elementcattos.defaultJokerCalculate,
-		element_base_mass = v[5] or v.element_base_mass
+		element_base_mass = v[5] or v.element_base_mass,
+		ecattos_conf = {
+			e_group = group >= 1 and group or nil
+		}
 	})
 	
 	--[[if v[6] then

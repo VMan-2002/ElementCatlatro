@@ -75,7 +75,7 @@ local compounds = {
 		id = "titin",
 		pronouns = "he_they",
 		formula = {{"C", 169719}, {"H", 270446}, {"N", 45688}, {"O", 52238}, {"S", 911}},
-		rarity = exotic_rarity(),
+		rarity = elementcattos.exotic_rarity(),
 		cost = 500000,
 		config = {extra = {emult = 3}},
 		loc_vars = function(self, info_queue, card)
@@ -123,7 +123,7 @@ for k,v in ipairs(compounds) do
 		cost = v.cost or 6,
 		compound_formula = v.formula,
 		element_symbol = v.id,
-		rarity = ishandmade(v.rarity, v.functional),
+		rarity = elementcattos.ishandmade(v.rarity, v.functional),
 		in_pool = inpool,
 		config = v.config,
 		loc_vars = v.loc_vars,

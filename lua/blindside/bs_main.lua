@@ -65,8 +65,7 @@ elementcattos.moon_in_pool = function(self, args)
 	if next(SMODS.find_card(self.ecattos_conf.owner_key, true)) then
 		return true
 	end
-	return SMODS.pseudorandom_probability(self, 'ecattos_moon_in_pool', 17, 20)
-	--return math.random() > 0.85 --why are we using unseeded rng :sob:
+	return SMODS.pseudorandom_probability(self, 'ecattos_moon_in_pool', 3, 20, nil, true)
 end
 elementcattos.moonsRemaining = function(key)
 	local center = G.P_CENTERS[key]

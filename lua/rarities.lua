@@ -25,21 +25,21 @@ SMODS.Rarity {
 	badge_color = HEX("ACF4B9")
 }
 
-function ishandmade(rarity, nonfunctional)
+function elementcattos.ishandmade(rarity, nonfunctional)
     if nonfunctional and SMODS.current_mod.config["disable_nonfunctional_cattos"] then
         return "ecattos_handmade"
     end
     return rarity or 3
 end
 
-function safari_rarity()
+function elementcattos.safari_rarity()
     --[[if next(SMODS.find_mod("Pokermon")) then
         return "poke_safari"
     end]]
     return "ecattos_safari"
 end
 
-function epic_rarity()
+function elementcattos.epic_rarity()
 	local talisman = next(SMODS.find_mod("Talisman"))
     local cryptid  = next(SMODS.find_mod("Cryptid"))
     if talisman and cryptid then
@@ -48,7 +48,7 @@ function epic_rarity()
     return "ecattos_masterwork"
 end
 
-function exotic_rarity()    
+function elementcattos.exotic_rarity()    
 	local talisman = next(SMODS.find_mod("Talisman"))
     local cryptid  = next(SMODS.find_mod("Cryptid"))
     if talisman and cryptid then

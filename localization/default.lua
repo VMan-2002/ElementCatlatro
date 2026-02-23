@@ -436,7 +436,9 @@ return {
 					"dynamically replaced via code.",
 					"Intended for atomic numbers",
 					"exceeding 120."
-				}
+				},
+				anum = "#1#",
+				sym = "#2#"
 			},
 			--Specials
 			j_ecattos_purrcent = elementcattos.loc_txt {

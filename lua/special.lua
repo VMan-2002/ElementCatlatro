@@ -72,7 +72,7 @@ SMODS.Joker {
 	element_symbol = "N/A"
 }
 
-function check_for_cryptid()
+function elementcattos.check_for_cryptid()
 	return (SMODS.find_mod("Talisman") and Cryptid)
 end
 
@@ -87,7 +87,7 @@ SMODS.Joker {
 	},
 	atlas = "special",
 	rarity = 2,
-	in_pool = check_for_cryptid() or topuplib.returnFalse,
+	in_pool = elementcattos.check_for_cryptid() or topuplib.returnFalse,
 	pos = {x = 4, y = 0},
 	element_symbol = "C:\\",
 	loc_vars = function(self, info_queue, card)
@@ -150,7 +150,7 @@ SMODS.Joker {
 	key = "element_extended",
 	config = {extra = {atomic_number = 121}},
 	atlas = "elements",
-	rarity = safari_rarity(),
+	rarity = elementcattos.safari_rarity(),
 	pos = {x = 2, y = 15},
 	no_collection = false,
 	in_pool = topuplib.returnFalse,
@@ -168,7 +168,7 @@ local jokes = SMODS.Joker {
 	config = {extra = { mult = 4 }},
 	pronouns = next(SMODS.find_mod("BigNatties")) and "she_her" or "he_him",
 	atlas = "special",
-	rarity = safari_rarity(),
+	rarity = elementcattos.safari_rarity(),
 	pos = {x = 0, y = 0},
 	element_symbol = "J",
 	loc_vars = {"mult"},
