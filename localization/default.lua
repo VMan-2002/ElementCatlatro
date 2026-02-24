@@ -190,6 +190,15 @@ return {
 				anum = 6,
 				sym = "C"
 			},
+			j_ecattos_element6_alt = elementcattos.loc_txt {
+				name = "Maybe",
+				text = {
+					"{_A:xchips:#1#} per scored",
+					"{_A:spades:Spade} or {_A:clubs:Club}"
+				},
+				anum = 6,
+				sym = "C"
+			},
 			j_ecattos_element7 = elementcattos.loc_txt {
 				name = "Nitrogen",
 				text = {
@@ -410,6 +419,15 @@ return {
 				},
 				anum = 120,
 				sym = "Ubn"
+			},
+			j_ecattos_element666 = elementcattos.loc_txt {
+				name = "Hexhexhexium",
+				text = {
+					"^^2 Mult",
+					"{X:black,C:red}???"
+				},
+				anum = 666,
+				sym = "Hhh"
 			},
 			j_ecattos_element_extended = elementcattos.loc_txt {
 				name = "#3#",
