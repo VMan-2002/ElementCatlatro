@@ -261,6 +261,7 @@ local rq = {
 	"drawstep_radioglow",
 	"patches",
 	"worldend",
+	"isotopes",
 	BLINDSIDE and "blindside/bs_main" or nil
 }
 
