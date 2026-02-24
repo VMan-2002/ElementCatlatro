@@ -60,3 +60,19 @@ payload = '''
 	elementcattos.radioactiveCalculate()
 '''
 match_indent = true
+
+[[patches]]
+# World end anim draw
+[patches.pattern]
+target = "game.lua"
+pattern = '''if (self.OVERLAY_MENU) or (not self.F_HIDE_BG) then'''
+position = "before"
+payload = '''
+	if elementcattos.worldendanim.instance then
+		love.graphics.push()
+		elementcattos.worldendanim.instance:translate_container()
+		elementcattos.worldendanim.instance:draw()
+		love.graphics.pop()
+	end
+'''
+match_indent = true

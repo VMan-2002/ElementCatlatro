@@ -412,14 +412,16 @@ return {
 				sym = "Ubn"
 			},
 			j_ecattos_element_extended = elementcattos.loc_txt {
-				name = "Extended Element",
+				name = "#3#",
 				text = {
 					"Unfinished.",
 					"This description should be",
 					"dynamically replaced via code.",
 					"Intended for atomic numbers",
 					"exceeding 120."
-				}
+				},
+				anum = "#1#",
+				sym = "#2#"
 			},
 			--Specials
 			j_ecattos_purrcent = elementcattos.loc_txt {

@@ -402,7 +402,7 @@ local elements = {
 		end
 	end}, 
 	
-	{119, "Uue", "Ununennium", "unknown", 297, function(self, card, context)
+	{119, "Uue", "Ununennium", "unknown", 298, function(self, card, context)
 		if context.forcetrigger then
 			return {e_chips = card.ability.extra.echips}
 		end

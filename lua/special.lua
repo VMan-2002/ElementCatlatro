@@ -144,8 +144,10 @@ SMODS.Joker {
 	discovered = true,
 	not_in_booster = true,
 	loc_vars = function(self, info_queue, card)
+		local anum = card.ability.extra.atomic_number
+		local f = topuplib.localize("misc").ecattos_extended_element.name
 		return {
-			vars = {atomic_number = card.ability.extra.atomic_number}
+			vars = {anum, f(anum, true), f(anum)}
 		}
 	end,
 }
