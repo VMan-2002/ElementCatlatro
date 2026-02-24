@@ -14,7 +14,7 @@ elementcattos.radioglow_sprites = {
 }
 
 for k,v in pairs(elementcattos.radioglow_sprites) do
-	elementcattos.radioglow_sprites[k] = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/"..v..".png"))
+	elementcattos.radioglow_sprites[k] = elementcattos.loadGraphic("radioglow/"..v)
 end
 
 SMODS.DrawStep {
