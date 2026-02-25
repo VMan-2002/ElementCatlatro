@@ -263,6 +263,7 @@ local rq = {
 	"worldend",
 	"isotopes",
 	"achievements",
+	"main_collection",
 	BLINDSIDE and "blindside/bs_main" or nil
 }
 

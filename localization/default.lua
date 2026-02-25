@@ -44,7 +44,11 @@ return {
 			ecattos_planet_category_hoax = "Hoax Object",
 			ecattos_planet_category_outer_solar = "Outer Solar System",
 			
-			k_ecattos_strange = "Strange"
+			k_ecattos_strange = "Strange",
+			
+			ecattos_collection_jokers_periodic = "Purriodic Table",
+			ecattos_collection_jokers_compounds = "Compounds",
+			ecattos_collection_jokers_other = "Others"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well

@@ -61,15 +61,16 @@ SMODS.DrawStep {
 		love.graphics.scale(0.1, 0.1)
 		local bmold = love.graphics.getBlendMode()
 		local px = card.config.center.pixel_size
-		local x = (px and px.x or 71) * 0.13
-		local y = (px and px.y or 95) * 0.13
+		local scale = card.VT.w / G.CARD_W
+		local x = (px and px.x or 71) * 0.13 * scale
+		local y = (px and px.y or 95) * 0.13 * scale
 		local spr = elementcattos.radioglow_sprites[rg[4]]
 		love.graphics.setBlendMode(rg[6])
 		for k,v in pairs(rg[3]) do
 			v[2] = v[2] - dt
 			local a = 1 - math.abs(v[2] - 1)
 			love.graphics.setColor(rg[5],rg[5],rg[5],a)
-			love.graphics.draw(spr, x, y, v[1], 1, 1, 32, 32)
+			love.graphics.draw(spr, x, y, v[1], scale, scale, 32, 32)
 		end
 		if rg[3][1][2] < 0 then
 			table.remove(rg[3], 1)
