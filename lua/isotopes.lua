@@ -10,6 +10,7 @@ elementcattos.gimmeIsotope = function(element, isotope)
 				break
 			end
 		end
+		return print("Could not find an element by \""..element.."\"")
 	elseif not elementcattos.atomicnumber[element] then
 		key = "j_ecattos_element_extended"
 	end

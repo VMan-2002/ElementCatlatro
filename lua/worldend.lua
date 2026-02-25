@@ -7,6 +7,13 @@ elementcattos.worldendanim = {
 }
 local WorldEndAnim = elementcattos.worldendanim.class
 
+SMODS.Sound {
+	key = "music_ecattos_silent",
+	path = "music_silent.ogg",
+	select_music_track = function(self) return (elementcattos.worldendanim.instance) and math.huge end,
+	no_collection = true
+}
+
 local wipeoff_ref = G.FUNCS.wipe_off
 G.FUNCS.wipe_off = function(...)
 	G.E_MANAGER:add_event(Event({
@@ -28,6 +35,7 @@ WorldEndAnim.GameOver = function()
 		elementcattos.worldendanim.instance = nil
 		return
 	end
+	check_for_unlock({ecattos_worldend = true})
 	-- yoink from ellejokers
 	G.STATE = G.STATES.GAME_OVER
 	if not G.GAME.won and not G.GAME.seeded and not G.GAME.challenge then

@@ -5,8 +5,6 @@ SMODS.Atlas({
 	py = 95
 })
 
---TODO: Prevent jimbo the joker from spawning (???????????)
-
 SMODS.Back({
 	key = "elements",
 	atlas = "decks",

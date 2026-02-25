@@ -122,6 +122,25 @@ return {
 			ecattos_bejeweled = "Bejeweled",
 			ecattos_geiger = "Geiger",
 			ecattos_crescent = "Crescent",
+		},
+		achievement_names = {
+			ach_ecattos_deck = "Feline Chemistry",
+			ach_ecattos_worldend = "All Is Gone",
+			ach_ecattos_compoundcreator = "Crafting System"
+		},
+		achievement_descriptions = {
+			ach_ecattos_deck = {
+				"Win a run on the",
+				"Element Cattos Deck"
+			},
+			ach_ecattos_worldend = {
+				"An element that's",
+				"way too massive"
+			},
+			ach_ecattos_compoundcreator = {
+				"Create a Compound using",
+				"the Compound Creator"
+			},
 		}
 	},
 	descriptions = {

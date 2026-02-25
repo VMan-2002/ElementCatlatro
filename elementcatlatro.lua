@@ -262,6 +262,7 @@ local rq = {
 	"patches",
 	"worldend",
 	"isotopes",
+	"achievements",
 	BLINDSIDE and "blindside/bs_main" or nil
 }
 
