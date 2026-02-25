@@ -235,7 +235,9 @@ e.radioactiveCalculate = function()
 						return false
 					end
 					play_sound("ecattos_explode")
-					e.doExplosion(v)
+					if rd.explode then
+						e.doExplosion(v)
+					end
 					v.ability.ecattos_rd_hands = nil
 					--TODO: implement actual decay results. as placeholder, we destroy the card or become garbage
 					if SMODS.is_eternal(v) then
