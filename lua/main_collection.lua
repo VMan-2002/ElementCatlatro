@@ -55,16 +55,23 @@ end
 create_UIBox_your_collection_ecattos_periodic = function()
 	local rows = {
 		{l = {s=1}, m = {p = 16.5}, r = {s=2}},
-		{l = {s=3,e=4}, m = {p = 10}, r = {s=5,e=10}},
-		{l = {s=11,e=12}, m = {p = 10}, r = {s=13,e=18}},
+		{l = {s=3,e=4}, m = {p = 10.4}, r = {s=5,e=10}, r2 = {p = 0.5}},
+		{l = {s=11,e=12}, m = {p = 10.4}, r = {s=13,e=18}, r2 = {p = 0.5}},
 		{m = {s=19,e=36}},
 		{m = {s=37,e=54}},
-		{l = {s=55,e=56}, m = {p = 1}, r = {s=72,e=86}},
-		{l = {s=87,e=88}, m = {p = 1}, r = {s=104,e=118}},
-		{l = {s=119,e=120}, m = {p = 1}, r = {s=57,e=71}},
+		{l = {s=55,e=56}, m = {p = 0.95}, r = {s=72,e=86}, r2 = {p = 0.4}},
+		{l = {s=87,e=88}, m = {p = 0.95}, r = {s=104,e=118}, r2 = {p = 0.4}},
+		{l = {s=119,e=120}, m = {p = 0.95}, r = {s=57,e=71}, r2 = {p = 0.4}},
 		{l = {p = 3}, r = {s=89,e=103}}
 	}
-	local o = {"l", "m", "r"}
+	local caws = {
+		[1] = 2.46,
+		[2] = 3.7,
+		[6] = 6.23,
+		[18] = 16.4,
+		[15] = 13.9
+	}
+	local o = {"l", "m", "r", "r2"}
 	
     args = args or {}
     args.w_mod = args.w_mod or 0.4
@@ -83,7 +90,7 @@ create_UIBox_your_collection_ecattos_periodic = function()
 					local count = (x.e or x.s) + 1 - x.s
 					G.your_collection[cind] = CardArea(
 						G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
-						(args.w_mod*(count+2))*G.CARD_W,
+						caws[count],
 						args.h_mod*G.CARD_H,
 						{card_limit = count + 0.01, type = args.area_type or 'title_2', highlight_limit = 0, collection = true, lr_padding = -1}
 					)
