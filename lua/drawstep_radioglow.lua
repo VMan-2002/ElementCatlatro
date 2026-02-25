@@ -17,6 +17,11 @@ for k,v in pairs(elementcattos.radioglow_sprites) do
 	elementcattos.radioglow_sprites[k] = elementcattos.loadGraphic("radioglow/"..v)
 end
 
+elementcattos.purrcentCopyRadioactive = function(src, target)
+	target.ecattos_radioglow = topuplib.tableShallowCopy(src.ecattos_radioglow)
+	target.children.center:set_sprite_pos({x=4,y=1})
+end
+
 SMODS.DrawStep {
 	key = "radioglow",
 	order = -950,
@@ -34,6 +39,13 @@ SMODS.DrawStep {
 			if rd.spr ~= nil and not elementcattos.radioglow_sprites[rd.spr] then
 				print("Radioglow sprite "..(rd.spr).." not found")
 				card.ecattos_radioglow[4] = "default"
+			end
+			if not (G.your_collection and topuplib.getValueIndex(G.your_collection, card.area)) then
+				for k,v in pairs(card.area.cards) do
+					if v.config.center_key == "j_ecattos_purrcent" then
+						elementcattos.purrcentCopyRadioactive(card, v)
+					end
+				end
 			end
 		elseif card.ecattos_radioglow == false then return end
 		
