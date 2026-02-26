@@ -40,7 +40,7 @@ SMODS.DrawStep {
 				print("Radioglow sprite "..(rd.spr).." not found")
 				card.ecattos_radioglow[4] = "default"
 			end
-			if not topuplib.viewedFromCollection(card) then
+			if card.area and not topuplib.viewedFromCollection(card) then
 				for k,v in pairs(card.area.cards) do
 					if v.config.center_key == "j_ecattos_purrcent" then
 						elementcattos.purrcentCopyRadioactive(card, v)
