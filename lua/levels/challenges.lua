@@ -7,7 +7,7 @@ SMODS.Challenge {
 			{id="discards", value = 2}
 		},
 		custom = {
-			{id="scaling", value = 41000},
+			{id="scaling", value = 350000},
 			{id="enable_perishables_in_shop"}
 		}
 	},
@@ -24,6 +24,7 @@ SMODS.Challenge {
 			{id = "j_ecattos_element10"},
 			{id = "v_magic_trick"},
 			{id = "v_planet_merchant"},
+			{id = "j_certificate"},
 			{id = "c_ankh"},
 			{id = "c_ecattos_duplicator"},
 			{id = "c_ecattos_stabilizer"},
