@@ -988,8 +988,7 @@ return {
 			recipe_notdiscovered = {
 				text = {
 					"Not Discovered",
-					"Form this compound to",
-					"discover the result",
+					"Form this compound to discover the result",
 					"Formula: #2#"
 				}
 			}

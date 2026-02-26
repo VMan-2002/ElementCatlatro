@@ -26,7 +26,7 @@ pattern = '''local cfg = (card and card.ability) or _c['config']'''
 position = "before"
 payload = '''if _c.set == "ECattos_Compound" then
 	local compound = elementcattos.compounds[_c.key]
-	localize{type = 'descriptions', key = "recipe", set = "ECattos_Compound", nodes = desc_nodes, vars = {
+	localize{type = 'descriptions', key = card.ecattos_collection_not_discovered and "recipe_notdiscovered" or "recipe", set = "ECattos_Compound", nodes = desc_nodes, vars = {
 		type(compound[2]) == "table" and localize(elementcattos.compounds[_c.key][2].name) or topuplib.nameFromKey(compound[2]),
 		elementcattos.formatFormula(elementcattos.compounds[_c.key][1], true)
 	}}
