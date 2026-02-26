@@ -741,6 +741,24 @@ return {
 					"{C:inactive,s:0.75}verdict is incorrect."
 				}
 			},
+			j_ecattos_compound_pkzilla1 = elementcattos.loc_txt {
+				name = "PKZILLA-1",
+				text = {
+					"If leftmost, {C:green}1 in 2{} chance to",
+					"{C:attention}destroy{} each discarded card and",
+					"gain {_A:emult:0.25} per destroyed card",
+					"{_A:currentemult:1}"
+				},
+				compound = "pkzilla1"
+			},
+			j_ecattos_compound_pg5 = elementcattos.loc_txt {
+				name = "PG5",
+				text = { --i'm unsure about this (+ it seems hard to implement)
+					"{C:attention}X2{} Joker slots and {C:attention}X3{} hand size",
+					"{_A:xmult:2} per card held in hand"
+				},
+				compound = "pg5"
+			},
 			--Blindside
 			j_ecattos_planet_sun = elementcattos.loc_txt_planet {
 				name = "The Sun",

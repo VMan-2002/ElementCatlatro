@@ -95,6 +95,26 @@ local compounds = {
 		--no_collection = Cryptid ~= nil,
 		in_pool = topuplib.returnFalse,
 		not_in_booster = true
+	},
+	{
+		id = "pkzilla1",
+		pronouns = nil,
+		formula = {{"C", 208516}, {"H", 334220}, {"N", 60758}, {"O", 63313}, {"S", 1733}},
+		rarity = elementcattos.exotic_rarity(),
+		cost = 500000,
+		--no_collection = Cryptid ~= nil,
+		in_pool = topuplib.returnFalse,
+		not_in_booster = true
+	},
+	{
+		id = "pg5",
+		pronouns = nil,
+		formula = {{"C", -1}}, --TODO: i am having so much trouble finding the answer to this
+		rarity = elementcattos.exotic_rarity(),
+		cost = 500000,
+		--no_collection = Cryptid ~= nil,
+		in_pool = topuplib.returnFalse,
+		not_in_booster = true
 	}
 }
 
@@ -132,7 +152,8 @@ for k,v in ipairs(compounds) do
 		loc_vars = v.loc_vars,
 		calculate = v.calculate,
 		no_collection = v.no_collection,
-		not_in_booster = v.not_in_booster
+		not_in_booster = v.not_in_booster,
+		ecattos_conf = {compound = true}
 	})
 	elementcattos.compounds[v.id] = {v.formula, j.key}
 end

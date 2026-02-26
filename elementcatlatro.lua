@@ -103,7 +103,7 @@ elementcattos = {
 		return card.config.center.element_base_mass + ((card.ability.extra and card.ability.extra.atomic_mass_offset) or 0)
 	end,
 	pronoun = function(n)
-		if not CardPronouns then return end
+		if not CardPronouns or not n then return end
 		if CardPronouns.badge_types[n] then return n end
 		return "ecatto_" .. n
 	end,
@@ -201,8 +201,8 @@ SMODS.current_mod.custom_collection_tabs = function()
 	}}
 end
 --todo: element decaying and isotopes are gonna be a thing to figure out
-elementcattos.radioactive = {
-	--[[ecatto_element82_214 = { --lead 214
+--[[elementcattos.radioactive = {
+	ecatto_element82_214 = { --lead 214
 		hands = elementcattos.halflife(elementcattos.fromminutes(27.06)),
 		result = "ecatto_element83_214"
 	},
@@ -242,7 +242,10 @@ elementcattos.radioactive = {
 	ecatto_element118 = { --oganesson
 		explode = true,
 		hands = 0
-	}]]
+	}
+}]]
+elementcattos.badges = {
+	--Empty (INTENTIONAL)
 }
 
 mod.config_tab = function()
