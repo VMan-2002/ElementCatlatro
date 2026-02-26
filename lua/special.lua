@@ -10,7 +10,8 @@ SMODS.Atlas({
 SMODS.Joker {
 	key = "neutron",
 	atlas = "special",
-	rarity = 1,
+	rarity = "ecattos_handmade",
+	price = 3,
 	pos = {x = 6, y = 0},
 	in_pool = topuplib.returnFalse,
     pixel_size = { w = 47, h = 39 },
@@ -20,7 +21,8 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "electron",
 	atlas = "special",
-	rarity = 1,
+	rarity = "ecattos_handmade",
+	price = 3,
 	pos = {x = 7, y = 0},
 	in_pool = topuplib.returnFalse,
     pixel_size = { w = 26, h = 26 },
@@ -30,7 +32,8 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "photon",
 	atlas = "special",
-	rarity = 1,
+	rarity = "ecattos_handmade",
+	price = 3,
 	pos = {x = 1, y = 1},
 	in_pool = topuplib.returnFalse,
     pixel_size = { w = 26, h = 26 },
@@ -69,11 +72,20 @@ SMODS.Joker {
 	element_symbol = "N/A"
 }
 
+function elementcattos.check_for_cryptid()
+	return (SMODS.find_mod("Talisman") and Cryptid)
+end
+
 if next(SMODS.find_mod("Cryptid")) then
 	SMODS.Joker {
 		key = "codecatto",
 		config = {extra = {odds = 2}},
 		pronouns = "she_her",
+    dependencies = {
+      items = {
+        "set_cry_code"
+      }
+    },
 		atlas = "special",
 		rarity = 2,
 		pos = {x = 4, y = 0},
@@ -139,7 +151,7 @@ SMODS.Joker {
 	key = "element_extended",
 	config = {extra = {atomic_number = 121}},
 	atlas = "elements",
-	rarity = 2,
+	rarity = elementcattos.safari_rarity(),
 	pos = {x = 2, y = 15},
 	no_collection = false,
 	in_pool = topuplib.returnFalse,
@@ -156,16 +168,15 @@ SMODS.Joker {
 
 local jokes = SMODS.Joker {
 	key = "joker",
-	config = {extra = {mult = 4}},
-	pronouns = "he_him",
+	config = {extra = { mult = 4 }},
+	pronouns = next(SMODS.find_mod("BigNatties")) and "she_her" or "he_him",
 	atlas = "special",
-	rarity = 2,
+	rarity = elementcattos.safari_rarity(),
 	pos = {x = 0, y = 0},
-	element_symbol = "JOKER",
-	loc_vars = function(self, info_queue, card)
-		return {vars = {card.ability.extra.mult}}
-	end,
-	atomic_number = 139
+	element_symbol = "J",
+	loc_vars = {"mult"},
+	atomic_number = 139,
+	not_in_booster = true
 }
 elementcattos.atomicnumber[139] = jokes.key
 
@@ -173,9 +184,10 @@ elementcattos.atomicnumber[139] = jokes.key
 -- you should get garbage instead
 elementcattos.garbage = SMODS.Joker {
 	key = "garbage",
+	price = 0,
 	pronouns = "it_its",
 	atlas = "special",
-	rarity = 1,
+	rarity = "ecattos_handmade",
 	pos = {x = 0, y = 1},
 	in_pool = topuplib.returnFalse,
 	no_collection = true,
@@ -185,11 +197,6 @@ elementcattos.garbage = SMODS.Joker {
 elementcattos.becomeGarbage = function(card)
 	card:set_ability(elementcattos.garbage)
 end
-
-SMODS.Rarity {
-	key = "strange",
-	badge_color = HEX("ACF4B9")
-}
 
 SMODS.Joker {
 	key = "strange",

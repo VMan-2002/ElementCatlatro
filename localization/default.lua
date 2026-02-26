@@ -1,6 +1,17 @@
 return {
 	misc = {
 		dictionary = {
+			k_ecattos_handmade = "Handmade",
+            --k_common = "Common",
+            --k_uncommon = "Uncommon",
+            k_ecattos_safari = "Safari",
+			--k_rare = "Rare",
+			--k_cry_epic = "Epic",
+            k_ecattos_masterwork = "Masterwork",
+            --k_legendary = "Legendary",
+            --k_cry_exotic = "Exotic",
+			k_ecattos_strange = "Strange",
+			
 			ecattos_compoundcreator_tocreate = "Compound to create",
 			ecattos_compoundcreator_confirm = "Confirm",
 			
@@ -416,6 +427,15 @@ return {
 				anum = 95,
 				sym = "Am"
 			},
+			j_ecattos_element95_paperback = elementcattos.loc_txt {
+				name = "Americium",
+				text = {
+					"{_A:xmult:#1#} if {C:attention}scored hand{} contains at least {c:attention}2{} of",
+					"{_A:clubs:Clubs}, {_A:hearts:Hearts}, and {C:paperback_stars}Stars{}, and no other suits"
+				},
+				anum = 95,
+				sym = "Am"
+			},
 			j_ecattos_element118 = elementcattos.loc_txt {
 				name = "Oganesson",
 				text = {
@@ -519,8 +539,8 @@ return {
 				text = {
 					"+4 {C:mult}Mult{}",
 				},
-				anum = "139", --https://commons.wikimedia.org/wiki/File:Wales_Chem.png lol
-				sym = "JOKER"
+				anum = "139", --jacob: https://commons.wikimedia.org/wiki/File:Wales_Chem.png lol
+				sym = "J"
 			},
 			j_ecattos_element118fake = elementcattos.loc_txt {
 				name = "Ninovium",
@@ -550,6 +570,73 @@ return {
 					"convert cards of other suits to {C:green}Strange"
 				}
 			},
+			--non catto jokers for Strange Suit
+            j_ecattos_strange_sinful_joker={
+                name="Envious Joker",
+                text={
+                    "Played cards with",
+                    "{C:green}#2#{} suit give",
+                    "{C:mult}+#1#{} Mult when scored",
+                },
+            },
+            j_ecattos_strange_virtuous_joker={
+                name="Kind Joker",
+                text={
+                    "Played cards with",
+                    "{C:green}#2#{} suit give",
+                    "{C:chips}+#1#{} Chips when scored",
+                },
+            },
+            j_ecattos_strange_fusion_joker={
+                name="{C:green}Strange{} Member",
+                text={
+					"{C:green}#1# in #2#{} chance to retrigger",
+					"each card of {C:green}Strange{} suit",
+                    "{C:green}#1# in #2#{} chance for", --2 in 5
+                    "played cards with",
+                    "{C:green}Strange{} suit to give",
+                    "{X:chips,C:white} X#3# {} Chips when scored",
+                },
+            },
+            j_ecattos_strange_mineral={
+                name="{C:green}Strange{} Mineral",
+                text={
+                    "{C:green}#1# in #2#{} chance for", --2 in 5
+                    "played cards with",
+                    "{C:green}Strange{} suit to give",
+                    "{X:chips,C:white} X#3# {} Chips when scored",
+                },
+                unlock={
+                    "Have at least {E:1,C:attention}#1#",
+                    "cards with {E:1,C:green}#2#",
+                    "suit in your deck",
+                },
+            },
+            j_ecattos_ortalab_strange_mineral={
+                name="{C:green}Strange{} Mineral",
+                text={
+                    "{C:green}#1# in #2#{} chance for", --2 in 5
+                    "played cards with",
+                    "{C:green}Strange{} suit to give",
+                    "{X:chips,C:white} X#3# {} Chips when scored",
+                }
+            },
+            j_ecattos_strange_food={
+                name="{C:green}Strange{} Matter on a Stick",
+                text={
+                    "Played cards with",
+                    "{C:green}#2#{} suit give",
+                    "{C:mult}+#1#{} Mult when scored",
+                },
+            },
+            j_ecattos_strange_stick={
+                name="{C:green}Strange{} Stick",
+                text={
+					"Gives {X:mult,C:white}X#1#{} Mult for every",
+					"{C:attention}\"Stick\"{} Joker you have",
+					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+                },
+            },
 			--Subatomic particles
 			j_ecattos_neutron = elementcattos.loc_txt {
 				name = "Neutron",
@@ -635,6 +722,14 @@ return {
 					"{C:important}5{} cards, {_A:emult:#1#} per scored card"
 				},
 				compound = "titin"
+			},
+			j_ecattos_compound_titin_mortal = elementcattos.loc_txt {
+				name = "Actin",
+				text = {
+					"If {C:important}played hand{} contains at least",
+					"{C:important}5{} cards, {_A:xmult:#1#} per scored card"
+				},
+				compound = "actin"
 			},
 			j_ecattos_compound_titin_cheated = {
 				name = "''Titin''",
@@ -899,6 +994,13 @@ return {
 					"to use immediately"
 				}
 			},
+			p_ecattos_element_toolbox = {
+				name = "Toolbox Pack",
+				text = {
+					"Select {C:attention}2{} of {C:attention}7{} {C:tarot}Tools{}",
+					"to use immediately"
+				}
+			},
 			ecattos_radioactive = {
 				name = "Radioactive",
 				text = {
@@ -935,7 +1037,31 @@ return {
 					"{C:inactive}will sell it's moons",
 					"{C:inactive}if there's no space)"
 				}
-			}
+			},
+			ecattos_handmade_tip = {
+                name = "Handmade",
+                text = {
+					"Cannot appear in the Shop",
+					"Does nothing.",
+                }
+			},
+			ecattos_safari_tip = {
+                name = "Safari",
+                text = {
+                    "Can only be obtained",
+                    "through using certain {C:tarot}Tools{}",
+                    "or a {C:safari}really heavy{}",
+					"{C:attention}Element Catto's Decay{}"
+                } 
+            },
+			ecattos_masterwork_tip = {
+                name = "Masterwork",
+                text = {
+					"Cannot appear in the Shop",
+					"Can only be obtained",
+					"by completing {E:1}{C:tarot}their blueprint{}",
+                } 
+            },
 		},
 		Back = {
 			b_ecattos_elements = {
@@ -947,7 +1073,28 @@ return {
 					"Start with additional {_A:money:8}",
 					"and {C:attention}Overstock Plus{}"
 				}
-			}
+			},
+			b_ecattos_elements_blackjack = {
+				name = "Scandium Catto Deck",
+				text = topuplib.asub {
+                    "{C:attention}Blackjack Mode{}",
+					"Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+24{} Joker slots",
+					"Start with additional {_A:money:8}",
+					"and {C:attention}Overstock Plus{}"
+				}
+			},
+			b_ecattos_elements_ortalab = {
+				name = "Sottac Tnemele Deck",
+				text = topuplib.asub {
+					"Only Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+23{} Joker slots",
+					"Start with {C:attention}Clearance Sale{}",
+					"and {C:attention}Ad Campaign{}"
+				}
+			},
 		},
         Sleeve = {
             sleeve_ecattos_elements = {
@@ -965,6 +1112,22 @@ return {
 				text = topuplib.asub {
 					"{C:tarot}Tool{} and {C:attention}Element{} Packs both have",
                     "{C:attention}2{} extra options to choose from",
+				}
+            },
+            sleeve_ecattos_elements_ortalab = {
+                name = "Sottac Tnemele Sleeve",
+				text = topuplib.asub {
+					"Only Jokers from {C:attention}Element",
+					"{C:attention}Catlatro{} may appear",
+					"{C:attention}+24{} Joker slots",
+					"Start with additional {_A:money:8}",
+					"and {C:attention}Overstock Plus{}"
+				}
+            },
+            sleeve_ecattos_elements_ortalab_alt = {
+                name = "Sottac Tnemele Sleeve",
+				text = topuplib.asub {
+					"Start with {C:attention}Liquidation{}"
 				}
             },
         },
@@ -1010,6 +1173,116 @@ return {
 				}
 			}
 		},
+		Item = {
+            c_ecatto_berry_juice_tool = {
+                name = "Tool Berry Juice",
+                text = {
+                    "{C:inactive}TODO",
+                },
+            }
+        },
+		Spectral = {
+            c_ecatto_transformation = {
+                name = "TBN",
+                text = {
+                    "Decays selected Element Cattos",
+                    "as much as possible",
+                    "{C:inactive}(Up to 100)"
+                },
+            },
+        },
+		Tag = {
+            tag_ecatto_topup_tag = {
+                name = "Catto Top-up Tag",
+                text = {
+                    "Create up to {C:attention}#1#", -- 2, 3, or 4?
+                    "{C:blue}Common{} Element Cattos",
+                    "{C:inactive}(Must have room)",
+                }, 
+            },
+            tag_ecatto_uncommon_tag = {
+                name = "Uncommon Cattos Tag",
+                text = {
+                    "Gives a free",
+                    "{C:green}Uncommon Elements Pack",
+                }, 
+            },
+            tag_ecatto_rare_tag = {
+                name = "Rare Catto Tag",
+                text = {
+                    "Gives a free",
+                    "{C:red}Rare Elements Pack",
+                }, 
+            },
+            tag_ecatto_tool_tag = {
+                name = "Toolbox Tag",
+                text = {
+                    "Gives a free",
+                    "{C:attention}Toolbox Pack",
+                }, 
+            },
+            tag_ecatto_basic_tag = {
+                name = "Stable Catto Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:attention}Stable{} Element Catto",
+                    "with an random edition",
+                    "from {C:attention}Element Catlatro",
+                    "{C:inactive}(Protons set between 1 and 83)"
+                }, 
+            },
+            tag_ecatto_stage_one_tag = {
+                name = "Radioactive Catto Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:attention}Radioactive{} Element Catto",
+                    "with an Stabilized sticker",
+                    "{C:inactive}(Protons set between 83 and 118)"
+                }, 
+            },
+            tag_ecatto_stage_two_tag = { --prob redundat
+                name = "Synthesized Catto Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:attention}Synthesized{} Element Catto",
+                    "with an Stabilized sticker",
+                    "{C:inactive}(Protons set between 94 and 180)"
+                }, 
+            },
+            tag_ecatto_safari_tag = {
+                name = "safari? Tag",
+                text = {
+                    "Shop has a free",
+                    "{C:safari}trans-Unbinilium{} Joker",
+                    "{C:inactive}(Protons set between 121 and 140)"
+                }, 
+            },
+            tag_ecatto_void_tag = { --bad idea?
+                name = "Black Hole Tag",
+                text = topuplib.asub {
+					"Destroys {C:attention}5",
+					"Random Element Cattos",
+					"{C:inactive}(Bypasses Eternal)",
+                }, 
+            },
+			--for blindside
+            tag_ecatto_planet_tag = {
+                name = "Planetary Tag",
+                text = {
+                    "Creates an {C:attention}Planet Catto",
+                    "{C:inactive}(Must have room)",
+                }, 
+            },
+            tag_ecatto_moon_tag = {
+                name = "Lunar Tag",
+                text = {
+                    "Creates a {C:attention}Moon",
+					"for a Planet Catto",
+                    "{C:inactive}(Must have a Planet Catto",
+					"with remaining Moons)"
+                }, 
+            },
+        },
 		bld_obj_ritual = {
 			c_ecattos_bs_lightbulb = {
 				name = "Lightbulb",

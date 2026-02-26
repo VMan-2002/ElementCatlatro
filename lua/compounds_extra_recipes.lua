@@ -26,6 +26,43 @@ elementcattos.compounds._stonecards = {
 	}
 }
 elementcattos.compounds.j_splash = {
-	{{"water"}, "JOKER"},
+	{{"water"}, "J"},
 	"j_splash"
 }
+elementcattos.compounds.j_blueprint = {
+	{"Co", "O", {"Al", 2}, {"O", 3}, "J"},
+	"j_blueprint"
+}
+elementcattos.compounds.j_burnt = {
+	{"P", {"photon"}, "O",  "J"},
+	"j_burnt"
+}
+elementcattos.compounds.j_jolly = {
+	{{"J", 2},},
+	"j_jolly"
+}
+
+
+--[[
+if 
+	elementcattos.compounds.j_ortalab_fools_gold = { --Replace with Pyrite when she's added
+		{"Fe", {"S", 2}},
+		"j_ortalab_fools_gold"
+	}
+	elementcattos.compounds.j_ortalab_fools_gold = { --Replace with Basalt when she's added
+		{"Fe", "Mg"},
+		"j_ortalab_fools_gold"
+	}
+elementcattos.compounds.j_steel_joker = {
+	{"steel", "J"},
+	"j_ortalab_fools"
+}
+elementcattos.compounds.j_stone = {
+	{"Ca", {"H", 2}, "C", {"O", 3} "J"}, --Copper(II) Carbonate
+	"j_stone"
+}
+elementcattos.compounds.j_steel_joker = {
+	{"steel", "J"},
+	"j_ortalab_fools"
+}
+]]--
