@@ -1186,7 +1186,7 @@ return {
                 name = "Stable Catto Tag",
                 text = {
                     "Shop has a free",
-                    "{C:attention}Stable{} Element Cattos",
+                    "{C:attention}Stable{} Element Catto",
                     "with an random edition",
                     "from {C:attention}Element Catlatro",
                     "{C:inactive}(Protons set between 1 and 83)"
@@ -1238,7 +1238,6 @@ return {
                 name = "Lunar Tag",
                 text = {
                     "Creates a {C:attention}Moon",
-					"for a Planet Catto",
 					"for a Planet Catto",
                     "{C:inactive}(Must have a Planet Catto",
 					"with remaining Moons)"

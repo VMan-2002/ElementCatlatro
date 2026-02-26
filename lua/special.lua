@@ -177,14 +177,6 @@ local jokes = SMODS.Joker {
 }
 elementcattos.atomicnumber[139] = jokes.key
 
-local card_add_to_deck_ref = get_current_pool
-function Card:get_current_pool(_type, _rarity, _legendary, _append)
-	if (#_pool == 1 and _pool[#_pool] == "j_joker" and G.GAME.starting_params.ecattos_deck == true) then
-		return j_ecattos_joker
-	end
-    return get_current_pool(self, _type, _rarity, _legendary, _append)
-end
-
 -- if a state change or deletion should happen, but eternal prevents it from fully completing,
 -- you should get garbage instead
 elementcattos.garbage = SMODS.Joker {
