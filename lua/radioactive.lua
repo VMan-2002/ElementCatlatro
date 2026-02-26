@@ -214,17 +214,30 @@ e.radioactive = {
 }
 
 e.radioactiveCalculate = function()
+	local worldend_trigger = false
 	G.E_MANAGER:add_event(Event({
 	trigger = 'after',
 	delay = 0.1,
+	blocking = true,
 	func = function()
+		if worldend_trigger then
+			return not elementcattos.worldendanim.instance
+		end
 		for k,v in pairs(G.jokers.cards) do
 			local rd = e.isRadioactive(v)
 			if rd and v.ability.ecattos_stabilized == nil then
 				v.ability.ecattos_rd_hands = (v.ability.ecattos_rd_hands or rd.hands) - 1
 				if v.ability.ecattos_rd_hands <= 0 then
+					if elementcattos.validTransformElement(v, true) >= 500 then
+						--you are DEAD
+						elementcattos.worldendanim.play()
+						worldend_trigger = true
+						return false
+					end
 					play_sound("ecattos_explode")
-					e.doExplosion(v)
+					if rd.explode then
+						e.doExplosion(v)
+					end
 					v.ability.ecattos_rd_hands = nil
 					--TODO: implement actual decay results. as placeholder, we destroy the card or become garbage
 					if SMODS.is_eternal(v) then

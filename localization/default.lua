@@ -53,7 +53,13 @@ return {
 			
 			ecattos_planet_category_inner_solar = "Inner Solar System",
 			ecattos_planet_category_hoax = "Hoax Object",
-			ecattos_planet_category_outer_solar = "Outer Solar System"
+			ecattos_planet_category_outer_solar = "Outer Solar System",
+			
+			k_ecattos_strange = "Strange",
+			
+			ecattos_collection_jokers_periodic = "Purriodic Table",
+			ecattos_collection_jokers_compounds = "Compounds",
+			ecattos_collection_jokers_other = "Others"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well
@@ -131,6 +137,25 @@ return {
 			ecattos_bejeweled = "Bejeweled",
 			ecattos_geiger = "Geiger",
 			ecattos_crescent = "Crescent",
+		},
+		achievement_names = {
+			ach_ecattos_deck = "Feline Chemistry",
+			ach_ecattos_worldend = "All Is Gone",
+			ach_ecattos_compoundcreator = "Crafting System"
+		},
+		achievement_descriptions = {
+			ach_ecattos_deck = {
+				"Win a run on the",
+				"Element Cattos Deck"
+			},
+			ach_ecattos_worldend = {
+				"An element that's",
+				"way too massive"
+			},
+			ach_ecattos_compoundcreator = {
+				"Create a Compound using",
+				"the Compound Creator"
+			},
 		}
 	},
 	descriptions = {
@@ -192,6 +217,15 @@ return {
 			},
 			j_ecattos_element6 = elementcattos.loc_txt {
 				name = "Carbon",
+				text = {
+					"{_A:xchips:#1#} per scored",
+					"{_A:spades:Spade} or {_A:clubs:Club}"
+				},
+				anum = 6,
+				sym = "C"
+			},
+			j_ecattos_element6_alt = elementcattos.loc_txt {
+				name = "Maybe",
 				text = {
 					"{_A:xchips:#1#} per scored",
 					"{_A:spades:Spade} or {_A:clubs:Club}"
@@ -429,8 +463,17 @@ return {
 				anum = 120,
 				sym = "Ubn"
 			},
+			j_ecattos_element666 = elementcattos.loc_txt {
+				name = "Hexhexhexium",
+				text = {
+					"^^2 Mult",
+					"{X:black,C:red}???"
+				},
+				anum = 666,
+				sym = "Hhh"
+			},
 			j_ecattos_element_extended = elementcattos.loc_txt {
-				name = "Extended Element",
+				name = "#3#",
 				text = {
 					"Unfinished.",
 					"This description should be",
@@ -1108,8 +1151,7 @@ return {
 			recipe_notdiscovered = {
 				text = {
 					"Not Discovered",
-					"Form this compound to",
-					"discover the result",
+					"Form this compound to discover the result",
 					"Formula: #2#"
 				}
 			}

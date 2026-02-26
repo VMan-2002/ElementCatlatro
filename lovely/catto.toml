@@ -26,7 +26,7 @@ pattern = '''local cfg = (card and card.ability) or _c['config']'''
 position = "before"
 payload = '''if _c.set == "ECattos_Compound" then
 	local compound = elementcattos.compounds[_c.key]
-	localize{type = 'descriptions', key = "recipe", set = "ECattos_Compound", nodes = desc_nodes, vars = {
+	localize{type = 'descriptions', key = card.ecattos_collection_not_discovered and "recipe_notdiscovered" or "recipe", set = "ECattos_Compound", nodes = desc_nodes, vars = {
 		type(compound[2]) == "table" and localize(elementcattos.compounds[_c.key][2].name) or topuplib.nameFromKey(compound[2]),
 		elementcattos.formatFormula(elementcattos.compounds[_c.key][1], true)
 	}}
@@ -41,7 +41,7 @@ target = "functions/common_events.lua"
 pattern = 'for _, v in ipairs(info_queue) do'
 position = "before"
 payload = '''
-if card then
+if card and (card.config.center.discovered) then
 	local rd = elementcattos.isRadioactive(card)
 	if rd and rd.hands and not rd.glowonly then
 		info_queue[#info_queue+1] = {set = "Other", key = rd.explode and "ecattos_radioactive_explodes" or "ecattos_radioactive", specific_vars = {card.ability.ecattos_rd_hands or rd.hands}}
@@ -58,5 +58,21 @@ pattern = '-- TARGET: effects before deck final_scoring_step'
 position = "before"
 payload = '''
 	elementcattos.radioactiveCalculate()
+'''
+match_indent = true
+
+[[patches]]
+# World end anim draw
+[patches.pattern]
+target = "game.lua"
+pattern = '''if (self.OVERLAY_MENU) or (not self.F_HIDE_BG) then'''
+position = "before"
+payload = '''
+	if elementcattos.worldendanim.instance then
+		love.graphics.push()
+		elementcattos.worldendanim.instance:translate_container()
+		elementcattos.worldendanim.instance:draw()
+		love.graphics.pop()
+	end
 '''
 match_indent = true

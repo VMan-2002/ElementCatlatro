@@ -1,12 +1,12 @@
 local legitimate
 
 elementcattos.validTransformElement = function(card, allowEternal)
-	return (allowEternal or not SMODS.is_eternal(card)) and card.config.center.atomic_number
+	return (allowEternal or not SMODS.is_eternal(card)) and ((card.ability.extra and card.ability.extra.atomic_number) or card.config.center.atomic_number)
 end
 
 elementcattos.getFusion = function()
 	if not G.jokers then return end
-	--N/Aium interaction
+	--TARGET: Special fusion check
 	do
 		local dudes = {"naium", {}}
 		local lol = 0
@@ -27,8 +27,8 @@ elementcattos.getFusion = function()
 	if #G.jokers.highlighted ~= 2 then return end
 	local a = elementcattos.validTransformElement(G.jokers.highlighted[1])
 	local b = elementcattos.validTransformElement(G.jokers.highlighted[2])
-	if a and b and elementcattos.atomicnumber[a + b] then
-		return "j_ecattos_element" .. tostring(a + b)
+	if a and b then
+		return a + b
 	end
 end
 
@@ -61,7 +61,8 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 				fuse = localize("ecattos_fusion_negative")
 			end
 		elseif fuse then
-			fuse = topuplib.nameFromKey(fuse)
+			local em = elementcattos.atomicnumber[fuse]
+			fuse = em and topuplib.nameFromKey(em, G.P_CENTERS[em].loc_txt.name) or topuplib.localize("misc").ecattos_extended_element.name(fuse)
 		end
 		return {
 			vars = {fuse or localize("ecattos_fusion_none")}
@@ -72,6 +73,7 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 		local result = elementcattos.getFusion()
 		if not result then return print("Wrong use for Fusion Reactor") end
 		if type(result) == "table" then
+			--TARGET: Special fusion result
 			if result[1] == "naium" then
 				for k,v in pairs(result[2]) do
 					G.jokers.highlighted[v]:set_edition("e_negative")
@@ -85,11 +87,16 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 		local resultEdition = (j1.edition and j1.edition.key) or (j2.edition and j2.edition.key)
 		j2:start_dissolve()
 		j1:start_dissolve()
-		SMODS.add_card({
+		local extended = not elementcattos.atomicnumber[result]
+		local key = extended and "j_ecattos_element_extended" or ("j_ecattos_element" .. tostring(result))
+		local result_card = SMODS.add_card({
 			set = "Joker",
-			key = result,
+			key = key,
 			edition = resultEdition
 		})
+		if extended then
+			result_card.ability.extra.atomic_number = result
+		end
 	end
 }.key)
 

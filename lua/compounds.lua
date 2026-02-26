@@ -33,8 +33,11 @@ local compounds = {
 			return { vars = { card.ability.extra.big_xmult, card.ability.extra.small_xmult, card.ability.extra.mult_threshold } }
 		end,
 		calculate = function(self, card, context)
-			if context.modify_scoring_hand and not context.blueprint then
-				return { add_to_hand = true }
+			if context.joker_main then
+				return {x_mult = card.ability.extra.xmult or 1}
+			end
+			if context.initial_scoring_step then
+				card.ability.extra.xmult = card.ability.extra[mult > card.ability.extra.mult_threshold and "small_xmult" or "big_xmult"]
 			end
 		end
 	},

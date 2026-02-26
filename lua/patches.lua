@@ -24,3 +24,28 @@ topuplib.localizeHook = function(args, loc_target, misc_cat, ...)
 	--print("Dont replace, not TBA catto")
 	return localize_ref(args, loc_target, misc_cat, ...)
 end
+
+-- Radioactive Purrcent
+local emplace_ref = CardArea.emplace
+function CardArea:emplace(card, ...)
+	emplace_ref(self, card, ...)
+	if G.your_collection and topuplib.getValueIndex(G.your_collection, self) then return end
+	if card.config.center_key == "j_ecattos_purrcent" then
+		local h, hi = 0, 0
+		for k,v in pairs(self.cards) do
+			if v.ecattos_radioglow and v.ecattos_radioglow[2] > hi then
+				h = k
+				hi = v.ecattos_radioglow[2]
+			end
+		end
+		if h ~= 0 then
+			elementcattos.purrcentCopyRadioactive(self.cards[h], card)
+		end
+	elseif card.ecattos_radioglow then
+		for k,v in pairs(self.cards) do
+			if v.config.center_key == "j_ecattos_purrcent" then
+				elementcattos.purrcentCopyRadioactive(card, v)
+			end
+		end
+	end
+end

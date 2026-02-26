@@ -54,7 +54,13 @@ local elements = {
                 x_chips = card.ability.extra.s_xchips
             }
 		end
-    end, rarity = 1, config = { extra = {s_xchips = 1.15, suits = {'Spades', 'Clubs'}} }, loc_vars = {"s_xchips"}}, --im sorry :sob:
+    end, rarity = 1, config = { extra = {s_xchips = 1.15, suits = {'Spades', 'Clubs'}} },
+	loc_vars = function(self, info_queue, card)
+		return {
+			key = SMODS.pseudorandom_probability(card, 'ecattos_element6', 1, 70) and self.key .. "_alt",
+			vars = {card.ability.extra.s_xchips}
+		}
+	end},
 	
 	{7, "N", "Nitrogen", "she_her", 14, function(self, card, context)
         if (context.individual and context.cardarea == G.play) then
@@ -446,7 +452,7 @@ local elements = {
 		end
 	end}, 
 	
-	{119, "Uue", "Ununennium", "unknown", 297, function(self, card, context)
+	{119, "Uue", "Ununennium", "unknown", 298, function(self, card, context)
 		if context.forcetrigger then
 			return {e_chips = card.ability.extra.echips}
 		end

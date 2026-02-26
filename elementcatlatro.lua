@@ -53,6 +53,9 @@ elementcattos = {
 		SMODS.calculate_context({ecattos_explosion = true, src = src, cardarea = area})
 		--todo: debuffings
 	end,
+	loadGraphic = function(path)
+		return love.graphics.newImage(NFS.read('data', mod.path .. "assets/gfx/"..path..".png"), nil)
+	end,
 	--Radioactive
 	isRadioactive = function(card)
 		return elementcattos.radioactive[card.config.center_key]
@@ -272,6 +275,10 @@ local rq = {
 	"modifiers/edition_pcb",
 	"drawstep_radioglow",
 	"patches",
+	"worldend",
+	"isotopes",
+	"achievements",
+	"main_collection",
 	BLINDSIDE and "blindside/bs_main" or nil
 }
 

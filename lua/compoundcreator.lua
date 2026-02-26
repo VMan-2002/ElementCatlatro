@@ -33,6 +33,9 @@ local confirm = topuplib.addUniqueFunc(function(arg)
 			config = {ref_table = card}
 		})
 		G.FUNCS.exit_overlay_menu()
+		
+		check_for_unlock({ecattos_compoundcreator = true})
+		topuplib.markDiscovered("ECattos_Compound", ids[selectedItem])
 	end
 end)
 

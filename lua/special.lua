@@ -76,25 +76,26 @@ function elementcattos.check_for_cryptid()
 	return (SMODS.find_mod("Talisman") and Cryptid)
 end
 
-SMODS.Joker {
-	key = "codecatto",
-	config = {extra = {odds = 2}},
-	pronouns = "she_her",
-	dependencies = {
-		items = {
-			"set_cry_code"
-		}
-	},
-	atlas = "special",
-	rarity = 2,
-	in_pool = elementcattos.check_for_cryptid() or topuplib.returnFalse,
-	pos = {x = 4, y = 0},
-	element_symbol = "C:\\",
-	loc_vars = function(self, info_queue, card)
-		local aaa, bbb = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ECattos_Sysop")
-		return {vars = {aaa, bbb}}
-	end,
-}
+if next(SMODS.find_mod("Cryptid")) then
+	SMODS.Joker {
+		key = "codecatto",
+		config = {extra = {odds = 2}},
+		pronouns = "she_her",
+    dependencies = {
+      items = {
+        "set_cry_code"
+      }
+    },
+		atlas = "special",
+		rarity = 2,
+		pos = {x = 4, y = 0},
+		element_symbol = "C:\\",
+		loc_vars = function(self, info_queue, card)
+			local aaa, bbb = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ECattos_Sysop")
+			return {vars = {aaa, bbb}}
+		end,
+	}
+end
 
 SMODS.Joker {
 	key = "yomium",
@@ -157,8 +158,10 @@ SMODS.Joker {
 	discovered = true,
 	not_in_booster = true,
 	loc_vars = function(self, info_queue, card)
+		local anum = card.ability.extra.atomic_number
+		local f = topuplib.localize("misc").ecattos_extended_element.name
 		return {
-			vars = {atomic_number = card.ability.extra.atomic_number}
+			vars = {anum, f(anum, true), f(anum)}
 		}
 	end,
 }

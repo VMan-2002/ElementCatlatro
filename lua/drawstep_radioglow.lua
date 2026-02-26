@@ -14,7 +14,12 @@ elementcattos.radioglow_sprites = {
 }
 
 for k,v in pairs(elementcattos.radioglow_sprites) do
-	elementcattos.radioglow_sprites[k] = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/"..v..".png"))
+	elementcattos.radioglow_sprites[k] = elementcattos.loadGraphic("radioglow/"..v)
+end
+
+elementcattos.purrcentCopyRadioactive = function(src, target)
+	target.ecattos_radioglow = topuplib.tableShallowCopy(src.ecattos_radioglow)
+	target.children.center:set_sprite_pos({x=4,y=1})
 end
 
 SMODS.DrawStep {
@@ -35,6 +40,13 @@ SMODS.DrawStep {
 				print("Radioglow sprite "..(rd.spr).." not found")
 				card.ecattos_radioglow[4] = "default"
 			end
+			if not (G.your_collection and topuplib.getValueIndex(G.your_collection, card.area)) then
+				for k,v in pairs(card.area.cards) do
+					if v.config.center_key == "j_ecattos_purrcent" then
+						elementcattos.purrcentCopyRadioactive(card, v)
+					end
+				end
+			end
 		elseif card.ecattos_radioglow == false then return end
 		
 		local rg = card.ecattos_radioglow
@@ -49,15 +61,16 @@ SMODS.DrawStep {
 		love.graphics.scale(0.1, 0.1)
 		local bmold = love.graphics.getBlendMode()
 		local px = card.config.center.pixel_size
-		local x = (px and px.x or 71) * 0.13
-		local y = (px and px.y or 95) * 0.13
+		local scale = card.VT.w / G.CARD_W
+		local x = (px and px.x or 71) * 0.13 * scale
+		local y = (px and px.y or 95) * 0.13 * scale
 		local spr = elementcattos.radioglow_sprites[rg[4]]
 		love.graphics.setBlendMode(rg[6])
 		for k,v in pairs(rg[3]) do
 			v[2] = v[2] - dt
 			local a = 1 - math.abs(v[2] - 1)
 			love.graphics.setColor(rg[5],rg[5],rg[5],a)
-			love.graphics.draw(spr, x, y, v[1], 1, 1, 32, 32)
+			love.graphics.draw(spr, x, y, v[1], scale, scale, 32, 32)
 		end
 		if rg[3][1][2] < 0 then
 			table.remove(rg[3], 1)

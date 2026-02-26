@@ -2,6 +2,13 @@ local registryMenuAddEntry = function(tbl, dat)
 	if dat.no_collection then return end
 	local c = G.P_CENTERS[dat.center or dat.result_center] or G.P_CENTERS.c_ecattos_compoundcreator
 	dat.mod = dat.mod or SMODS.find_mod("ElementCatlatro")
+	
+	if not topuplib.isDiscovered("ECattos_Compound", dat.key) then
+		dat.collection_atlas = "topuplib_common"
+		dat.collection_pos = {x=1,y=0}
+		dat.collection_soul_pos = {x=0,y=0}
+	end
+	
 	table.insert(tbl, {
 		unlocked = true,
 		set = "ECattos_Compound",
@@ -47,6 +54,11 @@ create_UIBox_your_collection_ecattos_compounds = function()
         h_mod = 1.03,
         hide_single_page = true,
         collapse_single_page = true,
-		back_func = "your_collection_other_gameobjects"
+		back_func = "your_collection_other_gameobjects",
+		modify_card = function(card, center)
+			if not topuplib.isDiscovered("ECattos_Compound", center.key) then
+				card.ecattos_collection_not_discovered = true
+			end
+		end
     })
 end
