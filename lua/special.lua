@@ -69,19 +69,21 @@ SMODS.Joker {
 	element_symbol = "N/A"
 }
 
-SMODS.Joker {
-	key = "codecatto",
-	config = {extra = {odds = 2}},
-	pronouns = "she_her",
-	atlas = "special",
-	rarity = 2,
-	pos = {x = 4, y = 0},
-	element_symbol = "C:\\",
-	loc_vars = function(self, info_queue, card)
-		local aaa, bbb = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ECattos_Sysop")
-		return {vars = {aaa, bbb}}
-	end,
-}
+if next(SMODS.find_mod("Cryptid")) then
+	SMODS.Joker {
+		key = "codecatto",
+		config = {extra = {odds = 2}},
+		pronouns = "she_her",
+		atlas = "special",
+		rarity = 2,
+		pos = {x = 4, y = 0},
+		element_symbol = "C:\\",
+		loc_vars = function(self, info_queue, card)
+			local aaa, bbb = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ECattos_Sysop")
+			return {vars = {aaa, bbb}}
+		end,
+	}
+end
 
 SMODS.Joker {
 	key = "yomium",
