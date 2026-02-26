@@ -378,6 +378,7 @@ if Yahimod then
 end
 
 topuplib.addFontOption("Century Schoolbook", "lua/fonts/centuryschoolbook")
+topuplib.addFontOption("Chemical Formula", "lua/fonts/chemicalformula")
 topuplib.addDebugCollectionItem("c_ecattos_stabilizer")
 
 local meme = topuplib.createFallbackPoolItem
