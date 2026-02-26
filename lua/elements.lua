@@ -367,17 +367,33 @@ local elements = {
 	{94, "Pu", "Plutonium", "he_any", 244, nonfunctional = true, blackjack_na = true},
 	
 	{95, "Am", "Americium", "ecatto_eaglenoise_any", 243, function(self, card, context) --don't think this works as intended
-		local fail = false
-		if context.individual and context.cardarea == G.play and not
-            (context.other_card:is_suit(card.ability.extra.suits[1]) or context.other_card:is_suit(card.ability.extra.suits[2]) or context.other_card:is_suit(card.ability.extra.suits[3])) then
-				fail = true
-        end
-        if context.joker_main and not fail then
+        if context.joker_main then
+			local accepted = {}
+			local acceptedcount = 0
+			for k,v in pairs(context.scoring_hand) do
+				local accept = false
+				for _,s in pairs(card.ability.extra.suits) do
+					if v:is_suit(s) then
+						accept = true
+						if not accepted[s] then
+							accepted[s] = true
+							acceptedcount = acceptedcount + 1
+						end
+					end
+				end
+				if not accept then return end
+			end
+			if acceptedcount < 2 then return end
 			return {
 				xmult = card.ability.extra.s_xmult
             }
         end
-	end, config = { extra = {s_xmult = 3, suits = {'Hearts', 'Clubs', 'paperback_stars'}}}, loc_vars = {"s_xmult"}},
+	end, config = { extra = {s_xmult = 3, suits = {'Hearts', 'Clubs', 'paperback_stars'}}}, loc_vars = function(self, info_queue, card)
+		return {
+			key = next(SMODS.find_mod("paperback")) and (self.key .. "_paperback"),
+			vars = {card.ability.extra.s_xmult}
+		}
+	end},
 	
 	{96, "Cm", "Curium", "she_her", 250, nonfunctional = true},
 	

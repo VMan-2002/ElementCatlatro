@@ -213,14 +213,9 @@ return {
 			j_ecattos_element8 = elementcattos.loc_txt {
 				name = "Oxygen",
 				text = {
-					"Played cards have a",
-					"{C:green}1 in 2{} chanceto give {_A:chips:+#1#}",
-					"and to not give {_A:mult:+#2#}",
-				},
-				--[[text = {
 					"{_A:chips:+#1#} or {_A:mult:+#2#}",
 					"per scored card"
-				},]]
+				},
 				anum = 8,
 				sym = "O"
 			},
@@ -394,6 +389,15 @@ return {
 				text = {
 					"{_A:xmult:#1#} if {C:attention}scored hand{} contains",
 					"{_A:clubs:Clubs}, {_A:hearts:Hearts}, and no other suits"
+				},
+				anum = 95,
+				sym = "Am"
+			},
+			j_ecattos_element95_paperback = elementcattos.loc_txt {
+				name = "Americium",
+				text = {
+					"{_A:xmult:#1#} if {C:attention}scored hand{} contains at least {c:attention}2{} of",
+					"{_A:clubs:Clubs}, {_A:hearts:Hearts}, and {C:paperback_stars}Stars{}, and no other suits"
 				},
 				anum = 95,
 				sym = "Am"
