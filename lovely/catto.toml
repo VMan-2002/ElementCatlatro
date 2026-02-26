@@ -41,7 +41,7 @@ target = "functions/common_events.lua"
 pattern = 'for _, v in ipairs(info_queue) do'
 position = "before"
 payload = '''
-if card and (card.config.center.discovered) then
+if card and card.config.center and (card.config.center.discovered) then
 	local rd = elementcattos.isRadioactive(card)
 	if rd and rd.hands and not rd.glowonly then
 		info_queue[#info_queue+1] = {set = "Other", key = rd.explode and "ecattos_radioactive_explodes" or "ecattos_radioactive", specific_vars = {card.ability.ecattos_rd_hands or rd.hands}}
