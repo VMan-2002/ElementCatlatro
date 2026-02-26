@@ -16,16 +16,18 @@ SMODS.Sound {
 
 local wipeoff_ref = G.FUNCS.wipe_off
 G.FUNCS.wipe_off = function(...)
-	G.E_MANAGER:add_event(Event({
-		trigger = 'after',
-		delay = 0,
-		no_delete = true,
-		timer = 'REAL',
-		func = function()
-			elementcattos.worldendanim.instance = nil
-			return true
-		end
-	}))
+	if elementcattos.worldendanim.instance then
+		G.E_MANAGER:add_event(Event({
+			trigger = 'after',
+			delay = 0,
+			no_delete = true,
+			timer = 'REAL',
+			func = function()
+				elementcattos.worldendanim.instance = nil
+				return true
+			end
+		}))
+	end
 	wipeoff_ref(...)
 end
 
