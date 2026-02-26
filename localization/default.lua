@@ -158,7 +158,7 @@ return {
 			},
 		},
 		challenge_names = {
-			ecattos_peakdeckfixing = "Feed the Beast"
+			c_ecattos_peakdeckfixing = "Feed the Beast"
 		},
 		v_text = {
 			--ch_c_ecattos_deck = "Only Jokers from {C:attention}Element Catlatro{} can appear"
