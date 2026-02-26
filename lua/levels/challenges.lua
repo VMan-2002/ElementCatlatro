@@ -7,7 +7,7 @@ SMODS.Challenge {
 			{id="discards", value = 2}
 		},
 		custom = {
-			{id="scaling", value = 350000},
+			{id="scaling", value = 600000},
 			{id="enable_perishables_in_shop"}
 		}
 	},
