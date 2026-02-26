@@ -406,10 +406,7 @@ return {
 				name = "Oganesson",
 				text = {
 					"Balances {C:chips}Chips{} and {C:mult}Mult{}",
-					"before scoring",
-					"{C:green}#1# in #2#{} chance this", --remove this when elements decaying is implemented
-                    "card is destroyed",
-                    "at end of round",
+					"before scoring"
 				},
 				anum = 118,
 				sym = "Og"
