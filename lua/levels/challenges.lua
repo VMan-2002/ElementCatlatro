@@ -19,6 +19,7 @@ SMODS.Challenge {
 			{id = 'p_celestial_normal_1', ids = {
 				'p_celestial_normal_1','p_celestial_normal_2','p_celestial_normal_3','p_celestial_normal_4','p_celestial_jumbo_1','p_celestial_jumbo_2','p_celestial_mega_1','p_celestial_mega_2',
 			}},
+			{id = "c_trance"},
 			{id = "p_ecattos_element_tools"},
 			{id = "j_ecattos_element10"},
 			{id = "v_magic_trick"},
