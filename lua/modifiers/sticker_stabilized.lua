@@ -1,7 +1,7 @@
 SMODS.Sticker {
 	key = "stabilized",
 	atlas = "modifiers",
-	badge_color = HEX("2B72E5"),
+	badge_colour = HEX("2B72E5"),
 	loc_vars = function(self, info_queue, card)
 		return {vars = {card.ability.ecattos_stabilized}}
 	end,
@@ -23,4 +23,11 @@ SMODS.Sticker {
 			end
 		end
 	end
+}
+
+SMODS.Sticker {
+	key = "stabilized_forever",
+	atlas = "modifiers",
+	badge_colour = HEX("2B72E5"),
+	pos = {x=2,y=0}
 }

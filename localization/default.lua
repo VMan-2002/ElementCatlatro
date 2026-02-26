@@ -156,6 +156,12 @@ return {
 				"Create a Compound using",
 				"the Compound Creator"
 			},
+		},
+		challenge_names = {
+			ecattos_peakdeckfixing = "Feed the Beast"
+		},
+		v_text = {
+			--ch_c_ecattos_deck = "Only Jokers from {C:attention}Element Catlatro{} can appear"
 		}
 	},
 	descriptions = {
@@ -744,10 +750,10 @@ return {
 			j_ecattos_compound_pkzilla1 = elementcattos.loc_txt {
 				name = "PKZILLA-1",
 				text = {
-					"If leftmost, {C:green}1 in 2{} chance to",
+					"If leftmost, {C:green}#1# in #2#{} chance to",
 					"{C:attention}destroy{} each discarded card and",
-					"gain {_A:emult:0.25} per destroyed card",
-					"{_A:currentemult:1}"
+					"gain {_A:emult:#3#} per destroyed card",
+					"{_A:currentemult:#4#}"
 				},
 				compound = "pkzilla1"
 			},
@@ -1037,6 +1043,19 @@ return {
 				text={
 					"Radioactive decay is",
 					"paused for {C:attention}#1#{} rounds",
+				},
+			},
+			ecattos_placeholder={
+				name="Placeholder",
+				text={
+					"{C:tarot}Matter Eraser{} converts",
+					"this to Garbage",
+				},
+			},
+			ecattos_stabilized_forever={
+				name="Stabilized ∞",
+				text={
+					"No radioactive decay"
 				},
 			},
 			ecattos_photon_light_fuse={

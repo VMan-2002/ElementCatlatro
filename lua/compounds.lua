@@ -104,7 +104,24 @@ local compounds = {
 		cost = 500000,
 		--no_collection = Cryptid ~= nil,
 		in_pool = topuplib.returnFalse,
-		not_in_booster = true
+		not_in_booster = true,
+		config = {extra = {odds = 2, emult = 1, emult_gain = 0.25}},
+		calculate = function(self, card, context)
+			if context.discard and not SMODS.is_eternal(context.other_card) and SMODS.pseudorandom_probability(card, "ECattos_Pkzilla1", 1, card.ability.extra.odds) then
+				SMODS.scale_card(card, {ref_value = "emult", scalar_value = "emult_gain"})
+				return {remove = true}, true
+			end
+			if context.forcetrigger then
+				SMODS.scale_card(card, {ref_value = "emult", scalar_value = "emult_gain"})
+			end
+			if context.joker_main or context.forcetrigger then
+				return {e_mult = card.ability.extra.emult}
+			end
+		end,
+		loc_vars = function(self, info_queue, card)
+			local aaa, bbb = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ECattos_Pkzilla1")
+			return {vars = {aaa, bbb, card.ability.extra.emult_gain, card.ability.extra.emult}}
+		end
 	},
 	{
 		id = "pg5",

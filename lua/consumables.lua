@@ -286,11 +286,11 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 	atlas = "tools",
 	pos = {x = 6, y = 0},
 	can_use = function()
-		return #G.jokers.highlighted == 1 and elementcattos.cardFromMod(G.jokers.highlighted[1])
+		return #G.jokers.highlighted == 1 and elementcattos.cardFromMod(G.jokers.highlighted[1]) and not G.jokers.highlighted[1].ability.entr_aleph
 	end,
 	use = function()
 		local card = G.jokers.highlighted[1]
-		if card.ability.entr_aleph or card.ability.cry_absolute then
+		if card.ability.entr_aleph or card.ability.cry_absolute or card.ability.ecattos_placeholder then
 			local aleph_bypass = card.ability.bypass_aleph
 			card.ability.bypass_aleph = true
 			elementcattos.becomeGarbage(card)

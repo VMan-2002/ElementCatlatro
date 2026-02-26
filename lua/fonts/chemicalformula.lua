@@ -5,6 +5,5 @@ topuplib.font_replacement = {
 	TEXT_OFFSET = {x=10,y=-40},
 	FONTSCALE = 0.1,
 	squish = 1,
-	DESCSCALE = 1,
-	antialias = true
+	DESCSCALE = 1
 }
