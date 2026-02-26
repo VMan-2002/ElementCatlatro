@@ -29,6 +29,7 @@ SMODS.Challenge {
 			{id = "c_ecattos_duplicator"},
 			{id = "c_ecattos_stabilizer"},
 			{id = "c_ecattos_weakray"},
+			{id = "j_brainstorm"}
 		}
 	},
 	jokers = {
