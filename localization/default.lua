@@ -1119,6 +1119,7 @@ return {
 					"Start with a Masterwork Blueprint",
 					"{C:attention}+6{} Joker slots",
 					"Start with additional {_A:money:8}",
+					"Complete Ante {C:attention}16{} to win",
 					"Also applies {C:attention}Element Cattos Deck"
 				},
 				unlock = {"Discover a","Masterwork Blueprint"}
