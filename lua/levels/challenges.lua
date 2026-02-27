@@ -51,7 +51,8 @@ SMODS.Challenge {
 	key = "carbongaming",
 	rules = {
 		modifiers = {
-			{id="joker_slots", value = 29}
+			{id="joker_slots", value = 29},
+			{id="dollars", value = 12}
 		},
 		custom = {
 			{id="ecattos_challenge_banlist"},
@@ -60,5 +61,9 @@ SMODS.Challenge {
 	},
 	restrictions = {
 		banned_cards = carbongaming_bans
+	},
+	vouchers = {
+		{id="v_overstock_norm"},
+		{id="v_overstock_plus"}
 	}
 }
