@@ -55,8 +55,8 @@ SMODS.Challenge {
 			{id="dollars", value = 12}
 		},
 		custom = {
-			{id="ecattos_challenge_banlist"},
-			{id="topuplib_debuff_joker_except", value = {"j_ecattos_element6", "j_ecattos_yomium", "j_blueprint", "j_brainstorm"}}, --TODO: zorua and zoroark
+			{id="ecattos_challenge_banlist", value = {"j_poke_ditto"}},
+			{id="topuplib_debuff_joker_except", value = {"j_ecattos_element6", "j_ecattos_yomium", "j_blueprint", "j_brainstorm", "j_poke_zorua", "j_poke_zoroark"}},
 		}
 	},
 	restrictions = {

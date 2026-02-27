@@ -55,5 +55,10 @@ function Game:start_run(...)
 	start_run_ref(self, ...)
 	if G.GAME.modifiers.ecattos_challenge_banlist then
 		elementcattos.ecattos_deck_banlist()
+		if type(G.GAME.modifiers.ecattos_challenge_banlist) == "table" then
+			for k,v in pairs(G.GAME.modifiers.ecattos_challenge_banlist) do
+				G.GAME.banned_keys[v] = nil
+			end
+		end
 	end
 end
