@@ -34,7 +34,7 @@ elementcattos.compounds.j_blueprint = {
 	"j_blueprint"
 }
 elementcattos.compounds.j_burnt = {
-	{"P", {"photon"}, "O",  "J"},
+	{"P", "Photon", "O",  "J"},
 	"j_burnt"
 }
 elementcattos.compounds.j_jolly = {

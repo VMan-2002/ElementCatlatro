@@ -37,7 +37,8 @@ SMODS.Joker {
 	pos = {x = 1, y = 1},
 	in_pool = topuplib.returnFalse,
     pixel_size = { w = 26, h = 26 },
-	not_in_booster = true
+	not_in_booster = true,
+	element_symbol = "Photon" --finest jank
 }
 
 --Cattos

@@ -162,7 +162,7 @@ return {
 			c_ecattos_carbongaming = "Carbon Gaming"
 		},
 		v_text = {
-			--ch_c_ecattos_challenge_banlist = "Only Jokers from {C:attention}Element Catlatro{} can appear"
+			ch_c_ecattos_challenge_banlist = {"Only Jokers from {C:attention}Element Catlatro{} can appear","(may have exceptions)"}
 		}
 	},
 	descriptions = {

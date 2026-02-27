@@ -56,7 +56,7 @@ SMODS.Challenge {
 		},
 		custom = {
 			{id="ecattos_challenge_banlist"},
-			{id="topuplib_debuff_joker_except", value = {"j_ecattos_element6", "j_ecattos_yomium", "j_blueprint", "j_brainstorm", "j_poke_zorua", "j_poke_zoroark", "j_poke_ditto"}},
+			{id="topuplib_debuff_joker_except", value = {"j_ecattos_element6", "j_ecattos_yomium", "j_blueprint", "j_brainstorm", "j_poke_zorua", "j_poke_zoroark", "j_poke_ditto", "j_invisible"}},
 		}
 	},
 	restrictions = {
