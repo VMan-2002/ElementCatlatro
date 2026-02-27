@@ -723,6 +723,30 @@ return {
 				},
 				compound = "neodymium_magnet"
 			},
+			j_ecattos_compound_estradiol = elementcattos.loc_txt {
+				name = "Estradiol",
+				text = {
+					"Consumables changing card's",
+					"suits also change them to {C:attention}Queens"
+				},
+				compound = "estradiol"
+			},
+			j_ecattos_compound_testosterone = elementcattos.loc_txt {
+				name = "Testosterone",
+				text = {
+					"Changes {C:attention}leftmost{} selected card",
+					"a {C:attention}King{} when a Consumable is used"
+				},
+				compound = "testosterone"
+			},
+			j_ecattos_compound_cortisol = elementcattos.loc_txt {
+				name = "Cortisol",
+				text = {
+					"Discarded cards permenantly",
+					"gain {_A:chips:+6}"
+				},
+				compound = "cortisol"
+			},
 			j_ecattos_compound_titin = elementcattos.loc_txt {
 				name = "Titin",
 				text = {
@@ -1189,6 +1213,14 @@ return {
 					"By VMan_2002"
 				},
 				center = "c_ecattos_compoundcreator"
+			},
+			ecattos_music_masterwork = {
+				name = "Joker in Cat Latin",
+				text = {
+					"Holding a Masterwork Catto",
+					"By VMan_2002"
+				},
+				center = "j_ecattos_compound_titin"
 			}
 		},
 		ECattos_Compound = {

@@ -3,7 +3,6 @@ local legitimate
 local compounds = {
 	{
 		id = "water",
-		name = "Water",
 		pronouns = "she_her",
 		formula = {{"H", 2}, "O"},
 		pos = {x = 1, y = 0},
@@ -15,7 +14,6 @@ local compounds = {
 	},
 	{
 		id = "starch",
-		name = "Starch",
 		pronouns = "she_her",
 		formula = {"_(", {"C", 6}, {"H", 10}, {"O", 5}, "_)n"},
 		rarity = 2,
@@ -23,7 +21,6 @@ local compounds = {
 	},
 	{
 		id = "oobleck",
-		name = "Oobleck",
 		pronouns = "she_her",
 		formula = {{"starch"}, "_+", {"water"}},
 		rarity = 3,
@@ -43,7 +40,6 @@ local compounds = {
 	},
 	{
 		id = "silica",
-		name = "Silica",
 		pronouns = "unknown",
 		formula = {"Si", {"O", 2}},
 		cost = 3,
@@ -71,6 +67,78 @@ local compounds = {
 						v:set_edition("e_negative")
 					end
 				end
+			end
+		end
+	},
+	{
+		id = "estradiol",
+		pronouns = "she_her",
+		formula = {{"C",18}, {"H",24}, {"O", 2}},
+		cost = 44,
+		calculate = function(self, card, context)
+			if context.using_consumeable and next(G.hand.highlighted) then
+				local cards = topuplib.tableShallowCopy(G.hand.highlighted)
+				local suitwas = {}
+				for k,v in pairs(cards) do
+					suitwas[k] = v.config.card.suit
+				end
+				G.E_MANAGER:add_event(Event({
+					trigger = 'after',
+					delay = 0,
+					no_delete = true,
+					timer = 'REAL',
+					blocking = false,
+					func = function()
+						if G.STATE == G.STATES.PLAY_TAROT then return false end
+						for k,v in pairs(cards) do
+							if v and (v.config.card.suit ~= suitwas[k]) then
+								SMODS.change_base(v, nil, "Queen")
+							end
+						end
+						return true
+					end
+				}))
+			end
+		end
+	},
+	{
+		id = "testosterone",
+		pronouns = "he_him",
+		formula = {{"C",19}, {"H",28}, {"O", 2}},
+		cost = 49,
+		calculate = function(self, card, context) --TODO: This can be cheesed using any infinitely-usable consumable
+			if context.using_consumeable and next(G.hand.highlighted) then
+				local cards = topuplib.tableShallowCopy(G.hand.highlighted)
+				G.E_MANAGER:add_event(Event({
+					trigger = 'after',
+					delay = 0,
+					no_delete = true,
+					timer = 'REAL',
+					blocking = false,
+					func = function()
+						if G.STATE == G.STATES.PLAY_TAROT then return false end
+						if cards[1] then
+							SMODS.change_base(cards[1], nil, "King")
+						end
+						return true
+					end
+				}))
+			end
+		end
+	},
+	{
+		id = "cortisol",
+		pronouns = "she_her",
+		formula = {{"C",21}, {"H",30}, {"O", 5}},
+		cost = 56,
+		config = {extra = {chips = 6}},
+		calculate = function(self, card, context)
+			if context.discard then
+				context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or 0) + card.ability.extra.chips
+				return {
+					extra = { message = localize('k_upgrade_ex'), colour = G.C.CHIPS },
+					card = card
+				}
 			end
 		end
 	},
@@ -154,7 +222,7 @@ for k,v in ipairs(compounds) do
 	local j = SMODS.Joker({
 		key = "compound_" .. v.id,
 		loc_txt = {
-			name = v.name,
+			name = v.name or v.id,
 			text = v.desc
 		},
 		atlas = "compounds",
