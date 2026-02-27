@@ -36,3 +36,29 @@ SMODS.Challenge {
 		{id = "j_ecattos_compound_pkzilla1", eternal = true, pinned = true, stickers={"ecattos_placeholder"}}
 	}
 }
+
+local carbongaming_allows = {
+	[1]=true,[2]=true,[4]=true,[6]=true,[7]=true,[8]=true,[10]=true,[27]=true,[34]=true,[60]=true,[118]=true
+}
+local carbongaming_bans = {}
+for i = 1, 120 do
+	if not carbongaming_allows[i] then
+		table.insert(carbongaming_bans, {id="j_ecattos_element"..tostring(i)})
+	end
+end
+
+SMODS.Challenge {
+	key = "carbongaming",
+	rules = {
+		modifiers = {
+			{id="joker_slots", value = 29}
+		},
+		custom = {
+			{id="ecattos_challenge_banlist"},
+			{id="topuplib_debuff_joker_except", value = {"j_ecattos_element6", "j_ecattos_yomium", "j_blueprint", "j_brainstorm"}}, --TODO: zorua and zoroark
+		}
+	},
+	restrictions = {
+		banned_cards = carbongaming_bans
+	}
+}

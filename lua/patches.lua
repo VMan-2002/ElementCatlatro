@@ -49,3 +49,11 @@ function CardArea:emplace(card, ...)
 		end
 	end
 end
+
+local start_run_ref = G.start_run
+function Game:start_run(...)
+	start_run_ref(self, ...)
+	if G.GAME.modifiers.ecattos_challenge_banlist then
+		elementcattos.ecattos_deck_banlist()
+	end
+end

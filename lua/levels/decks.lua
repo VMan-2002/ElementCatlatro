@@ -5,6 +5,14 @@ SMODS.Atlas({
 	py = 95
 })
 
+elementcattos.ecattos_deck_banlist = function()
+	for k,v in pairs(G.P_CENTERS) do
+		if v.set == "Joker" and not (elementcattos.modsupported[v.key] or (v.original_mod and v.original_mod.id == "ElementCatlatro")) then
+			G.GAME.banned_keys[v.key] = true
+		end
+	end
+end
+
 SMODS.Back({
 	key = "elements",
 	atlas = "decks",
@@ -15,11 +23,7 @@ SMODS.Back({
 		vouchers = {'v_overstock_norm', 'v_overstock_plus'}
 	},
 	apply = function()
-		for k,v in pairs(G.P_CENTERS) do
-			if v.set == "Joker" and not (elementcattos.modsupported[v.key] or (v.original_mod and v.original_mod.id == "ElementCatlatro")) then
-				G.GAME.banned_keys[v.key] = true
-			end
-		end
+		elementcattos.ecattos_deck_banlist()
 		G.GAME.starting_params.ecattos_deck = true
 	end
 })
@@ -35,11 +39,7 @@ if next(SMODS.find_mod("HIT")) then
 		},
 		apply = function()
 			set_blackjack_mode()
-			for k,v in pairs(G.P_CENTERS) do
-				if v.set == "Joker" and not (elementcattos.modsupported[v.key] or (v.original_mod and v.original_mod.id == "ElementCatlatro")) then
-					G.GAME.banned_keys[v.key] = true
-				end
-			end
+			elementcattos.ecattos_deck_banlist()
 			G.GAME.starting_params.ecattos_deck = true
 		end
 		})
@@ -54,11 +54,7 @@ if next(SMODS.find_mod("Ortalab")) then
 			vouchers = {'v_ortalab_catalog', 'v_ortalab_ad_campaign', 'v_clearance_sale'}
 		},
 		apply = function()
-			for k,v in pairs(G.P_CENTERS) do
-				if v.set == "Joker" and not (elementcattos.modsupported[v.key] or (v.original_mod and v.original_mod.id == "ElementCatlatro")) then
-					G.GAME.banned_keys[v.key] = true
-				end
-			end
+			elementcattos.ecattos_deck_banlist()
 			G.GAME.starting_params.ecattos_deck = true
 		end
 		})

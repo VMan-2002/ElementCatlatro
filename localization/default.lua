@@ -158,10 +158,11 @@ return {
 			},
 		},
 		challenge_names = {
-			c_ecattos_peakdeckfixing = "Feed the Beast"
+			c_ecattos_peakdeckfixing = "Feed the Beast",
+			c_ecattos_carbongaming = "Carbon Gaming"
 		},
 		v_text = {
-			--ch_c_ecattos_deck = "Only Jokers from {C:attention}Element Catlatro{} can appear"
+			--ch_c_ecattos_challenge_banlist = "Only Jokers from {C:attention}Element Catlatro{} can appear"
 		}
 	},
 	descriptions = {
