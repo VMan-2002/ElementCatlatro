@@ -21,7 +21,7 @@
 local enums = elementcattos.enums
 
 local elements = {
-	--Atomic number, Symbol, Name, Pronouns, Base Mass, Calculate
+	--Atomic number, Symbol, Name, Pronouns, Base Neutrons, Calculate
 	{0, "Mu", "Muonium", "hse_ehr", 0, rarity = 3, nonfunctional = true},
 	
 	{1, "H", "Hydrogen", "she_her", 1, rarity = 1, config = { extra = {chips = 25} }, loc_vars = {"chips"}},
