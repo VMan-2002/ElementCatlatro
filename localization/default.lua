@@ -162,7 +162,8 @@ return {
 			c_ecattos_carbongaming = "Carbon Gaming"
 		},
 		v_text = {
-			ch_c_ecattos_challenge_banlist = {"Only Jokers from {C:attention}Element Catlatro{} can appear","(may have exceptions)"}
+			ch_c_ecattos_challenge_banlist = {"Only Jokers from {C:attention}Element Catlatro{} can appear","(may have exceptions)"},
+			ch_c_ecattos_no_masterwork = {"Masterwork Blueprints are banned"}
 		}
 	},
 	descriptions = {
@@ -1111,6 +1112,16 @@ return {
 					"Start with additional {_A:money:8}",
 					"and {C:attention}Overstock Plus{}"
 				}
+			},
+			b_ecattos_elements_masterwork = {
+				name = "Masterwork Cattos Deck",
+				text = topuplib.asub {
+					"Start with a Masterwork Blueprint",
+					"{C:attention}+6{} Joker slots",
+					"Start with additional {_A:money:8}",
+					"Also applies {C:attention}Element Cattos Deck"
+				},
+				unlock = {"Discover a","Masterwork Blueprint"}
 			},
 			b_ecattos_elements_blackjack = {
 				name = "Scandium Catto Deck",
