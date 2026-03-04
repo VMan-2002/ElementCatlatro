@@ -152,20 +152,20 @@ if topuplib.debug then
 		atlas = "tools",
 		pos = {x = 2, y = 0},
 		can_use = function()
-			return #G.jokers.highlighted == 1 and elementcattos.validTransformElement(G.jokers.highlighted[1], true) and elementcattos.getAtomicMass(G.jokers.highlighted[1]) > 0
+			return #G.jokers.highlighted == 1 and elementcattos.validTransformElement(G.jokers.highlighted[1], true) and elementcattos.getNeutrons(G.jokers.highlighted[1]) > 0
 		end,
 		use = function()
-			--TODO: actually remove a neutron from the target
-			--...which isn't a "stat" that exists yet
-			--?
 			local target = G.jokers.highlighted[1]
 			target.ability.extra = target.ability.extra or {}
-			target.ability.extra.atomic_mass_offset = (target.ability.extra.atomic_mass_offset or 0) - 1
+			target.ability.extra.neutrons = (target.ability.extra.neutrons or elementcattos.getNeutrons(target)) - 1
 			SMODS.add_card({
 				set = "Joker",
 				key = "j_ecattos_neutron",
 				no_edition = true
 			})
+			if elementcattos.applyIsotopeSprite then
+				elementcattos.applyIsotopeSprite(target)
+			end
 		end
 	}.key)
 	

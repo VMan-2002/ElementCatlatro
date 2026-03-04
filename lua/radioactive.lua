@@ -213,6 +213,77 @@ e.radioactive = {
 	}
 }
 
+--Recreated from ecatto decomp
+elementcattos.decay = function(card)
+	local protons = elementcattos.validTransformElement(card, true)
+	local neutrons = elementcattos.getNeutrons(card)
+	if not protons then return end
+	if protons == 0 then
+		if neutrons == 0 then
+			topuplib.quickGive("j_ecattos_positron")
+			topuplib.quickGive("j_ecattos_electron")
+			topuplib.quickGive("j_ecattos_neutrino")
+			elementcattos.doExplode(card)
+			elementcattos.basicDestroy(card)
+		else
+			elementcattos.decayInto(card, 2)
+		end
+	elseif protons == 1 then
+		--wip
+	end
+end
+
+--Also recreated from ecatto decomp
+elementcattos.decayInto = function(card, mode, explode)
+	local anum = elementcattos.validTransformElement(card, true)
+	local protons = anum
+	local neutrons = elementcattos.getNeutrons(card)
+	local electrons = 0 --TODO
+	if mode == 1 then
+		protons = protons - 2
+		neutrons = neutrons - 2
+		elementcattos.gimmeIsotope(2, 2, 0, 0)
+	elseif mode == 2 then
+		protons = protons + 1
+		neutrons = neutrons - 1
+		topuplib.quickGive("j_ecattos_electron")
+		topuplib.quickGive("j_ecattos_antineutrino")
+	elseif mode == 3 then
+		protons = protons - 1
+		neutrons = neutrons + 1
+		topuplib.quickGive("j_ecattos_positron")
+		topuplib.quickGive("j_ecattos_neutrino")
+	elseif mode == 4 then
+		elementcattos.gimmeIsotope(math.ceil(protons / 2), math.ceil(neutrons / 2), math.ceil(electrons / 2), 0)
+		protons = math.floor(protons / 2)
+		neutrons = math.floor(neutrons / 2)
+		electrons = math.floor(electrons / 2)
+	elseif mode == 5 then
+		topuplib.quickGive("j_ecattos_neutron")
+		neutrons = neutrons - 1
+	elseif mode == 6 then
+		topuplib.quickGive("j_ecattos_neutrino")
+		protons = protons - 1
+		neutrons = neutrons + 1
+		electrons = electrons - 1
+	elseif mode == 7 then
+		protons = protons - 1
+		elementcattos.gimmeIsotope(1, 0, 0, 0)
+	end
+	if protons ~= anum then
+		if protons < 0 then
+			elementcattos.doExplode(card)
+			elementcattos.basicDestroy(card)
+			return
+		end
+		card:set_ability({center = elementcattos.atomicnumber[protons]})
+	end
+	card.ability.extra.neutrons = neutrons
+	card.ability.extra.electrons = electrons
+	card.ability.extra.antimuons = antimuons
+	elementcattos.applyIsotopeSprite(card)
+end
+
 e.radioactiveCalculate = function()
 	local worldend_trigger = false
 	G.E_MANAGER:add_event(Event({

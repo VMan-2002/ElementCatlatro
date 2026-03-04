@@ -56,6 +56,10 @@ elementcattos = {
 	loadGraphic = function(path)
 		return love.graphics.newImage(NFS.read('data', mod.path .. "assets/gfx/"..path..".png"), nil)
 	end,
+	enums = {
+		"S", "F", "D", "P",
+		S = 1, F = 2, D = 3, P = 4
+	},
 	--Radioactive
 	isRadioactive = function(card)
 		return elementcattos.radioactive[card.config.center_key]
@@ -96,11 +100,11 @@ elementcattos = {
 	othercattos = { -- Keys of jokers that are cattos
 	
 	},
-	getAtomicMass = function(card)
-		if not card.config.center.element_base_mass then
+	getNeutrons = function(card)
+		if not card.config.center.ecattos_conf then
 			return nil
 		end
-		return card.config.center.element_base_mass + ((card.ability.extra and card.ability.extra.atomic_mass_offset) or 0)
+		return (card.ability.extra and card.ability.extra.neutrons) or card.config.center.ecattos_conf.neutrons
 	end,
 	pronoun = function(n)
 		if not CardPronouns or not n then return end
@@ -122,10 +126,10 @@ elementcattos = {
 		end
 		return result
 	end,
-	enums = {
-		"S", "F", "D", "P",
-		S = 1, F = 2, D = 3, P = 4
-	},
+	--Destroys a card. If eternal, card becomes Garbage instead.
+	basicDestroy = function(card)
+		(SMODS.is_eternal(card) and elementcattos.becomeGarbage or Card.start_dissolve)(card)
+	end,
 	--Compounds
 	compounds = {},
 	formatFormula = function(formula, method)
@@ -507,6 +511,21 @@ SMODS.Sound {
 		return G.OVERLAY_MENU and topuplib.music == "ecattos"
 	end
 }
+
+--[[SMODS.Sound {
+	--This song is a WIP
+	key = "music_masterwork",
+	path = "balatro-masterworkcatto.ogg",
+	pitch = 1,
+	select_music_track = function(self)
+		if not G.jokers then return end
+		for k,v in pairs(G.jokers.cards) do
+			if v.config.center.rarity == "ecattos_masterwork" then
+				return 101
+			end
+		end
+	end
+}]]
 
 SMODS.Sound {
 	key = "explode",

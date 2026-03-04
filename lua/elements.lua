@@ -568,12 +568,12 @@ for k,v in ipairs(elements) do
 			ElementCattosRare = true
 		},
 		rarity = elementcattos.ishandmade(v.rarity or 3, v.nonfunctional),
-		config = v.config,
+		config = v.config or {extra = {}},
 		loc_vars = v.loc_vars,
 		calculate = v[6] or elementcattos.defaultJokerCalculate,
-		element_base_mass = v[5] or v.element_base_mass,
 		ecattos_conf = {
-			e_group = group >= 1 and group or nil
+			e_group = group >= 1 and group or nil,
+			neutrons = v[5] or v.neutrons
 		}
 	})
 	
