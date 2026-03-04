@@ -10,7 +10,7 @@ if CardSleeves then
 		atlas = "sleeves",
 		pos = { x = 0, y = 0 },
 		unlocked = true,
-		unlock_condition = { deck = "Element Catto Deck", stake = "stake_blue" },
+		unlock_condition = { deck = "b_ecattos_elements", stake = "stake_blue" },
 		loc_vars = function(self)
 			local key, vars
 			if self.get_current_deck_key() == "b_ecattos_elements" then
@@ -29,11 +29,7 @@ if CardSleeves then
 		trigger_effect = function(self, args) end,
 		apply = function(self, sleeve)
 			if not (G.GAME.selected_back.effect.center.key == 'b_ecattos_elements') then
-				for k,v in pairs(G.P_CENTERS) do
-					if v.set == "Joker" and not (elementcattos.modsupported[v.key] or (v.original_mod and v.original_mod.id == "ElementCatlatro")) then
-						G.GAME.banned_keys[v.key] = true
-					end
-				end
+				elementcattos.ecattos_deck_banlist()
 				G.GAME.starting_params.ecattos_deck = true
 				CardSleeves.Sleeve.apply(self, sleeve)
 			end
