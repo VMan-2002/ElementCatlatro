@@ -144,6 +144,10 @@ elementcattos = {
 					local subnum = ""
 					local ns = tostring(v[2])
 					result = result .. v[1] .. (method and ("("..ns..")") or topuplib.formatText({{ns, "small"}, {"", "inactive"}}))
+				elseif #v == 3 then
+					local subnum = ""
+					local ns = tostring(v[2])
+					result = result .. v[1] .. "-" .. v[2] .. (method and ("("..ns..")") or topuplib.formatText({{ns, "small"}, {"", "inactive"}}))
 				end
 			else
 				if type(v) == "string" and string.sub(v, 1, 1) == "_" then
@@ -158,16 +162,17 @@ elementcattos = {
 		local inputs = {}
 		local source = source or G.jokers.cards
 		formula = topuplib.tableShallowCopy(formula)
-		local count, element, iscompound
+		local count, element, iscompound, ntr
 		for k,v in pairs(formula) do
 			iscompound = false
+			ntr = nil
 			if type(v) == "table" then
 				if #v == 1 then
 					count = 1
 					element = v[1]
 					iscompound = true
 				else
-					count, element = v[2], v[1]
+					count, element, ntr = v[2], v[1], v[3]
 				end
 			else
 				local firstlet = string.sub(v, 1, 1)
@@ -179,7 +184,7 @@ elementcattos = {
 			end
 			if count ~= 0 then
 				for k,v in ipairs(source) do
-					if count ~= 0 and v.config.center.element_symbol == element and not inputs[k] then
+					if count ~= 0 and v.config.center.element_symbol == element and not inputs[k] and ((not ntr) or ntr == elementcattos.getNeutrons(v)) then
 						inputs[k] = v
 						count = count - 1
 					end

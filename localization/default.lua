@@ -685,6 +685,15 @@ return {
 				},
 				compound = "water"
 			},
+			j_ecattos_compound_heavy_water = elementcattos.loc_txt {
+				name = "Heavy Water",
+				text = {
+					"All played cards count in scoring",
+					"Scored cards not part of played",
+					"poker hand give {_A:mult:+2}"
+				},
+				compound = "heavy_water"
+			},
 			j_ecattos_compound_starch = elementcattos.loc_txt {
 				name = "Starch",
 				compound = "starch"

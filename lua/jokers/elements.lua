@@ -474,7 +474,13 @@ local elements = {
 		end
 	end, rarity = 4, config = {extra = {echips = 1.025}, scoredranks = {}}, loc_vars = {"echips"}}, --Idk actually the base mass of Uue and Ubn (but they're theoretical so how much does it matter?)
 	
-	{120, "Ubn", "Unbinilium", "unknown", 300, rarity = 4}
+	{120, "Ubn", "Unbinilium", "unknown", 300, function(self, card, context)
+		if (context.end_of_round and context.main_eval and context.beat_boss) or context.forcetrigger then
+			local h = G.GAME.hands[context.scoring_name or SMODS.last_hand.scoring_name]
+			h.mult = h.mult * 1.25
+			return {message = localize("k_upgrade_ex")}
+		end
+	end, rarity = 4}
 }
 
 SMODS.Atlas({
