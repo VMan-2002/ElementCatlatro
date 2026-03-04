@@ -397,6 +397,17 @@ return {
 				anum = 63,
 				sym = "Eu"
 			},
+			j_ecattos_element73 = elementcattos.loc_txt {
+				name = "Tantalum",
+				text = {
+					"{C:attention}+#1#{} Tool Packs in the next shop",
+					"{C:green}#2# in #3#{} chance to",
+					"increase amount by {C:attention}#4#{} per",
+					"{C:attention}Steel Card{} held in hand"
+				},
+				anum = 73,
+				sym = "Ta"
+			},
 			j_ecattos_element75 = elementcattos.loc_txt {
 				name = "Rhenium",
 				text = {

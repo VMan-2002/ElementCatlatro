@@ -309,7 +309,35 @@ local elements = {
 	
 	{72, "Hf", "Hafnium", "they_them", 180, nonfunctional = true},
 	
-	{73, "Ta", "Tantalum", "she_her", 181, nonfunctional = true},
+	{73, "Ta", "Tantalum", "she_her", 181, function(self, card, context) 
+		local is_in_shop = G.STATE == G.STATES.SHOP
+		if (context.individual and context.cardarea == G.hand and context.other_card.config.center.key == "m_steel" and SMODS.pseudorandom_probability(card, 'ecattos_element73', 1, card.ability.extra.odds)) or (context.forcetrigger and not is_in_shop) then
+			SMODS.scale_card(card, {ref_value = "packs", scalar_value = "change"})
+		elseif context.starting_shop then
+			if card.ability.extra.packs > 0 then
+				G.E_MANAGER:add_event(Event({
+					trigger = 'after',
+					delay = 0,
+					no_delete = true,
+					timer = 'REAL',
+					func = function()
+						while card.ability.extra.packs > 0 do
+							card.ability.extra.packs = card.ability.extra.packs - 1
+							SMODS.add_booster_to_shop("p_ecattos_element_tools")
+						end
+						return true
+					end
+				}))
+			end
+		elseif context.forcetrigger and is_in_shop then
+			SMODS.add_booster_to_shop("p_ecattos_element_tools")
+		end
+	end, config = {extra = {packs = 0, change = 1, odds = 5}}, loc_vars = function(self, info_queue, card)
+		local aaa, bbb = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ecattos_element73")
+		return {
+			vars = {card.ability.extra.packs, aaa, bbb, card.ability.extra.change}
+		}
+	end},
 	
 	{74, "W", "Tungsten", "he_him", 184, nonfunctional = true},
 	
