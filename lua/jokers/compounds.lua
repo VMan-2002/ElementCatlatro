@@ -21,7 +21,7 @@ local compounds = {
 			if context.modify_scoring_hand and not context.blueprint then
 				return { add_to_hand = true }
 			end
-			if (context.individual and context.poker_hands and not topuplib.getValueIndex(context.poker_hands[context.scoring_name][1], context.other_card)) or context.forcetrigger then
+			if (context.individual and context.cardarea == G.play and context.poker_hands and not topuplib.getValueIndex(context.poker_hands[context.scoring_name][1], context.other_card)) or context.forcetrigger then
 				return {mult = 2}
 			end
 		end
