@@ -165,10 +165,10 @@ local compounds = {
 		config = {extra = {emult = 3}},
 		loc_vars = function(self, info_queue, card)
 			--return { vars = { card.ability.extra.emult }}
-			return { vars = { legitimate.titin }}
+			--return { vars = { legitimate.titin }}
 		end,
 		calculate = function(self, card, context)
-			if not legitimate.titin then return end
+			--if not legitimate.titin then return end
 			--todo: fix conditional
 			if context.joker_main then
 				return {Emult = card.ability.extra.emult}
