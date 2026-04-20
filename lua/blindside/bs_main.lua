@@ -36,16 +36,17 @@ elementcattos.loc_txt_planet = function(d)
 end
 
 if not SMODS.Rarities.bld_trinket then error("UPDATE BLINDSIDE!!!!!!!!!") end
+local oldPlanet = SMODS.current_mod.config.old_planet_sprites
 
 SMODS.Atlas({
 	key = "planets",
-	path = "blindside/planets.png",
+	path = oldPlanet and "blindside/planets_old.png" or "blindside/planets.png",
 	px = 71,
 	py = 95
 })
 SMODS.Atlas({
 	key = "sun",
-	path = "blindside/sun.png",
+	path = oldPlanet and "blindside/planets_old.png" or "blindside/sun.png",
 	px = 71,
 	py = 95
 })

@@ -8,7 +8,7 @@ elementcattos.radioglow_sprites = {
 	pink = "radioglow_pink",
 	
 	extended = "radioglow_extended",
-	sun = "radioglow_sun",
+	sun = SMODS.current_mod.config.old_planet_sprites and "radioglow_sun" or "radioglow_sun_new",
 	compoundcreator = "radioglow_compoundcreator",
 	bromine = "radioglow_bromine"
 }

@@ -264,6 +264,11 @@ mod.config_tab = function()
 				label = "Disable Nonfunctional Cattos",
 				ref_table = config,
 				ref_value = 'disable_nonfunctional_cattos',
+			}),
+			create_toggle({
+				label = "Classic PlanetCattos Sprites (Requires restart)",
+				ref_table = config,
+				ref_value = 'old_planet_sprites',
 			})
         }}
     }}
