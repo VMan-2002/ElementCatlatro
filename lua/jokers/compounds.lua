@@ -206,7 +206,7 @@ local compounds = {
 		end
 	},
 	{
-		id = "pg5",
+		id = "pg5", --will not be the blueygray design btw
 		pronouns = nil,
 		formula = {{"C", -1}}, --TODO: i am having so much trouble finding the answer to this
 		rarity = elementcattos.exotic_rarity(),
