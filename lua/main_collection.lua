@@ -1,7 +1,7 @@
 local function lolTitles()
-	local g_options = {"periodic", "compounds", "other"}
-	for k,v in pairs(g_options) do
-		g_options[k] = localize("ecattos_collection_jokers_"..v)
+	local g_options = BLINDSIDE and {{"periodic", "compounds", "other", "planets"}, {}} or {{"periodic", "compounds", "other"}, {}}
+	for k,v in pairs(g_options[1]) do
+		g_options[2][k] = localize("ecattos_collection_jokers_"..v)
 	end
 	return g_options
 end
@@ -26,17 +26,25 @@ local function coolio(func, rows, args, n)
 	lolxd = nil
 end
 
+local isBlindside = function(v)
+	return BLINDSIDE and topuplib.getValueIndex(SMODS.ObjectTypes.bld_obj_blindside.cards, v.key)
+end
+
 G.FUNCS.your_collection_ecattos_page = function(e)
-	if e.cycle_config.current_option == 1 then
+	local onum = e.cycle_config.current_option
+	local opt = lolTitles()[1][onum]
+	if opt == "periodic" then
 		G.FUNCS.your_collection_jokers()
-	elseif e.cycle_config.current_option == 2 then
+	elseif opt == "compounds" then
 		coolio(function(v)
 			return v.compound_formula
-		end, {6,7,6}, {}, 2)
-	elseif e.cycle_config.current_option == 3 then
+		end, {6,7,6}, {}, onum)
+	elseif opt == "other" then
 		coolio(function(v)
-			return not v.compound_formula and not (v.atomic_number and v.atomic_number >= 1 and v.atomic_number <= 120)
-		end, {5,5,5}, {}, 3)
+			return not v.compound_formula and not (v.atomic_number and v.atomic_number >= 1 and v.atomic_number <= 120) and not isBlindside(v)
+		end, {5,5,5}, {}, onum)
+	elseif opt == "planets" then
+		coolio(isBlindside, {6,7,6}, {}, onum)
 	else
 		print("this is not SWAGGY")
 	end
@@ -46,7 +54,7 @@ uibox_generic_options_ref = create_UIBox_generic_options
 create_UIBox_generic_options = function(t, ...)
 	if lolxd then
 		table.insert(t.contents, {n=G.UIT.R, config={align = "cm", padding = -0.2}, nodes={
-		create_option_cycle({options = lolTitles(), w = 4.5, cycle_shoulders = true, opt_callback = 'your_collection_ecattos_page', current_option = lolxd, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, focus_args = {snap_to = true, nav = 'wide'}})
+		create_option_cycle({options = lolTitles()[2], w = 4.5, cycle_shoulders = true, opt_callback = 'your_collection_ecattos_page', current_option = lolxd, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, focus_args = {snap_to = true, nav = 'wide'}})
 		}})
 	end
 	return uibox_generic_options_ref(t, ...)
@@ -144,7 +152,7 @@ create_UIBox_your_collection_ecattos_periodic = function()
 		contents = {
 		{n=G.UIT.R, config={align = "cm", padding = 0.4, r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=deck_tables},
 		{n=G.UIT.R, config={align = "cm", padding = -0.3}, nodes={
-		create_option_cycle({options = lolTitles(), w = 4.5, cycle_shoulders = true, opt_callback = 'your_collection_ecattos_page', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, focus_args = {snap_to = true, nav = 'wide'}})
+		create_option_cycle({options = lolTitles()[2], w = 4.5, cycle_shoulders = true, opt_callback = 'your_collection_ecattos_page', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, focus_args = {snap_to = true, nav = 'wide'}})
 		}},
 		}
 	})

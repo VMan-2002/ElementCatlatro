@@ -17,12 +17,6 @@ return {
 			
 			ecattos_stabilizer_broke = "Stabilizer Broke!",
 			
-			ecattos_endedworld = {
-				"The element was so dense,",
-				"that the world was destroyed..."
-			},
-			ecattos_endedworld_confirm = "Oh :(",
-			
 			k_booster_group_p_ecattos_element_common = "Elements Pack",
 			k_booster_group_p_ecattos_element_uncommon = "Elements Pack",
 			k_booster_group_p_ecattos_element_rare = "Elements Pack",
@@ -59,7 +53,8 @@ return {
 			
 			ecattos_collection_jokers_periodic = "Purriodic Table",
 			ecattos_collection_jokers_compounds = "Compounds",
-			ecattos_collection_jokers_other = "Others"
+			ecattos_collection_jokers_other = "Others",
+			ecattos_collection_jokers_planets = "Planet Cattos"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well
@@ -850,6 +845,15 @@ return {
 					"{C:attention}The Tablet{} is not",
 					"{C:attention}Temporary{} and gives",
 					"{_A:xmult:#1#} when scored"
+				}
+			},
+			j_ecattos_moon_iss = elementcattos.loc_txt_planet {
+				name = "International Space Station",
+				text = topuplib.asub {
+					"Earn {_A:money:1} at end of round",
+					"per unique {C:attention}Planet/Moon Catto{}",
+					"owned during this run",
+					"{_A:currentmoney:0}"
 				}
 			},
 			j_ecattos_planet_mars = elementcattos.loc_txt_planet {

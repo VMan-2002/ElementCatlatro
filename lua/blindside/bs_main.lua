@@ -40,13 +40,13 @@ local oldPlanet = SMODS.current_mod.config.old_planet_sprites
 
 SMODS.Atlas({
 	key = "planets",
-	path = oldPlanet and "blindside/planets_old.png" or "blindside/planets.png",
+	path = oldPlanet and "blindside/planets-old.png" or "blindside/planets.png",
 	px = 71,
 	py = 95
 })
 SMODS.Atlas({
 	key = "sun",
-	path = oldPlanet and "blindside/planets_old.png" or "blindside/sun.png",
+	path = oldPlanet and "blindside/sun-old.png" or "blindside/sun.png",
 	px = 71,
 	py = 95
 })

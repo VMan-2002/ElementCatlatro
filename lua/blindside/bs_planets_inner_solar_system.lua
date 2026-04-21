@@ -30,7 +30,7 @@ do --Earth's moons
 	elementcattos.Bs_Moon {
 		key = "luna",
 		ecattos_conf = {
-			moon_of = "earth",
+			moon_of = "earth"
 		},
 		config = {extra = {xmult = 1.3}},
 		pos = {x=6, y=0},
@@ -38,6 +38,14 @@ do --Earth's moons
 			info_queue[#info_queue+1] = G.P_CENTERS.m_bld_tablet
 			return {vars = {card.ability.extra.xmult}}
 		end
+	}
+	elementcattos.Bs_Moon {
+		key = "iss",
+		ecattos_conf = {
+			moon_of = "earth",
+			as = "satellite"
+		},
+		pos = {x=0, y=4}
 	}
 end
 elementcattos.Bs_Planet {
