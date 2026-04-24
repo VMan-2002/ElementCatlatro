@@ -61,8 +61,10 @@ elementcattos = {
 		S = 1, F = 2, D = 3, P = 4
 	},
 	--Radioactive
-	isRadioactive = function(card)
-		return elementcattos.radioactive[card.config.center_key]
+	isRadioactive = function(card, notdisplayonly)
+		local radio = elementcattos.radioactive[card.config.center_key]
+		if not radio then return nil end
+		return (notdisplayonly or (not radio.glowonly)) and radio
 	end,
 	fromyears = function(n) return n * 315570000 end,
 	fromminutes = function(n) return n * 60 end,
