@@ -30,7 +30,7 @@ SMODS.DrawStep {
 	},
 	func = function(card, layer)
 		if card.ecattos_radioglow == nil then
-			local rd = elementcattos.isRadioactive(card)
+			local rd = elementcattos.isRadioactive(card, true)
 			if not rd or not rd.glowrate then
 				card.ecattos_radioglow = false
 				return
