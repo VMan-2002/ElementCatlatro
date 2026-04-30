@@ -17,7 +17,7 @@ end
 
 elementcattos.bs_joker = function(anum, tier, t)
 	t.key = "bs_j"..tostring(anum)
-	t.boss_colour = t.boss_colour or (tier == 8 and G.C.DARK_EDITION or G.C.RED)
+	t.boss_colour = t.boss_colour or (tier == 8 and G.C.ETERNAL or G.C.RED)
 	t.order = 300 + (anum * 0.1)
 	t.ecattos_conf = t.ecattos_conf or {}
 	t.ecattos_conf.tier = tier
@@ -89,26 +89,6 @@ function elementcattos.bs_get_blind(s, orig, ...)
 	return k
 end
 
--- Quip
-SMODS.JimboQuip({
-	key = "bs_lose",
-	extra = {
-		center = "j_ecattos_element1"
-	},
-	filter = function(self, type)
-		if G.GAME.modifiers.bs_ecattos_stake then
-			local k_base, i = string.sub(G.GAME.blind.name, 4) .. "_lose", 1
-			while G.localization.misc.quips[k_base .. i] do
-				i = i + 1
-			end
-			if i == 1 then return false end
-			self.extra.text_key = i == 2 and (k_base .. "1") or (k_base .. math.random(i - 1))
-			self.extra.center = G.P_BLINDS[G.GAME.blind.name].ecattos_conf.my_center or "j_ecattos_element0"
-			return true, {override_base_checks = true, weight = 400}
-		end
-	end
-})
-
 --tier placements are not final
 
 
@@ -125,23 +105,23 @@ elementcattos.bs_joker(3, 1, { --lithium
 	boss_colour = HEX("B5B1A5"),
 	pos = {y = 11}
 })
-elementcattos.bs_joker(6, 1, { --carbon
-	boss_colour = G.C.BLACK,
-	pos = {y = 1}
-})
 elementcattos.bs_joker(5, 1, { --boron
-	boss_colour = G.C.BLACK,
+	boss_colour = HEX("5B5853"),
 	pos = {y = 12}
 })
 
 --	TIER 2 (late small)
-elementcattos.bs_joker(7, 2, { --nitrogen
-	boss_colour = HEX("BFFFFF"),
-	pos = {y = 2}
-})
 elementcattos.bs_joker(4, 2, { --beryllium
 	boss_colour = G.C.GREEN,
 	pos = {y = 13}
+})
+elementcattos.bs_joker(6, 2, { --carbon
+	boss_colour = G.C.BLACK,
+	pos = {y = 1}
+})
+elementcattos.bs_joker(7, 2, { --nitrogen
+	boss_colour = HEX("BFFFFF"),
+	pos = {y = 2}
 })
 elementcattos.bs_joker(8, 2, { --oxygen
 	boss_colour = HEX("807FFF"),
@@ -159,7 +139,8 @@ elementcattos.bs_joker(15, 3, { --phosphorus
 	pos = {y = 5}
 })
 elementcattos.bs_joker(16, 3, { --sulfur
-	pos = {y = 4}
+	pos = {y = 4},
+	boss_colour = G.C.MONEY
 })
 elementcattos.bs_joker(26, 3, { --iron
 	boss_colour = HEX("C0C0C0"),
@@ -171,7 +152,8 @@ elementcattos.bs_joker(14, 3, { --silicon
 
 --	TIER 4 (late big)
 elementcattos.bs_joker(43, 4, { --technetium,
-	pos = {y = 9}
+	pos = {y = 9},
+	boss_colour = G.C.PURPLE
 })
 elementcattos.bs_joker(60, 4, { --neodymium
 	
@@ -180,11 +162,12 @@ elementcattos.bs_joker(73, 4, { --tantalum
 	
 })
 elementcattos.bs_joker(81, 4, { --thallium
-	
+	boss_colour = G.C.BLUE
 })
 
 --	TIER 5 (early boss)
 elementcattos.bs_joker(20, 5, { --calcium
+	boss_colour = G.C.WHITE
 	
 })
 elementcattos.bs_joker(47, 5, { --silver
@@ -213,14 +196,17 @@ elementcattos.bs_joker(117, 7, { --tennessine
 	
 })
 elementcattos.bs_joker(118, 7, { --oganesson
-	pos = {y = 8}
+	pos = {y = 8},
+	boss_colour = HEX("004C23")
 })
 
 --	TIER 8 (superboss)
 elementcattos.bs_joker(119, 8, { --ununennium
-	pos = {y = 6}
+	pos = {y = 6},
+	boss_colour = HEX("6D003A")
 })
 elementcattos.bs_joker(120, 8, { --unbinilium
-	pos = {y = 7}
+	pos = {y = 7},
+	boss_colour = HEX("00A9FF")
 })
 

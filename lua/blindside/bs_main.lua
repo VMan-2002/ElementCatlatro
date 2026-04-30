@@ -133,6 +133,7 @@ local rq = {
 	"bs_levels",
 	"bs_patches",
 	"bs_jokers",
+	"bs_quip",
 	"modifiers/bs_edition_crescent"
 }
 
