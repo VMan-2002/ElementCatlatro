@@ -4,6 +4,7 @@ SMODS.JimboQuip({
 	extra = {
 		center = "j_ecattos_element1"
 	},
+	type = "loss",
 	filter = function(self, type)
 		if G.GAME.modifiers.bs_ecattos_stake then
 			local k_base, i = string.sub(G.GAME.blind.name, 4) .. "_lose", 1
