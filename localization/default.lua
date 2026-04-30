@@ -159,6 +159,17 @@ return {
 		v_text = {
 			ch_c_ecattos_challenge_banlist = {"Only Jokers from {C:attention}Element Catlatro{} can appear","(may have exceptions)"},
 			ch_c_ecattos_no_masterwork = {"Masterwork Blueprints are banned"}
+		},
+		quips = {
+			ecattos_bs_lose = {"This text is wrong","please report it!"},
+			ecattos_bs_j1_lose1 = {"Aww, man!"},
+			ecattos_bs_j19_lose1 = {"Eat nanner! :)"},
+			ecattos_bs_j22_lose1 = {"MISSION STATUS:","100% COMPLETE"},
+			ecattos_bs_j26_lose1 = {"Aww, sorry 'bout that!","You did alright!"},
+			ecattos_bs_j33_lose1 = {"Hah!","Get wrecked,","dipshit!"},
+			ecattos_bs_j82_lose1 = {"Well! Damn"},
+			ecattos_bs_j119_lose1 = {"You came all this", "way... hehe!"},
+			ecattos_bs_j120_lose1 = {"Good attempt,","challenger!","May we meet","again..."}
 		}
 	},
 	descriptions = {
@@ -1472,6 +1483,78 @@ return {
 			bl_ecattos_bs_j8 = {
 				name = "Oxygen",
 				text = {"Gains X1.2 Chips if played hand","contains 4 or more Blinds"}
+			},
+			bl_ecattos_bs_j9 = {
+				name = "Fluorine",
+				text = {""}
+			},
+			bl_ecattos_bs_j15 = {
+				name = "Phosphorus",
+				text = {""}
+			},
+			bl_ecattos_bs_j16 = {
+				name = "Sulfur",
+				text = {"Gains X3 Mult if score","lights on fire"}
+			},
+			bl_ecattos_bs_j26 = {
+				name = "Iron",
+				text = {"Gains +3 Mult when a Blind","triggers a held in hand effect"}
+			},
+			bl_ecattos_bs_j14 = {
+				name = "Silicon",
+				text = {""}
+			},
+			bl_ecattos_bs_j43 = {
+				name = "Technetium",
+				text = {""}
+			},
+			bl_ecattos_bs_j73 = {
+				name = "Tantalum",
+				text = {""}
+			},
+			bl_ecattos_bs_j20 = {
+				name = "Calcium",
+				text = {""}
+			},
+			bl_ecattos_bs_j69 = {
+				name = "Thulium",
+				text = {""}
+			},
+			bl_ecattos_bs_j85 = {
+				name = "Astatine",
+				text = {""}
+			},
+			bl_ecattos_bs_j117 = {
+				name = "Tennessine",
+				text = {""}
+			},
+			bl_ecattos_bs_j60 = {
+				name = "Neodymium",
+				text = {"Blinds with Trims draw first,","+4 Mult per scored","Blind with a Trim"}
+			},
+			bl_ecattos_bs_j63 = {
+				name = "Europium",
+				text = {"Hand must contain a Red blind,","+2 Mult per scored Blind"}
+			},
+			bl_ecattos_bs_j81 = {
+				name = "Thallium",
+				text = {"X1.75 Mult if hand contains","4 or less scoring Blinds"}
+			},
+			bl_ecattos_bs_j95 = {
+				name = "Americium",
+				text = {"X2.5 Mult if hand contains","Red and Blue Blinds"}
+			},
+			bl_ecattos_bs_j118 = {
+				name = "Oganesson",
+				text = {"Balance Chips and Mult","if first hand doesn't win"}
+			},
+			bl_ecattos_bs_j119 = {
+				name = "Ununennium",
+				text = {"Shuffle 16 Crude Blinds into deck,","^1.05 Mult per scored non-Crude Blind"}
+			},
+			bl_ecattos_bs_j120 = {
+				name = "Unbinilium",
+				text = {"^1.05 Mult per scored","Blind with any Modifier"}
 			}
 		}
     }
