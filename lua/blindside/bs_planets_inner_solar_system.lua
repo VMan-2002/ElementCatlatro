@@ -2,11 +2,15 @@ elementcattos.Bs_Planet {
 	key = "sun",
 	atlas = "sun",
 	pos = {x=0, y=0},
+	cost = 19,
 	topuplib_anim = {
 		vars = {x = true, soulx = true},
 		frameCount = 6,
 		rate = 8
-	}
+	},
+	config = {extra = {money_per = 1}},
+	loc_vars = {"money_per"},
+	pronouns = elementcattos.Bs_Pronoun("")
 }
 elementcattos.radioactive.j_ecattos_planet_sun = {
 	glowrate = 3,
@@ -39,13 +43,21 @@ do --Earth's moons
 			return {vars = {card.ability.extra.xmult}}
 		end
 	}
+	local iss_money_total = function(self, card)
+		return (G.jokers and G.GAME.ecattos_iss) and (G.GAME.ecattos_iss.unique_count * card.ability.extra.money_per) or 0
+	end
 	elementcattos.Bs_Moon {
 		key = "iss",
 		ecattos_conf = {
 			moon_of = "earth",
 			as = "satellite"
 		},
-		pos = {x=0, y=4}
+		config = {extra = {money_per = 2}},
+		pos = {x=0, y=4},
+		loc_vars = function(self, info_queue, card)
+			return {vars = {card.ability.extra.money_per, iss_money_total(self, card)}}
+		end,
+		calc_dollar_bonus = iss_money_total
 	}
 end
 elementcattos.Bs_Planet {

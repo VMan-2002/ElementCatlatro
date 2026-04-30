@@ -31,7 +31,7 @@ elementcattos.Bs_Add(SMODS.Consumable {
 	key = "bs_mooncreate",
 	set = "bld_obj_ritual",
 	atlas = "bs_consumables",
-	pos = {x=0,y=0},
+	pos = {x=1,y=0},
     config = {
         max_highlighted = 1,
     },
@@ -56,4 +56,16 @@ elementcattos.Bs_Add(SMODS.Consumable {
             }
         }
     end
+})
+
+elementcattos.Bs_Add(SMODS.Consumable {
+	key = "bs_sudoscience",
+	set = "bld_obj_ritual",
+	atlas = "bs_consumables",
+	pos = {x=2,y=0},
+    can_use = function(self, card)
+		
+    end,
+	use = function(self, card, area)
+	end
 })

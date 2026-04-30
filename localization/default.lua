@@ -799,7 +799,7 @@ return {
 				compound = "pkzilla1"
 			},
 			j_ecattos_compound_pg5 = elementcattos.loc_txt {
-				name = "PG5",
+				name = "PG5", --not blueygray's
 				text = { --i'm unsure about this (+ it seems hard to implement)
 					"{C:attention}X2{} Joker slots and {C:attention}X3{} hand size",
 					"{_A:xmult:2} per card held in hand"
@@ -810,7 +810,7 @@ return {
 			j_ecattos_planet_sun = elementcattos.loc_txt_planet {
 				name = "The Sun",
 				text = { --TODO: still not sure about this effect
-					"Price Tags are $1 cheaper",
+					"Price Tags are $#1# cheaper",
 					"per owned Planet or Moon Catto"
 				}
 			},
@@ -842,18 +842,23 @@ return {
 			j_ecattos_moon_luna = elementcattos.loc_txt_planet {
 				name = "Luna",
 				text = {
-					"{C:attention}The Tablet{} is not",
-					"{C:attention}Temporary{} and gives",
-					"{_A:xmult:#1#} when scored"
+					{
+						"{C:attention}The Tablet{} is not",
+						"{C:attention}Temporary{} and gives",
+						"{_A:xmult:#1#} when scored"
+					}, {
+						"If an {C:attention}Earth{} satellite is owned,",
+						"owned, add a {C:attention}The Tablet{} to",
+						"deck when {C:attention}Joker{} is selected"
+					}
 				}
 			},
 			j_ecattos_moon_iss = elementcattos.loc_txt_planet {
 				name = "International Space Station",
 				text = topuplib.asub {
-					"Earn {_A:money:1} at end of round",
-					"per unique {C:attention}Planet/Moon Catto{}",
-					"owned during this run",
-					"{_A:currentmoney:0}"
+					"Earn {_A:money:#1#} at end of round per unique",
+					"{C:attention}Planet/Moon Catto{} owned during this run",
+					"{_A:currentmoney:#2#}"
 				}
 			},
 			j_ecattos_planet_mars = elementcattos.loc_txt_planet {
@@ -1298,7 +1303,7 @@ return {
             },
         },
 		Tag = {
-            tag_ecatto_topup_tag = {
+            tag_ecattos_topup_tag = {
                 name = "Catto Top-up Tag",
                 text = {
                     "Create up to {C:attention}#1#", -- 2, 3, or 4?
@@ -1306,28 +1311,28 @@ return {
                     "{C:inactive}(Must have room)",
                 }, 
             },
-            tag_ecatto_uncommon_tag = {
+            tag_ecattos_uncommon_tag = {
                 name = "Uncommon Cattos Tag",
                 text = {
                     "Gives a free",
                     "{C:green}Uncommon Elements Pack",
                 }, 
             },
-            tag_ecatto_rare_tag = {
+            tag_ecattos_rare_tag = {
                 name = "Rare Catto Tag",
                 text = {
                     "Gives a free",
                     "{C:red}Rare Elements Pack",
                 }, 
             },
-            tag_ecatto_tool_tag = {
+            tag_ecattos_tool_tag = {
                 name = "Toolbox Tag",
                 text = {
                     "Gives a free",
                     "{C:attention}Toolbox Pack",
                 }, 
             },
-            tag_ecatto_basic_tag = {
+            tag_ecattos_basic_tag = {
                 name = "Stable Catto Tag",
                 text = {
                     "Shop has a free",
@@ -1337,7 +1342,7 @@ return {
                     "{C:inactive}(Protons set between 1 and 83)"
                 }, 
             },
-            tag_ecatto_stage_one_tag = {
+            tag_ecattos_stage_one_tag = {
                 name = "Radioactive Catto Tag",
                 text = {
                     "Shop has a free",
@@ -1346,7 +1351,7 @@ return {
                     "{C:inactive}(Protons set between 83 and 118)"
                 }, 
             },
-            tag_ecatto_stage_two_tag = { --prob redundat
+            tag_ecattos_stage_two_tag = { --prob redundat
                 name = "Synthesized Catto Tag",
                 text = {
                     "Shop has a free",
@@ -1355,7 +1360,7 @@ return {
                     "{C:inactive}(Protons set between 94 and 180)"
                 }, 
             },
-            tag_ecatto_safari_tag = {
+            tag_ecattos_safari_tag = {
                 name = "safari? Tag",
                 text = {
                     "Shop has a free",
@@ -1363,7 +1368,7 @@ return {
                     "{C:inactive}(Protons set between 121 and 140)"
                 }, 
             },
-            tag_ecatto_void_tag = { --bad idea?
+            tag_ecattos_void_tag = { --bad idea?
                 name = "Black Hole Tag",
                 text = topuplib.asub {
 					"Destroys {C:attention}5",
@@ -1372,14 +1377,14 @@ return {
                 }, 
             },
 			--for blindside
-            tag_ecatto_planet_tag = {
+            tag_ecattos_planet_tag = {
                 name = "Planetary Tag",
                 text = {
                     "Creates an {C:attention}Planet Catto",
                     "{C:inactive}(Must have room)",
                 }, 
             },
-            tag_ecatto_moon_tag = {
+            tag_ecattos_moon_tag = {
                 name = "Lunar Tag",
                 text = {
                     "Creates a {C:attention}Moon",
@@ -1387,7 +1392,7 @@ return {
                     "{C:inactive}(Must have a Planet Catto",
 					"with remaining Moons)"
                 }, 
-            },
+            }
         },
 		bld_obj_ritual = {
 			c_ecattos_bs_lightbulb = {
@@ -1412,6 +1417,14 @@ return {
 						"{C:inactive}(Does not require room)"
 					}
 				}
+			},
+			c_ecattos_bs_sudoscience = {
+				name = "sudo Science", --Intentional name, this is a pun based on "sudo" command in unix
+				text = {
+					"Add a Hypothetical or",
+					"Hoax Planet Catto",
+					"to the Shop"
+				}
 			}
 		},
 		Stake = {
@@ -1431,6 +1444,34 @@ return {
 			bl_ecattos_bs_j1 = {
 				name = "Hydrogen",
 				text = {"Gains +1 Mult","after every hand"}
+			},
+			bl_ecattos_bs_j2 = {
+				name = "Helium",
+				text = {"Gains X1.1 Chips if played hand","contains more than 3 hues"}
+			},
+			bl_ecattos_bs_j3 = {
+				name = "Lithium",
+				text = {"Gains +3 Mult if hand scores","above 50% of requirement"}
+			},
+			bl_ecattos_bs_j4 = {
+				name = "Beryllium",
+				text = {"Gains X1.5 Mult if score","requirement reached with","at least 5 hands left"}
+			},
+			bl_ecattos_bs_j5 = {
+				name = "Boron",
+				text = {"Hand must contain a","Faded blind or at","least 3 hues"}
+			},
+			bl_ecattos_bs_j6 = {
+				name = "Carbon",
+				text = {"Gains X1.1 Chips per","scored non-Starter Blind"}
+			},
+			bl_ecattos_bs_j7 = {
+				name = "Nitrogen",
+				text = {"Gains +2 Mult per","scored Blind with Trim"}
+			},
+			bl_ecattos_bs_j8 = {
+				name = "Oxygen",
+				text = {"Gains X1.2 Chips if played hand","contains 4 or more Blinds"}
 			}
 		}
     }

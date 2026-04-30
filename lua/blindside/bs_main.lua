@@ -36,7 +36,7 @@ elementcattos.loc_txt_planet = function(d)
 end
 
 if not SMODS.Rarities.bld_trinket then error("UPDATE BLINDSIDE!!!!!!!!!") end
-local oldPlanet = SMODS.current_mod.config.old_planet_sprites
+local oldPlanet = config.old_planet_sprites
 
 SMODS.Atlas({
 	key = "planets",
@@ -92,6 +92,7 @@ elementcattos.Bs_Planet = function(d)
 		d.loc_vars = elementcattos.simpleLocVars(d.loc_vars)
 	end
 	d.ecattos_conf = d.ecattos_conf or {}
+	d.ecattos_conf.t_planet = true
 	return elementcattos.Bs_Add(SMODS.Joker(d))
 end
 elementcattos.Bs_Moon = function(d)
@@ -114,6 +115,12 @@ elementcattos.Bs_Add = function(obj)
 	table.insert(SMODS.ObjectTypes.bld_obj_blindside.cards, obj.key)
 	return obj
 end
+elementcattos.Bs_Pronoun = function(primary, classical)
+	if config.planet_pronoun == 0 then
+		return
+	end
+	return (config.planet_pronoun == 1 and primary or classical) or primary
+end
 
 local rq = {
 	--Planets
@@ -124,6 +131,8 @@ local rq = {
 	--Others
 	"bs_consumables",
 	"bs_levels",
+	"bs_patches",
+	"bs_jokers",
 	"modifiers/bs_edition_crescent"
 }
 
