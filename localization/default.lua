@@ -1475,6 +1475,10 @@ return {
 				name = "Boron",
 				text = {"Hand must contain a","Faded blind or at","least 3 hues"}
 			},
+			bl_ecattos_bs_j5_lv2 = {
+				name = "Boron",
+				text = {"Scored hand must contain","a Faded blind or at","least 3 hues"}
+			},
 			bl_ecattos_bs_j6 = {
 				name = "Carbon",
 				text = {"Gains X1.1 Chips per","scored non-Starter Blind"}

@@ -118,7 +118,23 @@ elementcattos.bs_joker(3, 1, { --lithium
 })
 elementcattos.bs_joker(5, 1, { --boron
 	boss_colour = HEX("5B5853"),
-	pos = {y = 12}
+	pos = {y = 12},
+	mult = 6.5,
+	debuff_hand = function(self, cards)
+		local hues = {count = 0}
+		for k,v in pairs(cards) do
+			for _,col in ipairs(elementcattos.bs_hues) do
+				if hues[col] == nil and v:is_color(col) then
+					hues[col] = true
+					hues.count = hues.count + 1
+					if col == "Faded" or hues.count >= 3 then
+						return false
+					end
+				end
+			end
+		end
+		return true
+	end
 })
 
 --	TIER 2 (late small)
@@ -139,11 +155,13 @@ elementcattos.bs_joker(8, 2, { --oxygen
 	boss_colour = HEX("807FFF"),
 	pos = {y = 3}
 })
-elementcattos.bs_joker(9, 2, { --flourine
-	pos = {y = 16}
+elementcattos.bs_joker(9, 2, { --fluorine
+	pos = {y = 16},
+	boss_colour = HEX("CEBB80")
 })
 elementcattos.bs_joker(12, 2, { --magnesium
-	pos = {y = 17}
+	pos = {y = 17},
+	boss_colour = G.C.GREEN
 })
 
 --	TIER 3 (early big)
@@ -177,7 +195,9 @@ elementcattos.bs_joker(43, 4, { --technetium,
 	boss_colour = G.C.PURPLE
 })
 elementcattos.bs_joker(60, 4, { --neodymium
-	ecattos_conf = {min_ante = 2}
+	ecattos_conf = {min_ante = 2},
+	pos = {y = 22},
+	boss_colour = HEX("A5B4C2")
 })
 elementcattos.bs_joker(81, 4, { --thallium
 	boss_colour = G.C.BLUE,
@@ -186,27 +206,31 @@ elementcattos.bs_joker(81, 4, { --thallium
 
 --	TIER 5 (early boss)
 elementcattos.bs_joker(20, 5, { --calcium
-	boss_colour = G.C.WHITE
-	
+	boss_colour = G.C.WHITE,
+	pos = {y = 23}
 })
 elementcattos.bs_joker(47, 5, { --silver
-	
+	pos = {y = 24},
+	boss_colour = HEX("BABEBB") --insane hex code
 })
 elementcattos.bs_joker(76, 5, { --osmium
-	
+	pos = {y = 25},
+	boss_colour = HEX("417991")
 })
 elementcattos.bs_joker(69, 5, { --thulium
 	
 })
 
 --	TIER 6 (late boss)
-elementcattos.bs_joker(73, 4, { --tantalum
-	boss_colour = HEX("5B5853"),
-	mult = 20,
-	ecattos_conf = {min_ante = 3}
+elementcattos.bs_joker(73, 6, { --tantalum
+	boss_colour = HEX("C87D22"),
+	mult = 8,
+	ecattos_conf = {min_ante = 3},
+	pos = {y = 26}
 })
 elementcattos.bs_joker(85, 6, { --astatine
-	
+	pos = {y = 27},
+	boss_colour = HEX("1F203F")
 })
 elementcattos.bs_joker(95, 6, { --americium
 	

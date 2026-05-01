@@ -1,3 +1,5 @@
+elementcattos.bs_hues = {"Red","Green","Yellow","Blue","Purple","Faded"}
+
 --Returns all blind centers
 function elementcattos.bs_blind_centers()
 	return elementcattos.bs_blind_filter(SMODS.Centers, function(bl)
