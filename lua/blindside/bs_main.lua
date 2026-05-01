@@ -123,6 +123,8 @@ elementcattos.Bs_Pronoun = function(primary, classical)
 end
 
 local rq = {
+	"bs_util",
+	
 	--Planets
 	"bs_planets_inner_solar_system",
 	"bs_planets_outer_solar_system",

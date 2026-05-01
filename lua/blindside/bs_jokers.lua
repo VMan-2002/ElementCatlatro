@@ -1,6 +1,6 @@
 elementcattos.bs_joker_current_tier = function(s)
 	--s: 1 (small), 2 (big), 3 (boss), 4 (showdown)
-	local f, t, lv, h = G.GAME.round_resets.ante / G.GAME.win_ante
+	local f, t, lv, h = (G.GAME.round_resets.ante / G.GAME.win_ante) % 1
 	if s == 1 then
 		t, lv = 0.6, 1
 	elseif s == 2 then
@@ -27,7 +27,8 @@ elementcattos.bs_joker = function(anum, tier, t)
 	t.pool_override = t.pool_override or function(self)
 		local tierCheck = elementcattos.bs_joker_current_tier(bit.rshift(self.ecattos_conf.tier + 1, 1))
 		if (not G.GAME.modifiers.bs_ecattos_stake) then
-			return self.ecattos_conf.tier == 8 or pseudorandom("ecattos_bs_joker_spawn") > 0.4 --don't completely drown blindside's jokers
+			if self.ecattos_conf.tier == 8 and G.GAME.round_resets.ante <= G.GAME.win_ante then return false end
+			return self.ecattos_conf.tier >= 7 or pseudorandom("ecattos_bs_joker_spawn") > 0.6 - (self.ecattos_conf.tier * 0.08) --don't completely drown blindside's jokers
 		end
 		return true
 	end
@@ -48,7 +49,6 @@ elementcattos.bs_joker = function(anum, tier, t)
 	if not G.localization.descriptions.Blind["bl_ecattos_"..t.key] then
 		t.loc_txt = {name = SMODS.Jokers["j_ecattos_element"..anum].loc_txt.name, text = {"no loc!"}}
 	end
-	
 	
 	return elementcattos.Bs_Add(BLINDSIDE.Joker(t))
 end
@@ -99,7 +99,9 @@ elementcattos.bs_joker(1, 1, { --hydrogen
 })
 elementcattos.bs_joker(2, 1, { --helium
 	boss_colour = G.C.ORANGE,
-	pos = {y = 10}
+	pos = {y = 10},
+	calculate = function(self, blind, context)
+	end
 })
 elementcattos.bs_joker(3, 1, { --lithium
 	boss_colour = HEX("B5B1A5"),
@@ -128,10 +130,10 @@ elementcattos.bs_joker(8, 2, { --oxygen
 	pos = {y = 3}
 })
 elementcattos.bs_joker(9, 2, { --flourine
-	
+	pos = {y = 16}
 })
 elementcattos.bs_joker(12, 2, { --magnesium
-	
+	pos = {y = 17}
 })
 
 --	TIER 3 (early big)
@@ -147,7 +149,8 @@ elementcattos.bs_joker(26, 3, { --iron
 	pos = {y = 14}
 })
 elementcattos.bs_joker(14, 3, { --silicon
-	
+	pos = {y = 18},
+	boss_colour = HEX("8896B9")
 })
 
 --	TIER 4 (late big)
@@ -155,14 +158,17 @@ elementcattos.bs_joker(43, 4, { --technetium,
 	pos = {y = 9},
 	boss_colour = G.C.PURPLE
 })
+elementcattos.bs_joker(22, 4, { --titanium
+	boss_colour = HEX("B5ACA3"),
+	pos = {y = 15},
+	mult = 20
+})
 elementcattos.bs_joker(60, 4, { --neodymium
 	
 })
-elementcattos.bs_joker(73, 4, { --tantalum
-	
-})
 elementcattos.bs_joker(81, 4, { --thallium
-	boss_colour = G.C.BLUE
+	boss_colour = G.C.BLUE,
+	pos = {y = 21}
 })
 
 --	TIER 5 (early boss)
@@ -181,6 +187,10 @@ elementcattos.bs_joker(69, 5, { --thulium
 })
 
 --	TIER 6 (late boss)
+elementcattos.bs_joker(73, 4, { --tantalum
+	boss_colour = HEX("5B5853"),
+	mult = 20
+})
 elementcattos.bs_joker(85, 6, { --astatine
 	
 })
@@ -188,25 +198,64 @@ elementcattos.bs_joker(95, 6, { --americium
 	
 })
 elementcattos.bs_joker(63, 6, { --europium
-	
+	pos = {y = 20}
 })
 
 --	TIER 7 (showdown)
 elementcattos.bs_joker(117, 7, { --tennessine
-	
+	pos = {y = 19},
+	boss_colour = HEX("826162")
 })
 elementcattos.bs_joker(118, 7, { --oganesson
 	pos = {y = 8},
-	boss_colour = HEX("004C23")
+	boss_colour = HEX("004C23"),
+	calculate = function(self, blind, context)
+		if context.setting_blind and not context.disabled then
+			blind.active = true
+		end
+		if context.after and not G.GAME.blind.disabled and G.GAME.blind.active and SMODS.calculate_round_score() - G.GAME.blind.chips <= 0 then
+			G.GAME.blind.active = false
+			return elementcattos.bs_chipsmodify{balance = true}
+		end
+	end
 })
 
 --	TIER 8 (superboss)
 elementcattos.bs_joker(119, 8, { --ununennium
 	pos = {y = 6},
-	boss_colour = HEX("6D003A")
+	boss_colour = HEX("6D003A"),
+	joker_set = function(self)
+		local fuckyou = topuplib.filterContinuous(SMODS.Centers, function(v)
+			return getmetatable(v) == BLINDSIDE.Blind and v.curse
+		end)
+		local fuckyou_stock = topuplib.tableShallowCopy(fuckyou) -- should never be needed but just in case
+		for i = 1, 16 do
+			local n = math.random(#fuckyou)
+			SMODS.add_card{set = "Enhanced", key = fuckyou[n].key, area = G.deck}
+			if i > 10 then table.remove(fuckyou, n) end
+			if #fuckyou == 0 then fuckyou = topuplib.tableShallowCopy(fuckyou_stock) end
+		end
+	end,
+	calculate = function(self, blind, context)
+		--if context.scoring_hand then print("scoring hand") topuplib.inspect(context.scoring_hand) end
+		--elementcattos.bs_alert_debuff(self, context, function(h) return next(elementcattos.bs_blind_filter_rarity(h, "curse", true)) end, "Hand contains a non-Crude blind")
+		if context.individual and context.other_card.area == G.play and not context.other_card.config.center.curse then
+			blind.playingfire_adds = blind.playingfire_adds + 1
+			return elementcattos.bs_chipsmodify{emult = 1.025}
+		end
+	end
 })
 elementcattos.bs_joker(120, 8, { --unbinilium
 	pos = {y = 7},
-	boss_colour = HEX("00A9FF")
+	boss_colour = HEX("00A9FF"),
+	calculate = function(self, blind, context)
+		if context.individual then
+			local card = context.other_card
+			if card.area == G.play and (card.edition or card.ability.bld_upgrade or card.seal) then
+				blind.playingfire_adds = blind.playingfire_adds + 1
+				return elementcattos.bs_chipsmodify{emult = 1.05}
+			end
+		end
+	end
 })
 

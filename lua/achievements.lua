@@ -1,5 +1,5 @@
 SMODS.Achievement {
-	key = "compoundcreator",
+	key = "windeck_ecattos",
 	unlock_condition = function(self, args)
 		return args.win_custom and G.GAME.starting_params.ecattos_deck
 	end,

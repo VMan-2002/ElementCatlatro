@@ -1490,42 +1490,30 @@ return {
 			},
 			bl_ecattos_bs_j15 = {
 				name = "Phosphorus",
+				text = {"Gains +3 Mult per Red Blind","played or held in hand"}
+			},
+			bl_ecattos_bs_j14 = {
+				name = "Silicon",
 				text = {""}
 			},
 			bl_ecattos_bs_j16 = {
 				name = "Sulfur",
 				text = {"Gains X3 Mult if score","lights on fire"}
 			},
+			bl_ecattos_bs_j20 = {
+				name = "Calcium",
+				text = {"Gains +3 Mult if score","is over 25% of requirement"}
+			},
+			bl_ecattos_bs_j22 = {
+				name = "Titanium",
+				text = {"Extra large Joker"}
+			},
 			bl_ecattos_bs_j26 = {
 				name = "Iron",
 				text = {"Gains +3 Mult when a Blind","triggers a held in hand effect"}
 			},
-			bl_ecattos_bs_j14 = {
-				name = "Silicon",
-				text = {""}
-			},
 			bl_ecattos_bs_j43 = {
 				name = "Technetium",
-				text = {""}
-			},
-			bl_ecattos_bs_j73 = {
-				name = "Tantalum",
-				text = {""}
-			},
-			bl_ecattos_bs_j20 = {
-				name = "Calcium",
-				text = {""}
-			},
-			bl_ecattos_bs_j69 = {
-				name = "Thulium",
-				text = {""}
-			},
-			bl_ecattos_bs_j85 = {
-				name = "Astatine",
-				text = {""}
-			},
-			bl_ecattos_bs_j117 = {
-				name = "Tennessine",
 				text = {""}
 			},
 			bl_ecattos_bs_j60 = {
@@ -1536,9 +1524,21 @@ return {
 				name = "Europium",
 				text = {"Hand must contain a Red blind,","+2 Mult per scored Blind"}
 			},
+			bl_ecattos_bs_j69 = {
+				name = "Thulium",
+				text = {""}
+			},
+			bl_ecattos_bs_j73 = {
+				name = "Tantalum",
+				text = {"Gains +1 Mult per consumable","used during this run"}
+			},
 			bl_ecattos_bs_j81 = {
 				name = "Thallium",
 				text = {"X1.75 Mult if hand contains","4 or less scoring Blinds"}
+			},
+			bl_ecattos_bs_j85 = {
+				name = "Astatine",
+				text = {""}
 			},
 			bl_ecattos_bs_j95 = {
 				name = "Americium",
@@ -1548,9 +1548,13 @@ return {
 				name = "Oganesson",
 				text = {"Balance Chips and Mult","if first hand doesn't win"}
 			},
+			bl_ecattos_bs_j117 = {
+				name = "Tennessine",
+				text = {""}
+			},
 			bl_ecattos_bs_j119 = {
 				name = "Ununennium",
-				text = {"Shuffle 16 Crude Blinds into deck,","^1.05 Mult per scored non-Crude Blind"}
+				text = {"Shuffle 16 Crude Blinds into deck,","^1.025 Mult per scored non-Crude Blind"}
 			},
 			bl_ecattos_bs_j120 = {
 				name = "Unbinilium",
