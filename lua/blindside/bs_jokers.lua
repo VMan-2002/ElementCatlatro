@@ -140,10 +140,6 @@ elementcattos.bs_joker(12, 2, { --magnesium
 elementcattos.bs_joker(15, 3, { --phosphorus
 	pos = {y = 5}
 })
-elementcattos.bs_joker(16, 3, { --sulfur
-	pos = {y = 4},
-	boss_colour = G.C.MONEY
-})
 elementcattos.bs_joker(26, 3, { --iron
 	boss_colour = HEX("C0C0C0"),
 	pos = {y = 14}
@@ -154,14 +150,18 @@ elementcattos.bs_joker(14, 3, { --silicon
 })
 
 --	TIER 4 (late big)
-elementcattos.bs_joker(43, 4, { --technetium,
-	pos = {y = 9},
-	boss_colour = G.C.PURPLE
+elementcattos.bs_joker(16, 4, { --sulfur
+	pos = {y = 4},
+	boss_colour = G.C.MONEY
 })
 elementcattos.bs_joker(22, 4, { --titanium
 	boss_colour = HEX("B5ACA3"),
 	pos = {y = 15},
 	mult = 20
+})
+elementcattos.bs_joker(43, 4, { --technetium,
+	pos = {y = 9},
+	boss_colour = G.C.PURPLE
 })
 elementcattos.bs_joker(60, 4, { --neodymium
 	
