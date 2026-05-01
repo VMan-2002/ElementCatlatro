@@ -27,7 +27,9 @@ elementcattos.bs_joker = function(anum, tier, t)
 	t.pool_override = t.pool_override or function(self)
 		local tierCheck = elementcattos.bs_joker_current_tier(bit.rshift(self.ecattos_conf.tier + 1, 1))
 		if (not G.GAME.modifiers.bs_ecattos_stake) then
-			if self.ecattos_conf.tier == 8 and G.GAME.round_resets.ante <= G.GAME.win_ante then return false end
+			local conf = self.ecattos_conf
+			if conf.tier == 8 and G.GAME.round_resets.ante <= G.GAME.win_ante then return false end
+			if conf.min_stakelv and conf.min_stakelv - (G.GAME.round_resets.ante * 0.2) > 1 then return end
 			return self.ecattos_conf.tier >= 7 or pseudorandom("ecattos_bs_joker_spawn") > 0.6 - (self.ecattos_conf.tier * 0.08) --don't completely drown blindside's jokers
 		end
 		return true
@@ -42,7 +44,9 @@ elementcattos.bs_joker = function(anum, tier, t)
 		{mult = 7, base_dollars = 5}, --5: boss (initial)
 		{mult = 10, base_dollars = 6}, --6: boss (from ante (win*0.4))
 		{mult = 16, base_dollars = 7}, --7: showdown
-		{mult = 30, base_dollars = 9} --8: superboss (showdown after win ante)
+		{mult = 30, base_dollars = 9}, --8: superboss (showdown after win ante)
+		{mult = 38, base_dollars = 14}, --9: extra 1
+		{mult = 48, base_dollars = 18} --10: extra 2
 	})[tier]) do
 		t[k] = t[k] or v
 	end
@@ -83,8 +87,13 @@ function elementcattos.bs_get_blind(s, orig, ...)
 	
 	local i = math.floor(#G.GAME.ecattos_bs_jokers_available[tier] * pseudorandom("ecattos_bs_joker_spawn")) + 1
 	local k = G.GAME.ecattos_bs_jokers_available[tier][i]
-	if tier >= 4 or pseudorandom("ecattos_bs_joker_spawnkeep") > 0.4 then
+	local bl_conf = SMODS.Blinds[k].ecattos_conf
+	local tooearly = (bl_conf.min_ante and bl_conf.min_ante > G.GAME.round_resets.ante) or (bl_conf.min_stakelv and bl_conf.min_stakelv > G.GAME.modifiers.bs_ecattos_stake)
+	if tooearly or tier >= 4 or pseudorandom("ecattos_bs_joker_spawnkeep") > 0.4 then
 		table.remove(G.GAME.ecattos_bs_jokers_available[tier], i)
+		if tooearly then
+			return elementcattos.bs_get_blind(s, nil, ...)
+		end
 	end
 	return k
 end
@@ -119,7 +128,8 @@ elementcattos.bs_joker(4, 2, { --beryllium
 })
 elementcattos.bs_joker(6, 2, { --carbon
 	boss_colour = G.C.BLACK,
-	pos = {y = 1}
+	pos = {y = 1},
+	ecattos_conf = {min_ante = 2}
 })
 elementcattos.bs_joker(7, 2, { --nitrogen
 	boss_colour = HEX("BFFFFF"),
@@ -142,7 +152,8 @@ elementcattos.bs_joker(15, 3, { --phosphorus
 })
 elementcattos.bs_joker(26, 3, { --iron
 	boss_colour = HEX("C0C0C0"),
-	pos = {y = 14}
+	pos = {y = 14},
+	ecattos_conf = {min_ante = 2}
 })
 elementcattos.bs_joker(14, 3, { --silicon
 	pos = {y = 18},
@@ -152,7 +163,9 @@ elementcattos.bs_joker(14, 3, { --silicon
 --	TIER 4 (late big)
 elementcattos.bs_joker(16, 4, { --sulfur
 	pos = {y = 4},
-	boss_colour = G.C.MONEY
+	boss_colour = G.C.MONEY,
+	mult = 6.5,
+	ecattos_conf = {min_ante = 2}
 })
 elementcattos.bs_joker(22, 4, { --titanium
 	boss_colour = HEX("B5ACA3"),
@@ -164,7 +177,7 @@ elementcattos.bs_joker(43, 4, { --technetium,
 	boss_colour = G.C.PURPLE
 })
 elementcattos.bs_joker(60, 4, { --neodymium
-	
+	ecattos_conf = {min_ante = 2}
 })
 elementcattos.bs_joker(81, 4, { --thallium
 	boss_colour = G.C.BLUE,
@@ -189,7 +202,8 @@ elementcattos.bs_joker(69, 5, { --thulium
 --	TIER 6 (late boss)
 elementcattos.bs_joker(73, 4, { --tantalum
 	boss_colour = HEX("5B5853"),
-	mult = 20
+	mult = 20,
+	ecattos_conf = {min_ante = 3}
 })
 elementcattos.bs_joker(85, 6, { --astatine
 	
@@ -209,6 +223,7 @@ elementcattos.bs_joker(117, 7, { --tennessine
 elementcattos.bs_joker(118, 7, { --oganesson
 	pos = {y = 8},
 	boss_colour = HEX("004C23"),
+	ecattos_conf = {min_ante = 2},
 	calculate = function(self, blind, context)
 		if context.setting_blind and not context.disabled then
 			blind.active = true
@@ -248,6 +263,7 @@ elementcattos.bs_joker(119, 8, { --ununennium
 elementcattos.bs_joker(120, 8, { --unbinilium
 	pos = {y = 7},
 	boss_colour = HEX("00A9FF"),
+	ecattos_conf = {min_ante = 3},
 	calculate = function(self, blind, context)
 		if context.individual then
 			local card = context.other_card

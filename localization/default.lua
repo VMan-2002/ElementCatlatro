@@ -163,10 +163,13 @@ return {
 		quips = {
 			ecattos_bs_lose = {"This text is wrong","please report it!"},
 			ecattos_bs_j1_lose1 = {"Aww, man!"},
+			ecattos_bs_j2_lose1 = {"...whuh?"},
 			ecattos_bs_j19_lose1 = {"Eat nanner! :)"},
 			ecattos_bs_j22_lose1 = {"MISSION STATUS:","100% COMPLETE"},
 			ecattos_bs_j26_lose1 = {"Aww, sorry 'bout that!","You did alright!"},
 			ecattos_bs_j33_lose1 = {"Hah!","Get wrecked,","dipshit!"},
+			ecattos_bs_j73_lose1 = {"You should oughtta","brought more gun","(PLACEHOLDER)"},
+			ecattos_bs_j73_after22_lose1 = {"I told you don't","touch that darn thing","(PLACEHOLDER)"},
 			ecattos_bs_j82_lose1 = {"Well! Damn"},
 			ecattos_bs_j119_lose1 = {"You came all this", "way... hehe!"},
 			ecattos_bs_j120_lose1 = {"Good attempt,","challenger!","May we meet","again..."}
@@ -1530,7 +1533,7 @@ return {
 			},
 			bl_ecattos_bs_j73 = {
 				name = "Tantalum",
-				text = {"Gains +1 Mult per consumable","used during this run"}
+				text = {"+2 Mult per consumable","used during this run"}
 			},
 			bl_ecattos_bs_j81 = {
 				name = "Thallium",

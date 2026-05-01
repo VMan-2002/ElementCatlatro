@@ -71,7 +71,7 @@ SMODS.JimboQuip({
 			self.extra.center = G.P_BLINDS[G.GAME.blind.name].ecattos_conf.my_center or "j_ecattos_element0"
 			if mergevals then
 				for k,v in pairs(mergevals) do
-					
+					SMODS.JimboQuips.ecattos_bs_lose.extra[k] = v
 				end
 			end
 			elementcattos.bs_quip_voices.speakname = self.extra.center
