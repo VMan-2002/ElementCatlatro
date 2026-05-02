@@ -1567,6 +1567,16 @@ return {
 				name = "Unbinilium",
 				text = {"^1.05 Mult per scored","Blind with any Modifier"}
 			}
+		},
+		unik_lartceps = {
+			c_ecattos_lartceps_burner = {
+				name = "Bunsen Burner",
+				text = {
+					"{C:red}Banish{} and {C:attention}destroy{} all",
+					"{C:attention}Element Cattos{} with",
+					"atomic number above {C:attention}4"
+				}
+			}
 		}
     }
 }

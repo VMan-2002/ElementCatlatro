@@ -300,7 +300,8 @@ local rq = {
 	"isotopes",
 	"achievements",
 	"main_collection",
-	BLINDSIDE and "blindside/bs_main" or nil
+	BLINDSIDE and "blindside/bs_main" or nil,
+	next(SMODS.find_mod("unik")) and "mods/lartceps" or nil
 }
 
 --Pronouns
@@ -551,7 +552,7 @@ SMODS.Atlas({
 	py = 95
 })
 
-for i, v in ipairs(rq) do
+for i, v in pairs(rq) do
 	if v then
 		local a = assert(SMODS.load_file("lua/"..v..".lua"))()
 		if type(a) == "function" then
