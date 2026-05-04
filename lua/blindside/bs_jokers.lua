@@ -51,7 +51,7 @@ elementcattos.bs_joker = function(anum, tier, t)
 		t[k] = t[k] or v
 	end
 	if not G.localization.descriptions.Blind["bl_ecattos_"..t.key] then
-		t.loc_txt = {name = SMODS.Jokers["j_ecattos_element"..anum].loc_txt.name, text = {"no loc!"}}
+		t.loc_txt = {name = SMODS.Centers["j_ecattos_element"..anum].loc_txt.name, text = {"no loc!"}}
 	end
 	
 	return elementcattos.Bs_Add(BLINDSIDE.Joker(t))

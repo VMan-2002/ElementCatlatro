@@ -54,7 +54,7 @@ elementcattos = {
 		--todo: debuffings
 	end,
 	loadGraphic = function(path)
-		return love.graphics.newImage(NFS.read('data', mod.path .. "assets/gfx/"..path..".png"), nil)
+		return love.graphics.newImage(SMODS.NFS.read('data', mod.path .. "assets/gfx/"..path..".png"), nil)
 	end,
 	enums = {
 		"S", "F", "D", "P",

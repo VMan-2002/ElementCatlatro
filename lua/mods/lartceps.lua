@@ -21,6 +21,9 @@ SMODS.Consumable{
 	no_ccd = true,
 	use = function(self, card, area, copier)
 		G.GAME.ecattos_lartceps_used = true
+		G.E_MANAGER:add_event(Event({
+			func = (function() play_sound("unik_gore6") return true end)
+		}))
 		for k,v in pairs(elementcattos.atomicnumber) do
 			if k > 4 then
 				for _, card in ipairs(find_joker(v)) do
