@@ -12,7 +12,7 @@ function elementcattos.bs_stake_setup(level, tier_offset)
 	G.GAME.ecattos_bs_jokers_stock = {{},{},{},{},{},{},{},{}}
 	for k,v in pairs(SMODS.Blinds) do
 		if v.ecattos_conf and v.ecattos_conf.bs_joker then
-			local tier = v.ecattos_conf.tier - tier_offset
+			local tier = v.ecattos_conf.tier - (tier_offset or 0)
 			if G.GAME.ecattos_bs_jokers_stock[tier] then
 				table.insert(G.GAME.ecattos_bs_jokers_stock[tier], v.key)
 			end
