@@ -11,6 +11,7 @@ return {
             --k_legendary = "Legendary",
             --k_cry_exotic = "Exotic",
 			k_ecattos_strange = "Strange",
+			k_ecattos_bs_hypothetical = "???",
 			
 			ecattos_compoundcreator_tocreate = "Compound to create",
 			ecattos_compoundcreator_confirm = "Confirm",
@@ -132,6 +133,7 @@ return {
 			ecattos_bejeweled = "Bejeweled",
 			ecattos_geiger = "Geiger",
 			ecattos_crescent = "Crescent",
+			k_ecattos_bs_hypothetical = "???"
 		},
 		achievement_names = {
 			ach_ecattos_deck = "Feline Chemistry",
@@ -956,6 +958,13 @@ return {
 				text = {
 					""
 				}
+			},
+			j_ecattos_planet_vulcan = elementcattos.loc_txt_planet {
+				name = "Vulcan",
+				text = {
+					"{_A:mult:+#1#} per Tag per scored",
+					"Blind if hand is a {C:attention}Raise"
+				}
 			}
 		},
 		Tarot = {
@@ -1134,14 +1143,40 @@ return {
 				},
 			},
 			ecattos_planet_moon_slots={
-				name="Has Moons",
+				name="Extra Slots",
 				text={
-					"Up to {C:attention}#1#{} owned {C:attention}Moons",
-					"of this {C:attention}Planet{} give",
-					"{C:attention}+#2#{} Trinket slots each",
-					"{C:inactive}(Selling this Planet",
-					"{C:inactive}will sell it's moons",
-					"{C:inactive}if there's no space)"
+					"This {C:attention}Planet Catto{} provides",
+					"{C:attention}+#1#{} Trinket Slots for each",
+					"of it's moons"
+				}
+			},
+			ecattos_planet_moon_slots_2={
+				name="Extra Slots",
+				text={
+					"This {C:attention}Planet Catto{} provides",
+					"{C:attention}+#1#{} Trinket Slots for each",
+					"of it's {C:attention}#2#{} held moons",
+					"{C:inactive}({C:attention}+#3#{C:inactive} in total)"
+				}
+			},
+			ecattos_planet_moon_slots_2={
+				name="Extra Slots",
+				text={
+					"This {C:attention}Planet Catto{} provides",
+					"{C:attention}+#1#{} Trinket Slots for each",
+					"of it's {C:attention}#2#{} held moons",
+					"{C:inactive}({C:attention}+#3#{C:inactive} in total)",
+					"When sold, {C:attention}#4#{} moons {C:red}will",
+					"{C:red}also be sold{} to ensure",
+					"free space"
+				}
+			},
+			ecattos_planet_moon_lonely={
+				name="Lonely",
+				text={
+					"This {C:attention}Planet Catto{}",
+					"has no moons.",
+					"She's frickin' lonely :sob:"
 				}
 			},
 			ecattos_handmade_tip = {

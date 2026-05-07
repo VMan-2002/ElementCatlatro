@@ -301,7 +301,8 @@ local rq = {
 	"achievements",
 	"main_collection",
 	BLINDSIDE and "blindside/bs_main" or nil,
-	next(SMODS.find_mod("unik")) and "mods/lartceps" or nil
+	next(SMODS.find_mod("unik")) and "mods/lartceps" or nil,
+	next(SMODS.find_mod("TravelToTheSeaside")) and "mods/seaside" or nil
 }
 
 --Pronouns

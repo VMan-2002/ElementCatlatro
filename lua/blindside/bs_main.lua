@@ -62,6 +62,12 @@ SMODS.Atlas({
 	px = 34,
 	py = 34
 })
+SMODS.Rarity {
+	key = "bs_hypothetical", --Also used for hoax
+	pools = {},
+	badge_colour = G.C.BLACK,
+	default_weight = 0
+}
 elementcattos.moon_in_pool = function(self, args)
 	if next(SMODS.find_card(self.ecattos_conf.owner_key, true)) then
 		return true

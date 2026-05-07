@@ -45,8 +45,8 @@ elementcattos.bs_joker = function(anum, tier, t)
 		{mult = 10, base_dollars = 6}, --6: boss (from ante (win*0.4))
 		{mult = 16, base_dollars = 7}, --7: showdown
 		{mult = 30, base_dollars = 9}, --8: superboss (showdown after win ante)
-		{mult = 38, base_dollars = 14}, --9: extra 1
-		{mult = 48, base_dollars = 18} --10: extra 2
+		{mult = 36, base_dollars = 14}, --9: extra 1
+		{mult = 40, base_dollars = 18} --10: extra 2
 	})[tier]) do
 		t[k] = t[k] or v
 	end

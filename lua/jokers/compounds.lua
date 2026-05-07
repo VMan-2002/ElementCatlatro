@@ -225,6 +225,7 @@ SMODS.Atlas({
 })
 
 local inpool = function(self, args)
+	if G.GAME.topuplib_universe and G.GAME.topuplib_universe.current ~= "balatro" and pseudorandom("ecatto_spawnrate") > 0.3 then return true end
 	if self.rarity == 1 and pseudorandom("ecatto_spawnrate") > 0.65 then return true end
 	if self.rarity == 2 and pseudorandom("ecatto_spawnrate") > 0.85 then return true end
 	return false

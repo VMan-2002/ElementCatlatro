@@ -66,7 +66,7 @@ SMODS.JimboQuip({
 			while G.localization.misc.quips[k_base .. i] do
 				i = i + 1
 			end
-			if i == 1 then return false end
+			if i == 1 then print("NO!!!") return false end
 			self.extra.text_key = i == 2 and (k_base .. "1") or (k_base .. math.random(i - 1))
 			self.extra.center = G.P_BLINDS[G.GAME.blind.name].ecattos_conf.my_center or "j_ecattos_element0"
 			if mergevals then
