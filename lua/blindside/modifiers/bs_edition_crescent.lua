@@ -10,9 +10,8 @@ local shd = SMODS.Shader {
 		}
 	end
 }
-local moon_normal_img = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/crescent_normal.png"))
---moon_normal_img:setFilter("nearest")
-local moon_environment_img = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/crescent_environment.png"))
+local moon_normal_img = topuplib.loadGraphic("crescent_normal")
+local moon_environment_img = topuplib.loadGraphic("crescent_environment")
 
 local inject_ref = SMODS.injectItems
 function SMODS.injectItems(...)

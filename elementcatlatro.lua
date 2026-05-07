@@ -54,7 +54,7 @@ elementcattos = {
 		--todo: debuffings
 	end,
 	loadGraphic = function(path)
-		return love.graphics.newImage(SMODS.NFS.read('data', mod.path .. "assets/gfx/"..path..".png"), nil)
+		return topuplib.loadGraphic(path, mod)
 	end,
 	enums = {
 		"S", "F", "D", "P",
@@ -203,7 +203,8 @@ elementcattos = {
 			end
 		end
 		return inputs
-	end
+	end,
+	--stopshakingme = function() end
 }
 
 SMODS.current_mod.custom_collection_tabs = function()
@@ -386,7 +387,7 @@ if CardPronouns then
 		key = "ecatto_na"
 	}
 	
-	elementcattos.usa_flag = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/usa.png"), nil)
+	elementcattos.usa_flag = topuplib.loadGraphic("usa")
 end
 
 if Yahimod then

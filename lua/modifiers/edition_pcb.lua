@@ -9,8 +9,7 @@ local shd = SMODS.Shader {
 		}
 	end
 }
-local pcb_overlay_img = love.graphics.newImage(NFS.read('data', SMODS.current_mod.path .. "assets/gfx/pcb_overlay.png"), nil)
-pcb_overlay_img:setFilter("nearest")
+local pcb_overlay_img = topuplib.loadGraphic("pcb_overlay", {filter = {"nearest"}})
 
 local inject_ref = SMODS.injectItems
 function SMODS.injectItems(...)
