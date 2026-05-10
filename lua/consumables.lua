@@ -245,14 +245,31 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 	end,
 	use = function()
 		local j = G.jokers.highlighted[1]
+		if Ascensio and conf and conf.original and Ascensio.Ascensionable[conf.original] then
+			local conf = j.config.center.ecattos_conf
+			local rd = elementcattos.isRadioactive(j)
+			if rd and conf then
+				j.ability.ecattos_rd_hands = (v.ability.ecattos_rd_hands or rd.hands) + 4
+				j:juice_up()
+				play_sound("ecattos_lockinstabilized")
+				return
+			end
+		end
 		j.ability.ecattos_stabilized = (j.ability.ecattos_stabilized or 0) + 2
 		j:juice_up()
 		play_sound("ecattos_stabilized")
+	end,
+	loc_txt = function(self, info_queue, card)
+		return {key = Ascensio and "c_ecattos_stabilizer_asc" or nil}
 	end
 }.key)
 SMODS.Sound({
 	key = "stabilized",
 	path = "stabilized.ogg"
+})
+SMODS.Sound({
+	key = "lockinstabilized",
+	path = "lockinstabilized.ogg"
 })
 SMODS.Sound({
 	key = "unstabilized",

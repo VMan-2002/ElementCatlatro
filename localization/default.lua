@@ -822,6 +822,55 @@ return {
 				},
 				compound = "pg5"
 			},
+			--Lock-innized (Ascensio)
+			j_ecattos_lockin1 = elementcattos.loc_txt {
+				name = "Lock-innized Hydrogen",
+				text = {
+					"^1.1 Chips",
+					"Played cards without enhancement",
+					"become Mult Cards"
+				}
+			},
+			j_ecattos_lockin2 = elementcattos.loc_txt {
+				name = "Lock-innized Helium",
+				text = {
+					"X35 Mult",
+					"Played cards without enhancement",
+					"become Bonus Cards"
+				}
+			},
+			j_ecattos_lockin8 = elementcattos.loc_txt {
+				name = "Lock-innized Oxygen",
+				text = {
+					"X2 Chips or +8 Mult",
+					"per scored card",
+					"Each played card has a",
+					"1 in 20 chance to gain",
+					"a Red Seal or Blue Seal"
+				}
+			},
+			j_ecattos_lockin118 = elementcattos.loc_txt {
+				name = "Lock-innized Oganesson",
+				text = {
+					"Balances Chips and Mult",
+					"X2 Mult"
+				}
+			},
+			j_ecattos_lockin119 = elementcattos.loc_txt {
+				name = "Lock-innized Ununennium",
+				text = {
+					"Played cards give",
+					"{_A:echips:#1#} when scored",
+					"Gains {_A:echips:#2#} if all",
+					"played cards differ in rank"
+				}
+			},
+			j_ecattos_lockin120 = elementcattos.loc_txt {
+				name = "Lock-innized Unbinilium",
+				text = {
+					"Played hand gains X2 Mult"
+				}
+			},
 			--Blindside
 			j_ecattos_planet_sun = elementcattos.loc_txt_planet {
 				name = "The Sun",
@@ -1045,6 +1094,15 @@ return {
 				text = topuplib.asub {
 					"Pauses {_A:attention:1} selected Element Catto's",
 					"radioactive decay for {C:attention}+2{} rounds"
+				}
+			},
+			c_ecattos_stabilizer_asc = {
+				name = "Stabilizer",
+				text = topuplib.asub {
+					"Pauses {_A:attention:1} selected Element Catto's",
+					"radioactive decay for {C:attention}+2{} rounds",
+					"When used on {_A:exotic:Lock-innized} Element Cattos,",
+					"instead adds {C:attention}+4{} to their decay timer"
 				}
 			},
 			c_ecattos_lightbulb = {

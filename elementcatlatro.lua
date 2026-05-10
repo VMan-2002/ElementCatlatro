@@ -63,7 +63,14 @@ elementcattos = {
 	--Radioactive
 	isRadioactive = function(card, notdisplayonly)
 		local radio = elementcattos.radioactive[card.config.center_key]
-		if not radio then return nil end
+		if not radio then
+			local conf = card.config.center.ecattos_conf
+			if conf and conf.original then
+				radio = elementcattos.radioactive[conf.original]
+			else
+				return nil
+			end
+		end
 		return (notdisplayonly or (not radio.glowonly)) and radio
 	end,
 	fromyears = function(n) return n * 315570000 end,
@@ -302,8 +309,9 @@ local rq = {
 	"achievements",
 	"main_collection",
 	BLINDSIDE and "blindside/bs_main" or nil,
-	next(SMODS.find_mod("unik")) and "mods/lartceps" or nil,
-	next(SMODS.find_mod("TravelToTheSeaside")) and "mods/seaside" or nil
+	topuplib.modEnabled("unik") and "mods/lartceps" or nil,
+	topuplib.modEnabled("TravelToTheSeaside") and "mods/seaside" or nil,
+	topuplib.modEnabled("Ascensio") and "mods/ascensio" or nil
 }
 
 --Pronouns
