@@ -5,6 +5,7 @@
     "badge_colour": "0077ff",
 	"description": "Balatro mod based on Element Cattos",
 	"prefix": "ecattos",
+	"icon_path": "modicon.png",
 	"main_file": "elementcatlatro.lua",
     "version": "0.0.0",
     "priority": 1,
