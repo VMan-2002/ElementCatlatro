@@ -1,5 +1,7 @@
 local function lolTitles()
-	local g_options = BLINDSIDE and {{"periodic", "compounds", "other", "planets"}, {}} or {{"periodic", "compounds", "other"}, {}}
+	local g_options = {{"periodic", "compounds", "other"}, {}}
+	if BLINDSIDE then table.insert(g_options[1], "planets") end
+	if topuplib.modEnabled("Ascensio") then table.insert(g_options[1], 4, "lockin") end
 	for k,v in pairs(g_options[1]) do
 		g_options[2][k] = localize("ecattos_collection_jokers_"..v)
 	end
@@ -30,6 +32,10 @@ local isBlindside = function(v)
 	return BLINDSIDE and topuplib.getValueIndex(SMODS.ObjectTypes.bld_obj_blindside.cards, v.key)
 end
 
+local isAscensio = function(v)
+	return v.rarity == "cry_exotic" and v.ecattos_conf and v.ecattos_conf.original
+end
+
 G.FUNCS.your_collection_ecattos_page = function(e)
 	local onum = e.cycle_config.current_option
 	local opt = lolTitles()[1][onum]
@@ -41,10 +47,12 @@ G.FUNCS.your_collection_ecattos_page = function(e)
 		end, {6,7,6}, {}, onum)
 	elseif opt == "other" then
 		coolio(function(v)
-			return not v.compound_formula and not (v.atomic_number and v.atomic_number >= 1 and v.atomic_number <= 120) and not isBlindside(v)
+			return not v.compound_formula and not (v.atomic_number and v.atomic_number >= 1 and v.atomic_number <= 120) and not (isBlindside(v) or isAscensio(v))
 		end, {5,5,5}, {}, onum)
 	elseif opt == "planets" then
 		coolio(isBlindside, {6,7,6}, {}, onum)
+	elseif opt == "lockin" then
+		coolio(isAscensio, {6,7,6}, {}, onum)
 	else
 		print("this is not SWAGGY")
 	end

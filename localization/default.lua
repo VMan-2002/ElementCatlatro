@@ -55,7 +55,8 @@ return {
 			ecattos_collection_jokers_periodic = "Purriodic Table",
 			ecattos_collection_jokers_compounds = "Compounds",
 			ecattos_collection_jokers_other = "Others",
-			ecattos_collection_jokers_planets = "Planet Cattos"
+			ecattos_collection_jokers_planets = "Planet Cattos",
+			ecattos_collection_jokers_lockin = "Lock-innized"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well
@@ -845,7 +846,7 @@ return {
 					"X2 Chips or +8 Mult",
 					"per scored card",
 					"Each played card has a",
-					"1 in 20 chance to gain",
+					"1 in 4 chance to gain",
 					"a Red Seal or Blue Seal"
 				}
 			},

@@ -67,6 +67,7 @@ elementcattos = {
 			local conf = card.config.center.ecattos_conf
 			if conf and conf.original then
 				radio = elementcattos.radioactive[conf.original]
+				if not radio then return nil end
 			else
 				return nil
 			end
@@ -102,6 +103,9 @@ elementcattos = {
 	tools = {},
 	cardFromMod = function(card)
 		return card.config.center and card.config.center.original_mod and card.config.center.original_mod.id == SMODS.Mods.ElementCatlatro.id
+	end,
+	cannotcopy = function(card)
+		return false --TODO: no exotic/masterwork
 	end,
 	modsupported = { -- Keys of jokers to consider "part of Element Catlatro" for Element Cattos deck
 		j_ecattos_element1 = true
@@ -588,7 +592,7 @@ elementcattos.booster_pools = {
 for k,v in pairs(SMODS.Centers) do
 	if v.original_mod and v.original_mod.id == SMODS.current_mod.id then
 		if (not v.not_in_booster and v.rarity ~= "ecattos_handmade") then
-			if v.set == "Joker" then
+			if v.set == "Joker" and elementcattos.booster_pools[v.rarity] then
 				table.insert(elementcattos.booster_pools[v.rarity], v.key)
 			elseif v.set == "Tarot" then
 				table.insert(elementcattos.booster_pools.tool, v.key)

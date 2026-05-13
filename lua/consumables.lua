@@ -284,7 +284,9 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 	atlas = "tools",
 	pos = {x = 5, y = 0},
 	can_use = function()
-		if #G.jokers.highlighted ~= 1 or not elementcattos.cardFromMod(G.jokers.highlighted[1]) then return false end
+		if #G.jokers.highlighted ~= 1 then return false end
+		local j = G.jokers.highlighted[1]
+		if not elementcattos.cardFromMod(j) or elementcattos.cannotcopy(j) then return false end
 		return topuplib.cardAreaHasRoom()
 	end,
 	use = function()
