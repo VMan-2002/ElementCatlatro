@@ -260,8 +260,10 @@ table.insert(elementcattos.tools, SMODS.Consumable {
 		play_sound("ecattos_stabilized")
 	end,
 	loc_txt = function(self, info_queue, card)
+	--[[loc_txt = function(self, info_queue, card)
 		return {key = Ascensio and "c_ecattos_stabilizer_asc" or nil}
 	end
+	end]]
 }.key)
 SMODS.Sound({
 	key = "stabilized",
