@@ -1100,10 +1100,13 @@ return {
 			c_ecattos_stabilizer_asc = {
 				name = "Stabilizer",
 				text = topuplib.asub {
-					"Pauses {_A:attention:1} selected Element Catto's",
-					"radioactive decay for {C:attention}+2{} rounds",
-					"When used on {_A:exotic:Lock-innized} Element Cattos,",
-					"instead adds {C:attention}+4{} to their decay timer"
+					{
+						"Pauses {_A:attention:1} selected Element Catto's",
+						"radioactive decay for {C:attention}+2{} rounds",
+					}, {
+						"When used on {_A:exotic:Lock-innized} Element Cattos,",
+						"instead adds {C:attention}+3{} to their decay timer"
+					}
 				}
 			},
 			c_ecattos_lightbulb = {
