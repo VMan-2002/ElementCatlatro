@@ -128,10 +128,11 @@ elementcattos.Bs_Add = function(obj)
 	return obj
 end
 elementcattos.Bs_Pronoun = function(primary, classical)
-	if config.planet_pronoun == 0 then
+	--[[if config.planet_pronoun == 0 then
 		return
 	end
-	return (config.planet_pronoun == 1 and primary or classical) or primary
+	return (config.planet_pronoun == 1 and primary or classical) or primary]]
+	return primary --Might remove this function idk
 end
 
 local rq = {
@@ -148,7 +149,8 @@ local rq = {
 	"bs_patches",
 	"bs_jokers",
 	"bs_quip",
-	"modifiers/bs_edition_crescent"
+	"modifiers/bs_edition_crescent",
+	--CardPronouns and "bs_pronouns" or false -- Handled in main lua file
 }
 
 --[[local edition_hook = BLINDSIDE.get_blindside_editions

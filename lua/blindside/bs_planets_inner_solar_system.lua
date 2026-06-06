@@ -10,7 +10,7 @@ elementcattos.Bs_Planet {
 	},
 	config = {extra = {money_per = 1}},
 	loc_vars = {"money_per"},
-	pronouns = elementcattos.Bs_Pronoun("")
+	pronouns = "ecatto_nopronouns"
 }
 elementcattos.radioactive.j_ecattos_planet_sun = {
 	glowrate = 3,
@@ -20,15 +20,18 @@ elementcattos.radioactive.j_ecattos_planet_sun = {
 }
 elementcattos.Bs_Planet {
 	key = "mercury",
-	pos = {x=3, y=0}
+	pos = {x=3, y=0},
+	pronouns = "she_her"
 }
 elementcattos.Bs_Planet {
 	key = "venus",
-	pos = {x=2, y=4}
+	pos = {x=2, y=4},
+	pronouns = "she_her"
 }
 elementcattos.Bs_Planet {
 	key = "earth",
-	pos = {x=2, y=0}
+	pos = {x=2, y=0},
+	pronouns = "any_all"
 }
 do --Earth's moons
 	elementcattos.Bs_Moon {
@@ -41,7 +44,8 @@ do --Earth's moons
 		loc_vars = function(self, info_queue, card)
 			info_queue[#info_queue+1] = G.P_CENTERS.m_bld_tablet
 			return {vars = {card.ability.extra.xmult}}
-		end
+		end,
+		pronouns = "ecatto_luna"
 	}
 	local iss_money_total = function(self, card)
 		return (G.jokers and G.GAME.ecattos_iss) and (G.GAME.ecattos_iss.unique_count * card.ability.extra.money_per) or 0
@@ -58,13 +62,15 @@ do --Earth's moons
 			return {vars = {card.ability.extra.money_per, iss_money_total(self, card)}}
 		end,
 		calc_dollar_bonus = iss_money_total
+		--TODO PRONOUN
 	}
 end
 elementcattos.Bs_Planet {
 	key = "mars",
 	pos = {x=0, y=2},
 	config = {extra = {xmult = 1.2}},
-	loc_vars = {"xmult"}
+	loc_vars = {"xmult"},
+	pronouns = "he_him"
 }
 do --Mars's moons
 	elementcattos.Bs_Moon {
@@ -74,7 +80,8 @@ do --Mars's moons
 		},
 		pos = {x=1, y=2},
 		config = {extra = {money = 1}},
-		loc_vars = {"money"}
+		loc_vars = {"money"},
+		pronouns = "he_him"
 	}
 	elementcattos.Bs_Moon {
 		key = "deimos",
@@ -83,6 +90,7 @@ do --Mars's moons
 		},
 		pos = {x=2, y=2},
 		config = {extra = {counter = 0, max = 9, discardgain = 1}},
-		loc_vars = {"counter", "max", "discardgain"}
+		loc_vars = {"counter", "max", "discardgain"},
+		pronouns = "he_him"
 	}
 end

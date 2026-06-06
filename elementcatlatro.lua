@@ -215,6 +215,8 @@ elementcattos = {
 		end
 		return inputs
 	end,
+	companieswhen = os.date("%B") == "June",
+	pronoun_in_pool = config.pronouns_in_pool and (topuplib.returnTrue or function() return true end) or topuplib.returnFalse
 	--stopshakingme = function() end
 }
 
@@ -283,6 +285,11 @@ mod.config_tab = function()
 				label = "Classic PlanetCattos Sprites (Requires restart)",
 				ref_table = config,
 				ref_value = 'old_planet_sprites',
+			}),
+			create_toggle({
+				label = "Additional Pronouns Everywhere (Requires restart)",
+				ref_table = config,
+				ref_value = 'pronouns_in_pool',
 			})
         }}
     }}
@@ -312,15 +319,16 @@ local rq = {
 	"isotopes",
 	"achievements",
 	"main_collection",
-	BLINDSIDE and "blindside/bs_main" or nil,
-	topuplib.modEnabled("unik") and "mods/lartceps" or nil,
-	topuplib.modEnabled("TravelToTheSeaside") and "mods/seaside" or nil,
-	topuplib.modEnabled("Ascensio") and "mods/ascensio" or nil
+	BLINDSIDE and "blindside/bs_main" or false,
+	(CardPronouns and (config.pronouns_in_pool or BLINDSIDE)) and "blindside/bs_pronouns" or false,
+	topuplib.modEnabled("unik") and "mods/lartceps" or false,
+	topuplib.modEnabled("TravelToTheSeaside") and "mods/seaside" or false,
+	topuplib.modEnabled("Ascensio") and "mods/ascensio" or false
 }
 
 --Pronouns
 if CardPronouns then
-	local in_pool = topuplib.returnFalse
+	local in_pool = elementcattos.pronoun_in_pool
 	CardPronouns.Pronoun {
 		colour = HEX("F0FF9F"),
 		text_colour = G.C.BLACK,
@@ -341,6 +349,13 @@ if CardPronouns then
 		pronoun_table = { "Unknown" },
 		in_pool = in_pool,
 		key = "ecatto_unknown"
+	}
+	CardPronouns.Pronoun {
+		colour = G.C.BLACK,
+		text_colour = G.C.GRAY,
+		pronoun_table = { "No Pronouns" },
+		in_pool = in_pool,
+		key = "ecatto_nopronouns"
 	}
 	CardPronouns.Pronoun {
 		colour = CardPronouns.badge_types.they_them.colour,
@@ -566,7 +581,7 @@ SMODS.Atlas({
 	py = 95
 })
 
-for i, v in pairs(rq) do
+for i, v in ipairs(rq) do
 	if v then
 		local a = assert(SMODS.load_file("lua/"..v..".lua"))()
 		if type(a) == "function" then
