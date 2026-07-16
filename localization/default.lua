@@ -440,6 +440,16 @@ return {
 				anum = 79,
 				sym = "Au"
 			},
+			j_ecattos_element81 = elementcattos.loc_txt {
+				name = "Thallium",
+				text = {
+					"Gains {_A:chips:+8} per {C:attention}2{} drawn",
+					"or discarded this round",
+					"{_A:currentchips:+0}"
+				},
+				anum = 81,
+				sym = "Tl"
+			},
 			j_ecattos_element94 = elementcattos.loc_txt {
 				name = "Plutonium",
 				text = {
@@ -1265,6 +1275,12 @@ return {
 					"by completing {E:1}{C:tarot}their blueprint{}",
                 } 
             },
+			ecattos_iss_tip = {
+				text = {
+					"Buying this will add {_A:money:1} to",
+					"{C:attention}International Space Station"
+				}
+			}
 		},
 		Back = {
 			b_ecattos_elements = {
@@ -1412,6 +1428,19 @@ return {
                     "{C:inactive}(Up to 100)"
                 },
             },
+			c_ecattos_recipe_titin = { -- Better place for this?
+				name = "Titin Blueprint",
+				text = topuplib.asub {
+					topuplib.txnyi,
+					"{C:important}Use to consume ingredients",
+					"Creates {_A:exotic:Titin} when completed",
+					"{C:inactive}Carbon: #1#/169719",
+					"{C:inactive}Hydrogen: #2#/270466",
+					"{C:inactive}Nitrogen: #3#/45688",
+					"{C:inactive}Oxygen: #4#/52238",
+					"{C:inactive}Sulfur: #5#/911"
+				}
+			}
         },
 		Tag = {
             tag_ecattos_topup_tag = {
