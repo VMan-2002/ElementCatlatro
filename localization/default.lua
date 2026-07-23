@@ -301,6 +301,16 @@ return {
 				anum = 11,
 				sym = "Na"
 			},
+			j_ecattos_element12 = elementcattos.loc_txt {
+				name = "Magnesium",
+				text = {
+					"{E:topuplib_shake}shaking text format test",
+					"{E:topuplib_twitch}twitching text format test",
+					"{E:topuplib_pop}pop text format test"
+				},
+				anum = 12,
+				sym = "Mg"
+			},
 			j_ecattos_element14 = elementcattos.loc_txt {
 				name = "Silicon",
 				text = {

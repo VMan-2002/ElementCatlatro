@@ -153,14 +153,16 @@ elementcattos = {
 					local c = elementcattos.compounds[v[1]]
 					if not c then error("Compound subpart "..v[1].." does not exist") end
 					result = result .. elementcattos.formatFormula(c[1], method)
-				elseif #v == 2 then
-					local subnum = ""
+				else
 					local ns = tostring(v[2])
-					result = result .. v[1] .. (method and ("("..ns..")") or topuplib.formatText({{ns, "small"}, {"", "inactive"}}))
-				elseif #v == 3 then
-					local subnum = ""
-					local ns = tostring(v[2])
-					result = result .. v[1] .. "-" .. v[2] .. (method and ("("..ns..")") or topuplib.formatText({{ns, "small"}, {"", "inactive"}}))
+					local cnt_suf = v[2] ~= 0 and (method and ("("..ns..")") or ("{C:inactive,s:0.7,E:topuplib_sub}" .. ns .. "{C:inactive}")) or ""
+					if #v == 2 then
+						local subnum = ""
+						result = result .. v[1] .. cnt_suf
+					elseif #v == 3 then
+						local subnum = ""
+						result = result .. v[1] .. "-" .. v[2] .. cnt_suf
+					end
 				end
 			else
 				if type(v) == "string" and string.sub(v, 1, 1) == "_" then
