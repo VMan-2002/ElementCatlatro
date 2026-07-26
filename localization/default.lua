@@ -1595,6 +1595,14 @@ return {
                     "{C:inactive}(Must have a Planet Catto",
 					"with remaining Moons)"
                 }, 
+            },
+            tag_ecattos_capacity_tag = {
+                name = "Capacity Tag",
+                text = {
+                    "{C:attention}+1{} Trinket slot",
+					"Consumed when",
+                    "exiting Shop"
+                }, 
             }
         },
 		bld_obj_ritual = {
