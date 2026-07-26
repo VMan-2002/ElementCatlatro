@@ -321,11 +321,13 @@ local rq = {
 	"isotopes",
 	"achievements",
 	"main_collection",
+	"blinds",
 	BLINDSIDE and "blindside/bs_main" or false,
 	(CardPronouns and (config.pronouns_in_pool or BLINDSIDE)) and "blindside/bs_pronouns" or false,
 	topuplib.modEnabled("unik") and "mods/lartceps" or false,
 	topuplib.modEnabled("TravelToTheSeaside") and "mods/seaside" or false,
-	topuplib.modEnabled("Ascensio") and "mods/ascensio" or false
+	topuplib.modEnabled("Ascensio") and "mods/ascensio" or false,
+	topuplib.modEnabled("BossPlatings") and "mods/bossplatings" or false
 }
 
 --Pronouns

@@ -144,6 +144,7 @@ local rq = {
 	"bs_planets_hoax_objects",
 	
 	--Others
+	"bs_blindcards",
 	"bs_consumables",
 	"bs_levels",
 	"bs_patches",

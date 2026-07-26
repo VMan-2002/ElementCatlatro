@@ -56,7 +56,9 @@ return {
 			ecattos_collection_jokers_compounds = "Compounds",
 			ecattos_collection_jokers_other = "Others",
 			ecattos_collection_jokers_planets = "Planet Cattos",
-			ecattos_collection_jokers_lockin = "Lock-innized"
+			ecattos_collection_jokers_lockin = "Lock-innized",
+			
+			ecattos_blind_pocket_placeholder = "(20% of current)"
 		},
 		ecattos_extended_element = {
 			name = function(num, isSymbol) --this is a function, hopefully the game takes this well
@@ -1290,6 +1292,12 @@ return {
 					"Buying this will add {_A:money:1} to",
 					"{C:attention}International Space Station"
 				}
+			},
+			bossplating_ecattos_ecattos_final_pocket = {
+				name = "Pastel Pocket's One Trip",
+				text = topuplib.asub {
+					"{C:attention}+1{} Joker slot"
+				}
 			}
 		},
 		Back = {
@@ -1430,7 +1438,7 @@ return {
             }
         },
 		Spectral = {
-            c_ecatto_transformation = {
+            c_ecattos_transformation = {
                 name = "TBN",
                 text = {
                     "Decays selected Element Cattos",
@@ -1450,6 +1458,31 @@ return {
 					"{C:inactive}Oxygen: #4#/52238",
 					"{C:inactive}Sulfur: #5#/911"
 				}
+			c_ecattos_scatter = {
+				name = "Scatter",
+				text = {
+					{
+						"Destroys {C:attention}1{} selected",
+						"Element Catto, increases",
+						"the chance of it appearing",
+						"again in the {C:attention}Shop"
+					}, {
+						"The chance for an Element",
+						"Catto to appear this way",
+						"is currently {C:green}#1#%{} and will",
+						"increase to {C:green}#2#%{}"
+					}
+				},
+			},
+			c_ecattos_pull = {
+				name = "Pull",
+				text = topuplib.asub {
+					"Creates up to {C:attention}#1#",
+					"Element Cattos that",
+					"were {C:spectral}Scattered{} during",
+					"this run",
+					"{_A:musthaveroom}"
+				},
 			}
         },
 		Tag = {
@@ -1591,6 +1624,10 @@ return {
 			}
 		},
 		Blind = {
+			bl_ecattos_final_pocket = {
+				name = "Pastel Pocket",
+				text = {"-#1# Joker slots","this Ante"}
+			},
 			bl_ecattos_bs_j1 = {
 				name = "Hydrogen",
 				text = {"Gains +1 Mult","after every hand"}
@@ -1713,6 +1750,22 @@ return {
 					"atomic number above {C:attention}4"
 				}
 			}
+		},
+		Enhanced = {
+			m_ecattos_bs_final_pocket = {
+				name = "Pastel Pocket",
+				text = topuplib.asub {
+					{
+						"{_A:bs_purple}",
+						"Before scoring,",
+						"{C:green}1 in 2{} chance to",
+						"create a {C:attention}Capacity Tag",
+						"for {C:attention}+1{} Trinket slot"
+					}, {
+						"{C:attention}Burns"
+					}
+				},
+			},
 		}
     }
 }
