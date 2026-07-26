@@ -845,6 +845,17 @@ return {
 				},
 				compound = "pg5"
 			},
+			--TOGA stuff
+			j_ecattos_enderium = elementcattos.loc_txt {
+				name = "Enderium",
+				text = {
+					"Cards held in hand",
+					"give {C:purple}+100{} Score",
+					"Create {C:spectral}Search{} when",
+					"Blind is selected",
+					"{_A:musthaveroom}"
+				}
+			},
 			--Lock-innized (Ascensio)
 			j_ecattos_lockin1 = elementcattos.loc_txt {
 				name = "Lock-innized Hydrogen",
@@ -1458,6 +1469,15 @@ return {
 					"{C:inactive}Oxygen: #4#/52238",
 					"{C:inactive}Sulfur: #5#/911"
 				}
+			},
+			c_ecattos_search = {
+				name = "Search",
+				text = {
+					"Select up to 2",
+					"cards from full deck",
+					"and draw them"
+				},
+			},
 			c_ecattos_scatter = {
 				name = "Scatter",
 				text = {
