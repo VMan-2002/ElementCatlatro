@@ -10,6 +10,7 @@ elementcattos.radioglow_sprites = {
 	
 	extended = "radioglow_extended",
 	sun = SMODS.current_mod.config.old_planet_sprites and "radioglow_sun" or "radioglow_sun_new",
+	nibiru = "radioglow_nibiru",
 	compoundcreator = "radioglow_compoundcreator",
 	bromine = "radioglow_bromine"
 }

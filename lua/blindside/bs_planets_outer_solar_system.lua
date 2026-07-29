@@ -1,3 +1,4 @@
+elementcattos.Bs_Planet_Group = "outer"
 elementcattos.Bs_Planet {
 	key = "jupiter",
 	pos = {x=5, y=0},

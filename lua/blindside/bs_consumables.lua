@@ -58,14 +58,26 @@ elementcattos.Bs_Add(SMODS.Consumable {
     end
 })
 
+SMODS.Atlas {
+	key = "bs_coolglobe",
+	path = "blindside/coolglobe.png",
+	px = 150,
+	py = 150
+}
+
 elementcattos.Bs_Add(SMODS.Consumable {
 	key = "bs_sudoscience",
 	set = "bld_obj_ritual",
-	atlas = "bs_consumables",
-	pos = {x=2,y=0},
-    can_use = function(self, card)
+	atlas = "bs_coolglobe",
+	pos = {x=0,y=0},
+	soul_pos = {x=1,y=0,draw = function(self, scale_mod, rotate_mod)
+		--self.children.floating_sprite:draw_shader('dissolve', 0,   nil, nil, self.children.center, scale_mod, rotate_mod, nil, 0.1 + 0.03*math.sin(1.8*G.TIMERS.REAL),nil, 0.6)
+		self.children.floating_sprite:draw_shader('dissolve', nil, nil, nil, self.children.center, scale_mod, rotate_mod)
+	end},
+	display_size = {w=150,h=150},
+	can_use = function(self, card)
 		
-    end,
+	end,
 	use = function(self, card, area)
 	end
 })

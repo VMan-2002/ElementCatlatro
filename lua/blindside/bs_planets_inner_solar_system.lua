@@ -1,3 +1,4 @@
+elementcattos.Bs_Planet_Group = "inner"
 elementcattos.Bs_Planet {
 	key = "sun",
 	atlas = "sun",
@@ -63,6 +64,17 @@ do --Earth's moons
 		end,
 		calc_dollar_bonus = iss_money_total
 		--TODO PRONOUN
+	}
+	elementcattos.Bs_Moon {
+		key = "hubble",
+		ecattos_conf = {
+			moon_of = "earth",
+			as = "satellite"
+		},
+		config = {extra = {shop_trinkets = 2, booster_extras = 1}},
+		loc_vars = {"shop_trinkets", "booster_extras"},
+		pos = {x=4, y=2},
+		pronouns = "ecatto_they_it"
 	}
 end
 elementcattos.Bs_Planet {

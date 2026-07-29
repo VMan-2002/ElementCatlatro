@@ -1,0 +1,11 @@
+[manifest]
+version = "1.0.0"
+priority = 4
+
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/game_object.lua"]'''
+position = "after"
+pattern = '''target.vars = res.vars or target.vars'''
+payload = '''target.vars = elementcattos.ex_describe(self, target.vars) or target.vars'''
+match_indent = true

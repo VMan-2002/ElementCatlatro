@@ -960,6 +960,14 @@ return {
 					"{_A:currentmoney:#2#}"
 				}
 			},
+			j_ecattos_moon_hubble = elementcattos.loc_txt_planet {
+				name = "Hubble Space Telescope",
+				text = topuplib.asub {
+					"{C:attention}+#1#{} Shop Trinket slots",
+					"{C:attention}Surprise Packs{} contain",
+					"{C:attention}#2#{} extra {C:attention}Trinket"
+				}
+			},
 			j_ecattos_planet_mars = elementcattos.loc_txt_planet {
 				name = "Mars",
 				text = {
@@ -1619,7 +1627,7 @@ return {
 				}
 			},
 			c_ecattos_bs_mooncreate = {
-				name = "Mooncreate", --todo: rename to fit other ritual cards
+				name = "Howl",
 				text = {
 					{
 						"Select {C:attention}#1#{} Planet Catto,",
@@ -1630,7 +1638,7 @@ return {
 				}
 			},
 			c_ecattos_bs_sudoscience = {
-				name = "sudo Science", --Intentional name, this is a pun based on "sudo" command in unix
+				name = "Esoteric Globe",
 				text = {
 					"Add a Hypothetical or",
 					"Hoax Planet Catto",

@@ -5,7 +5,7 @@ local mod = SMODS.current_mod
 local config = mod.config
 elementcattos.loc_txt_planet = function(d)
 	d.text = d.text and topuplib.asub(d.text) or nil
-	local xline = {}
+	local xline = {"#29426#"}
 	--TODO: localize these currently english-only strings
 	--not relevant for planets
 	--[[if d.anum then xline[1] = "Atomic number: " .. tostring(d.anum) end
@@ -26,7 +26,8 @@ elementcattos.loc_txt_planet = function(d)
 	end
 	if #xline ~= 0 then
 		d.text = d.text or {}
-		d.text[#d.text + 1] = "{C:inactive}" .. table.concat(xline, ", ")
+		local ato = type(d.text[1]) == "table" and d.text[1] or d.text
+		ato[#ato + 1] = "{C:inactive}" .. table.concat(xline, ", ")
 	end
 	return {
 		name = d.name,
@@ -89,7 +90,10 @@ elementcattos.moonsRemaining = function(key)
 	end
 	return result
 end
+elementcattos.Bs_Center_Order = 4000
 elementcattos.Bs_Planet = function(d)
+	d.order = elementcattos.Bs_Center_Order
+	elementcattos.Bs_Center_Order = elementcattos.Bs_Center_Order + 1
 	d.rarity = d.rarity or "bld_trinket"
 	d.cost = d.cost or 12
 	d.atlas = d.atlas or "planets"
@@ -105,6 +109,7 @@ elementcattos.Bs_Planet = function(d)
 	end
 	d.ecattos_conf = d.ecattos_conf or {}
 	d.ecattos_conf.t_planet = true
+	d.ecattos_conf.t_planet_grp = elementcattos.Bs_Planet_Group
 	return elementcattos.Bs_Add(SMODS.Joker(d))
 end
 elementcattos.Bs_Moon = function(d)
@@ -127,12 +132,18 @@ elementcattos.Bs_Add = function(obj)
 	table.insert(SMODS.ObjectTypes.bld_obj_blindside.cards, obj.key)
 	return obj
 end
-elementcattos.Bs_Pronoun = function(primary, classical)
-	--[[if config.planet_pronoun == 0 then
-		return
+local ex_describe_ref = elementcattos.ex_describe
+elementcattos.ex_describe = function(center, vars)
+	if center.ecattos_conf and center.ecattos_conf.t_planet then
+		vars = vars or {}
+		if center.ecattos_conf.moon_of then
+			vars[29426] = "Moon Description WIP"
+		else
+			vars[29426] = "Planet Description WIP"
+		end
+		return vars
 	end
-	return (config.planet_pronoun == 1 and primary or classical) or primary]]
-	return primary --Might remove this function idk
+	return ex_describe_ref(center)
 end
 
 local rq = {

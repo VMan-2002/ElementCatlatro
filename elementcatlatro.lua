@@ -40,6 +40,7 @@ elementcattos = {
 	loc_txt_planet = function(d)
 		return {name = d.name}
 	end,
+	ex_describe = topuplib.returnFalse,
 	doExplosion = function(src, joker_fract, joker_add, deck_fract, deck_add, shake_int)
 		local debuff_jokers = G.jokers and ((G.jokers.config.card_limit * (joker_fract or 0.3)) + (joker_add or 2))
 		local debuff_cards = G.playing_cards and ((#G.playing_cards * (deck_fract or 0.05)) + (deck_add or 2))
@@ -416,6 +417,13 @@ if CardPronouns then
 		pronoun_table = { "None", "All" },
 		in_pool = in_pool,
 		key = "ecatto_na"
+	}
+	CardPronouns.Pronoun {
+		colour = {0.516,0.308,0.686,1},
+		text_colour = G.C.WHITE,
+		pronoun_table = { "They", "It" },
+		in_pool = in_pool,
+		key = "ecatto_they_it"
 	}
 	
 	elementcattos.usa_flag = topuplib.loadGraphic("usa")
