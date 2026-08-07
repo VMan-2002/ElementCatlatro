@@ -95,7 +95,7 @@ SMODS.DrawStep {
 					end
 				end
 			end
-		elseif card.ecattos_radioglow == false then return end
+		elseif card.ecattos_radioglow == false or topuplib.detail == 1 then return end
 		
 		local rg = card.ecattos_radioglow
 		local dt = love.timer.getDelta()
